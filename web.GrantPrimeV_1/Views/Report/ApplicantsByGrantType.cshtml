@@ -1,0 +1,94 @@
+﻿@model IEnumerable<web.GrantPrimeV_1.Models.UserData.ApplicantData.ApplicantViewModel>
+
+
+@{ ViewBag.Title = "Applicants Report";
+    Layout = "/Views/Shared/_ReportLayout.cshtml";
+}
+
+
+
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pad-top">
+    <div class="card">
+
+        <div class="card-header">
+            <h2 class="mb-0">Grants Report</h2>
+        </div>
+        <div class="card-body">
+            <form asp-action="AccountDetail" class="col-md-4" method="get">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="tablename">Search By</label>
+                            <select name="grantType" class="form-control">
+                                <option value="0">-- Select Option -- </option>
+                                <option value="1">DLI1</option>
+                                <option value="2">DLI2</option>
+                                <option value="3">DLI3</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <div>
+                        <button type="submit" class="btn-primary">Generate</button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="table-responsive">
+                <table class="table table-bordered basic-main-table">
+                    <thead>
+                        <tr>
+                            <th>Applicant's Name</th>
+                            <th>Application Type</th>
+                            <th>Email</th>
+                            <th>BVN</th>
+                            <th>Gender</th>
+                            <th>Mobile</th>
+                            <th>Business Address</th>
+                            <th>Town</th>
+                            <th>LGA</th>
+                            <th>Date of Birth</th>
+                            <th>Business Sector</th>
+                            <th>Business Type</th>
+                            <th>Amount</th>
+                            <th>Total Outstanding Volume Of Loan</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var item in Model)
+                            {
+                        <tr>
+                            <td>@item.FullName</td>
+                            <td>@item.ApplicationType</td>
+                            <td>@item.Email</td>
+                            <td>@item.BVN</td>
+                            <td>@item.gender</td>
+                            <td>@item.Mobile</td>
+                            <td>@item.BusinessAddress</td>
+                            <td>@item.City</td>
+                            <td>@item.LGA</td>
+                            <td>@item.date_of_birth</td>
+                            <td>@item.BusinessSector</td>
+                            <td>@item.BusinessType</td>
+                            <td>@item.Amount</td>
+                            <td>@item.TotalOutstandVolumeOfLoan</td>
+                            <td>@item.Status</td>
+                        </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+
+@section Scripts{
+
+}

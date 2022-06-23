@@ -1,0 +1,143 @@
+﻿@model web.GrantPrimeV_1.Models.UserData.UserProfile.UserLogin
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login 10</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href="~/Content/login-form-20/css/style.css" rel="stylesheet" />
+</head>
+<body class="img js-fullheight" style="        background-image: url(../Content/login-form-20/images/bg.jpg);">
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
+                    <h2 class="heading-section">MEDA</h2>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-4">
+                    <div class="login-wrap p-0">
+                        <h3 class="mb-4 text-center">Have an account?</h3>
+
+                        @if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
+                        {
+
+                            if (ViewBag.Message != null)
+                            {
+                                <div class="alert alert-danger">
+                                    <strong>@ViewBag.Message</strong>
+                                </div>
+                            }
+                        }
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            <form action="#" class="signin-form">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @*<input type="text" class="form-control" placeholder="Username" required>*@
+                                    @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control", @type = "text", @name = "Username", @placeholder = "Username", @required = "required" } })
+                                </div>
+                                <div class="form-group">
+                                    @*<input id="password-field" type="password" class="form-control" placeholder="Password" required>*@
+                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", id = "password-field", @type = "password", placeholder = "Password", @required = "required" } })
+                                    <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>
+                                </div>
+                                <div class="form-group d-md-flex">
+                                    <div class="w-50">
+                                        <label class="checkbox-wrap checkbox-primary">
+                                            Remember Me
+                                            <input type="checkbox" checked>
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                    <div class="w-50 text-md-right">
+                                        <a href="@Url.Action("ForgotPassword","User")" style="color: #fff">Forgot Password</a>
+                                    </div>
+                                </div>
+                            </form>
+                        }
+                        @*<p class="w-100 text-center">&mdash; Or Sign In With &mdash;</p>
+                    <div class="social d-flex text-center">
+                        <a href="#" class="px-2 py-2 mr-md-1 rounded"><span class="ion-logo-facebook mr-2"></span> Facebook</a>
+                        <a href="#" class="px-2 py-2 ml-md-1 rounded"><span class="ion-logo-twitter mr-2"></span> Twitter</a>
+                    </div>*@
+                    </div>
+                </div>
+            </div>
+
+            <footer class="site-footer">
+                <div class="container">
+                    @*<div class="row">
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-5">
+                        <h2 class="footer-heading mb-4">About Us</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque facere laudantium magnam voluptatum autem. Amet aliquid nesciunt veritatis aliquam.</p>
+                    </div>
+                    <div class="col-md-3 ml-auto">
+                        <h2 class="footer-heading mb-4">Quick Links</h2>
+                        <ul class="list-unstyled">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Services</a></li>
+                            <li><a href="#">Testimonials</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h2 class="footer-heading mb-4">Follow Us</h2>
+                        <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
+                        <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
+                        <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
+                        <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <h2 class="footer-heading mb-4">Subscribe Newsletter</h2>
+                <form action="#" method="post" class="footer-subscribe">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control border-secondary text-white bg-transparent" placeholder="Enter Email" aria-label="Enter Email" aria-describedby="button-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary text-black" type="button" id="button-addon2">Send</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>*@
+                    <div class="border-top pt-5 text-center" >
+                        <p style="color:white">
+                         
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> powered by <a href="https://infosightonline.com" target="_blank">Infosight Limited</a>
+                        
+                        </p>
+                    </div>
+                   
+                </div>
+            </footer>
+        </div>
+    </section>
+
+
+    <script src="~/Content/login-form-20/js/jquery.min.js"></script>
+    <script src="~/Content/login-form-20/js/popper.js"></script>
+    <script src="~/Content/login-form-20/js/bootstrap.min.js"></script>
+    <script src="~/Content/login-form-20/js/main.js"></script>
+
+
+</body>
+</html>

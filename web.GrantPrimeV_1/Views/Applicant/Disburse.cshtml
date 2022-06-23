@@ -1,0 +1,1397 @@
+﻿
+@{
+    ViewBag.Title = "Disburse";
+    Layout = "~/Views/Shared/_Ekiti_Layout.cshtml";
+}
+
+<section id="intro" class="intro">
+
+    <div class="row">
+
+        <div class="wow fadeInDown" data-wow-offset="0" data-wow-delay="0.1s">
+            <div style="height:130px">
+
+            </div>
+        </div>
+    </div>
+
+</section>
+<div class="container">
+    <div class="row">
+
+
+        @*<div class="col-md-10 col-md-offset-1">*@
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div style="display:none;" class="alert alert-success alert-dismissible" id="succesdiv">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <p>
+                    <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><span id="sucessspan"></span>
+
+                </p>
+            </div>
+
+
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        @Html.DropDownList("grantType", new List<SelectListItem>
+     {                   new SelectListItem() {Text = "Select Grant Type:",Value=""},
+                         new SelectListItem() {Text = "DLI1", Value="1"},
+                         new SelectListItem() {Text = "DLI2", Value="2"},
+                         new SelectListItem() {Text = "DLI3", Value="3"}
+     }, new { @class = "form-control"  })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <button class="btn btn-primary" id="freshList">YET TO DISBURSE </button>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <button class="btn btn-primary" id="PartiallyDisburse">PARTIALLY DISBURSED </button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row" id="BvnRow" style="display:none;">
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        @Html.Editor("AppBVN", new { htmlAttributes = new { @class = "form-control", @id = "AppBVN" } })
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="bs-example" id="ListContainer" style="display:none">
+
+                @*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="mdo">Open modal for mdo </button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="fat">Open modal for fat</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="getbootstrap">Open modal for getbootstrap</button>*@
+
+                <div class="modal fade" id="exampleModal"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                @*<h5 class="modal-title" id="exampleModalLabel">New message</h5>*@
+                                <button type="button" class="close" onclick="return reload();" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                @*<form>
+            <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Recipient:</label>
+                <input type="text" class="form-control" id="recipient-name">
+            </div>
+            <div class="form-group">
+                <label for="message-text" class="col-form-label">Message:</label>
+                <textarea class="form-control" id="message-text"></textarea>
+            </div>
+        </form>*@
+                                <div class="row">
+
+                                    <div class="col-md-12" id="IndivApp">
+                                        <div class="card" id="assetDetails">
+                                            <h5 class="card-header" style="background-color:blue;color:white">Applicant Information</h5>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Applicant Id:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblRegistrationId" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Surname:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblSurname" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">First Name:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblFirstName" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Middle Name:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblMiddlename" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Gender:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblgender" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">State of Origin:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblStateOfOrigin" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">LGA:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblLGA" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Resident Address:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblResidAddress" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Position:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblPostFunct" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Personal Tax Reg. No.:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblTaxReg" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Phone:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblPhone" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Email:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblEmail" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Business Sector:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblBusSector" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Business Type:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblBusType" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Business Address:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblBusAdress" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">City:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblCity" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">State:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblState" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Nationality:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblNationality" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Website:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblWebsitAdress" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Bisiness Phone:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblBusiPhone" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Business Email:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblBusiEmail" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Business Tax Reg. No:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblTaxRegNO" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Last Tax Receipt:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblTaxReceipt" style="color:blue;"><button class="btn-light" id="DownloadTaxReceipt">download</button></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Last Tax Pay Date:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblBussComDate" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Number of Yr. Inc.:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblNumYr" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Bus. Reg. No:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblBusnRegNum" style="color:blue;"><button class="btn-light" id="CACDownload">download</button></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Bus. Reg. Certificate:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="" style="color:blue;"><button class="btn-light" id="CACDownload">download</button></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Number of Employee:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblNOofEmp" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Number of Female:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblNOofFemale" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Number of Male:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblNOofMale" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Age Grade:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblAgeGrade" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Last 3 yrs Annual Turnover:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblTurnoverdnld" style="color:blue;"><button class="btn-light" id="TurnOverDownload">download</button></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Est. Value of Bus. Asset (excluding land & buildings):</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblBusASetdnld" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Evidence of Last 3 Years Expenses:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="" style="color:blue;"><button class="btn-light" id="DownloadExp">download</button></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Bank Name:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblBankName" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Account Number:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblAcctNo" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">BVN:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblBVN" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Rating:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblRating" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Running loan:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblRuninloan" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">payment Schedule:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblpaymSchedule" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Repayment change to how much?:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblpaymentChange" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Are you finding it difficult to meet payment obligation?</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblrepaymenobligation" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">business Impact:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblbussImpact" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">bus. Neg. Impact:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblbussNegImpact" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Are you planning to lay-off employee?:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblplantolayoff" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Number of Employee laid off:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblNoOfEmployeeLayOff" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Did business continue during Covid-19 Crisis?:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblDidBusContDuringCovidCrisis" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">If no, what tools could have made this possible?</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblCudHaveMadeItPoss" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">If yes, what tools could have made business operations more efficient during the crisis?</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblCudHaveMadeItEff" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Were your employees able to work from home during the crisis?</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblEmployeeAbleToWrkFrmHom" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">If no, what tools would be required to make this possible?</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblWhtToolCudVeReqToMakeItPosib" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Full Name:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblfullname" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">All sections of the application form have been filled in, where appropriate:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblAllSectnOfFormFilled" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">The business registration certificate is attached (registered business only):</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblIsBusinessCertAttach" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Evidence of Tax payment is attached:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblIsEvidOfTaxPaymentAttach" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Evidence of annual business turnover is attached for a formal business or verified for an informal business:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblIsEvOf1YrTOverAttachOrVerifid" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Bank details have been provided:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblVeBnkDetailProvided" style="color:blue;"></label></div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6" style="font-weight:bold">Bank details have been provided:</div>
+                                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="IsImpactOfCovidOnBusnVrfd" style="color:blue;"></label></div>
+
+                                                </div>
+                                                @*<div class="row">
+                            <div class="col-md-6" style="font-weight:bold">business operation:</div>
+                            <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblbussoperat" style="color:blue;"></label></div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6" style="font-weight:bold">work from home:</div>
+                            <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblworkfromhome" style="color:blue;"></label></div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6" style="font-weight:bold">Grant request:</div>
+                            <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblgrandrequest" style="color:blue;"></label></div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6" style="font-weight:bold">Declareation:</div>
+                            <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lbldeclareation" style="color:blue;"></label></div>
+
+                        </div>*@
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6" style="font-weight:bold">Amount requested:</div>
+                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblAmountReguest" style="color:blue;"></label></div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6" style="font-weight:bold">Amount Approved:</div>
+                                    <div class="col-md-6" style="background-color:antiquewhite"><input class="form-control AmountApprove2" id="AmountApprove1" /> </div>
+                                    @*<div class="col-md-6" style="background-color:antiquewhite">@Html.TextBox("AmountApprove", new { @class = "form-control", @id = "AmountApprove", @required = "required" })</div>*@
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6" style="font-weight:bold">Amount Disbursed:</div>
+                                    <div class="col-md-6" style="background-color:antiquewhite"><input class="form-control" id="txtDisbursed" /> </div>
+                                    @*<div class="col-md-6" style="background-color:antiquewhite">@Html.TextBox("AmountApprove", new { @class = "form-control", @id = "AmountApprove", @required = "required" })</div>*@
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6" style="font-weight:bold">Balance:</div>
+                                    <div class="col-md-6" style="background-color:antiquewhite"><input class="form-control" id="txtBalance" /> </div>
+                                    @*<div class="col-md-6" style="background-color:antiquewhite">@Html.TextBox("AmountApprove", new { @class = "form-control", @id = "AmountApprove", @required = "required" })</div>*@
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6" style="font-weight:bold">Amount Due:</div>
+                                    <div class="col-md-6" style="background-color:antiquewhite"><input class="form-control" id="txtAmntDue" /> </div>
+                                    @*<div class="col-md-6" style="background-color:antiquewhite">@Html.TextBox("AmountApprove", new { @class = "form-control", @id = "AmountApprove", @required = "required" })</div>*@
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6" style="font-weight:bold">Total Number of Tranches:</div>
+                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblTotalNoofTranche" style="color:blue;"></label></div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6" style="font-weight:bold">Number of Tranches Disbursed:</div>
+                                    <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblNoofTrancheDisbursed" style="color:blue;"></label></div>
+
+                                </div>
+                                <div class="row" id="DisburseTrail" style="display:none;">
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="Address">Disbursement:</label>
+                                            <div>
+                                                <input type="checkbox" name="actionType" class="actionbtn" id="finalD" value="1">
+                                                <label for="scales">Full</label>
+                                            </div>
+
+                                            <div>
+                                                <input type="checkbox" name="actionType" class="actionbtn" id="TrancheD" value="0">
+                                                <label for="horns">Tranche</label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="Address">Last Approval's Comment</label>
+                                            @Html.TextArea("PrevComment", new { @class = "form-control", @id = "PrevComment", @readonly = "readonly" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="Address">Comment</label>
+                                            @Html.TextArea("Comment", new { @class = "form-control", @id = "Comment", @required = "required" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12 text-center">
+                                        <div class="form-group">
+                                            <button class="btn btn-primary" id="Approve">Disburse</button>
+                                        </div>
+                                    </div>
+                                    @*<div class="col-md-6">
+                <div class="form-group">
+                    <button class="btn btn-danger" id="Reject">Reject</button>
+                </div>
+            </div>*@
+                                </div>
+
+
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                @*<button type="button" class="btn btn-primary">Send message</button>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @*<center>
+                        <input type="button" id="btnShowPopup" value="Show Popup" class="btn btn-info btn-lg" />
+                    </center>
+                     Modal Popup
+                    <div id="MyPopup" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                             Modal content
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        &times;
+                                    </button>
+                                    <h4 class="modal-title">
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+
+                <div class="panel panel-default panel-table" id="maindiv">
+                    <div class="row">
+                        <div class="col-md-6">
+
+                        </div>
+                        @*<div class="col-md-6">
+                                <a href="@Url.Action("Unmatched","Report")"> Go to Matched GL Report</a>
+                            </div>*@
+                    </div>
+
+
+
+
+                    <div class="panel-body" id="FormDiv">
+
+                        <div class="alert alert-danger alert-dismissible" style="display:none;" id="errordiv">
+                            <a href="#" class="close" data-dismiss="alert">&times;</a>
+                            <strong>Error!&nbsp;&nbsp;</strong><span id="errorspan"></span>
+                        </div>
+
+
+
+                    </div>
+
+
+                    <div class="panel-body" id="TableDivCSS">
+                        <div class="panel-heading">
+                            <div class="row">
+
+                                <div class="col col-xs-6 text-left">
+                                    <div>
+                                        <h3 id="tile1">&nbsp;&nbsp;</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <br />
+                        <div style="width: 100%; " id="TableDiv">
+
+
+                            <table id="importTable1" class="display" style="width:100%;">
+
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th id="FirstColumn"> Applicant ID</th>
+                                        <th id="1">SurName</th>
+                                        <th id="2">First Name </th>
+                                        <th id="3">Other Name </th>
+                                        <th id="3">Other Age </th>
+                                        <th id="4">Bank Name </th>
+                                        <th id="5">Account Number </th>
+                                        <th id="6">BVN</th>
+                                        <th id="7">Date Due</th>
+                                        <th id="8">LGA </th>
+                                        <th id="9">Tax ID</th>
+                                        <th id="10">Last Paid</th>
+                                        <th id="11">Yrs of operation</th>
+                                        <th id="12">Gender</th>
+                                        <th id="13">Business Sector</th>
+                                        <th id="14">Amount</th>
+                                        <th id="15">Rating</th>
+                                        <th id="16">Business Asset</th>
+                                        <th id="17">Applied Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+   
+@section scripts{
+
+
+
+
+    @Styles.Render("~/Content/EkitiCss")
+    @Scripts.Render("~/Content/EkitiJs")
+
+
+    <script type="text/javascript">
+
+        var NDisburse, Freq,app_bvn;
+        //$.fn.modal.Constructor.prototype._enforceFocus = function () { };
+        $('#exampleModal').on('shown.bs.modal', function () {
+            $(document).off('focusin.modal');
+        });
+        function PartialDisbursement() {
+            (async () => {
+                const { value: songRequest } = await swal.fire({
+                    title: 'PARTIAL DISBURSEMENT',
+                    html:
+                        '<input id="Ndisburse" class="swal2-input" placeholder="Enter number of times Grant will be disburse:">' +
+                        '<input id="App_bvn2" class="swal2-input" placeholder="Enter applicant BVN:">' +
+                        '<select id="Frequ" class="swal2-input">' +
+                        '<option value = "">--Select Frequency--</option>' +
+                        '<option value = "1">weekly</option>' +
+                        '<option value = "2">monthly</option>' +
+                        '<option value = "3">Quarterly</option>' +
+                        '<option value = "4">Bi-Annually</option>' +
+                        '<option value = "5">Annually</option>' +
+                        '</select > ',
+                        //'<input id="listener" class="swal2-input" placeholder="Listener">',
+                    preConfirm: () => ({
+                        song: $('#Ndisburse').val(),
+                        app_bvn2: $('#App_bvn2').val(),
+                        listener: $('#Frequ').val()
+                    })
+                });
+
+                if (songRequest) {
+                    NDisburse = songRequest.song;
+                    app_bvn = songRequest.app_bvn2;
+                    Freq = songRequest.listener;
+                }
+                //swal.fire(`${songRequest.listener} requests ${songRequest.song}`);
+
+            })()
+
+    }
+
+        var table;
+    var RootUrl = "";
+    $(document).ready(function () {
+        $('.actionbtn').click(function () {
+
+            if ($("#finalD").prop('checked') == true) {
+                $("#TrancheD").attr("disabled", true);
+                $("#finalD").attr("disabled", false);
+            } else if ($("#TrancheD").prop('checked') == true) {
+                $("#finalD").attr("disabled", true);
+                $("#TrancheD").attr("disabled", false);
+                //sweetAlertForPartialD();
+                PartialDisbursement();
+              
+            } else {
+                $("#finalD").attr("disabled", false);
+                $("#TrancheD").attr("disabled", false);
+            }
+        });
+
+        $("#taxDownload").click(function () {
+            //RootUrl = "/Applicant/DownloadTaxReceipt?";
+            var regId = parseInt($('#lblRegistrationId').text());
+            $.ajax(
+                {
+                    url: '@Url.Action("DownloadTaxReceipt", "Applicant")',
+                    contentType: 'application/json; charset=utf-8',
+                    datatype: 'json',
+                    data: {
+                        id: regId
+                    },
+                    type: "GET",
+                    success: function () {
+                        window.location = RootUrl + '/Applicant/DownloadTaxReceipt?id=' + regId;
+
+                    }
+                });
+        });
+        $("#TurnOverDownload").click(function () {
+            //RootUrl = "/Applicant/DownloadTaxReceipt?";
+            var regId = parseInt($('#lblRegistrationId').text());
+            $.ajax(
+                {
+                    url: '@Url.Action("DownloadBusinessTurnOver", "Applicant")',
+                    contentType: 'application/json; charset=utf-8',
+                    datatype: 'json',
+                    data: {
+                        id: regId
+                    },
+                    type: "GET",
+                    success: function () {
+                        window.location = RootUrl + '/Applicant/DownloadBusinessTurnOver?id=' + regId;
+
+                    }
+                });
+        });
+                 $("#CACDownload").click(function () {
+                //RootUrl = "/Applicant/DownloadTaxReceipt?";
+             var regId = parseInt($('#lblRegistrationId').text());
+            $.ajax(
+            {
+                url: '@Url.Action("DownloadCAC", "Applicant")',
+                contentType: 'application/json; charset=utf-8',
+                datatype: 'json',
+                data: {
+                    id: regId
+                },
+                type: "GET",
+                    success: function () {
+                        window.location = RootUrl + '/Applicant/DownloadCAC?id=' + regId;
+
+                    }
+            });
+
+                 });
+        $("#DownloadExp").click(function () {
+                //RootUrl = "/Applicant/DownloadTaxReceipt?";
+             var regId = parseInt($('#lblRegistrationId').text());
+            $.ajax(
+            {
+                url: '@Url.Action("DownloadExpense", "Applicant")',
+                contentType: 'application/json; charset=utf-8',
+                datatype: 'json',
+                data: {
+                    id: regId
+                },
+                type: "GET",
+                    success: function () {
+                        window.location = RootUrl + '/Applicant/DownloadCAC?id=' + regId;
+
+                    }
+            });
+
+                 });
+
+
+
+
+            $('#importTable1 tbody').on('click', 'tr', function () {
+
+                var data = table.row(this).data();
+                AccountInfo(data[1])
+                //e.preventDefault();
+
+             
+               
+                $(this).attr("data-toggle", "modal").attr("data-target","#exampleModal");
+
+
+            });
+
+            $('#freshList').click(function (e) {
+                var grantType = $('#grantType').val();
+                if (grantType == "" || grantType == null) {
+
+                    Swal.fire("please select grant type")
+                    e.preventDefault();
+                } else {
+                    $('#importTable1').dataTable().fnDestroy();
+                    GetStatementRecords(2, grantType,'');
+                    $('#tile1').text("LIST OF APPLICANTS YET TO DISBURSE");
+                }
+
+            });
+        $('#PartiallyDisburse').click(function (e) {
+                var grantType = $('#grantType').val();
+            if (grantType == "" || grantType == null) {
+                swal.fire("please select grant type")
+                e.preventDefault();
+            } else {
+                var grantTypee = $('#grantType').val();
+             
+                    $('#importTable1').dataTable().fnDestroy();
+                    GetStatementRecords(1, grantTypee, '');
+                    $('#tile1').text("LIST OF APPLICANTS PARTIALLY DISBURSED GRANT TO");
+                
+            }
+
+
+        });
+
+
+            $('#Approve').click(function () {
+                Approve();
+            });
+            $('#Reject').click(function () {
+                Reject();
+            });
+    });
+    function GetStatementRecords(btn, grantType, bvn) {
+
+        var url = '@Url.Action("GetApprovedApplicants")';
+        //var data={
+        //    btn: btn
+        //};
+        $.ajax({
+            url: url,
+            type: "GET",
+            data: { btn: btn, dli: grantType, Bvn: bvn},
+            contentType: "application/json; charset=utf-8",
+            datatype: JSON,
+            success: function (Data) {
+                if (Data != null) {
+                    var tr;
+                    $('#importTable1 tbody').empty();
+                    //Append each row to html table
+                    //for (var i = 0; i < result.course.length; i++) {
+                    var i = 0;
+                    $.each(Data, function (index, item) {
+                        tr = $('<tr/>');
+                        tr.append('<td></td>');
+                        tr.append('<td id="fisrtTd">' + item.applicant_Id+'</td>');
+                        tr.append('<td id="a' + i + '">' + item.SurName + '</td>');
+                        tr.append('<td id="b' + i + '">' + item.FirstName + '</td>');
+                        tr.append('<td id="b' + i + '">' + item.Middlename + '</td>');
+                        tr.append('<td id="b' + i + '">' + item.Age + '</td>');
+                        tr.append('<td id="b' + i + '">' + item.BankName + '</td>');
+                        tr.append('<td id="b' + i + '">' + item.AcctNo + '</td>');
+                        tr.append('<td id="b' + i + '">' + item.BVN + '</td>');
+                        tr.append('<td id="b' + i + '">' + Formatdate(item.Datedue) + '</td>');
+                        tr.append('<td id="d' + i + '">' + item.LGA + '</td>');
+                        tr.append('<td id="e' + i + '">' + item.BusinesTaxRegNo + '</td>');
+                        tr.append('<td id="f' + i + '">' + Formatdate(item.LastTaxPayDate) + '</td>');
+                        tr.append('<td id="g' + i + '">' + item.NoOfYrInOperation + '</td>');
+                        tr.append('<td id="c' + i + '">' + item.gender + '</td>');
+                        tr.append('<td id="i' + i + '">' + item.BusinessSector + '</td>');
+                        tr.append('<td id="j' + i + '">' + addCommas(item.Amount) + '</td>');
+                        tr.append('<td id="j' + i + '">' + item.Score + '</td>');
+                        tr.append('<td id="j' + i + '">' + addCommas(item.EstimValOfBusTurnoverXLB) + '</td>');
+                        tr.append('<td id="j' + i + '">' + Formatdate(item.createdate) + '</td>');
+
+                        //tr.append('<td class="table-action">' +
+                        //'<div class="dropdown float-right">' +
+                        //    '<a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">' +
+                        //    ' Actions<i class="mdi mdi-dots-vertical"></i></a>' +
+                        //    '<div class="dropdown-menu dropdown-menu-right" style="">' +
+                        //    '<a class="dropdown-item" id="btndetail" href="#" onclick="return AccountInfo(\'' + item.ID + '\')">' +
+                        //    '<i class="la fa fa-eye"></i>' +
+                        //    ' <span class="kt-nav__link-text">View Details</span></a>' +
+                        //    ' </div>' +
+                        //    ' </div>' +
+                        //    '</td>');
+
+                        $('table').append(tr);
+                        i++;
+                    });
+                    //table = $('.display').DataTable({
+                    table = $('#importTable1').DataTable({
+                        columnDefs: [{
+                            targets: 1, visible: false
+                        }],
+                        rowCallback: function (row, data, displayNum, displayIndex, dataIndex) {
+                            $(row).attr('title', "Click to view details")
+                        }
+                        //"destroy": true,
+                        //retrieve: true
+                    });
+                    //$('#importTable1').DataTable({
+                    //    dom: 'Bfrtip',
+                    //    buttons: [
+                    //        'copy', 'csv', 'excel', 'pdf', 'print'
+                    //    ],
+                    //    retrieve: true,
+                    //});
+
+                    //$(document).ready(function () {
+                    //    //var table = $('#importTable1').DataTable();
+
+
+                    //});
+                    $("#ListContainer").show();
+                } else {
+                    alert("No record found");
+                }
+
+            },
+            error: function (data) { }
+        });
+
+    }
+
+      function AccountInfo(id) {
+        var data = {
+            id: id
+           };
+           var url = '@Url.Action("GetApplicantById")';
+        $.ajax({
+                 type: "GET",
+                url: url,
+                data: data,
+                contentType: "application/json;charset=UTF-8",
+                dataType: "json",
+                success: function (res) {
+                    if (res != null) {
+                        $("#formData").show();
+                        $('#lblRegistrationId').text(res.applicant_Id);
+                        $('#lblSurname').text(res.SurName);
+                        $('#lblFirstName').text(res.FirstName);
+                        $('#lblMiddlename').text(res.Middlename);
+                        $('#lblgender').text(res.gender);
+                        $('#lblStateOfOrigin').text(res.StateOfOrigin);
+                        $('#lblLGA').text(res.LGA);
+                        $('#lblResidAddress').text(res.ResidAddress);
+                        $('#lblPostFunct').text(res.Position);
+                        $('#lblTaxReg').text(res.PersonalTaxRegNo);
+                        $('#lblPhone').text(res.Mobile);
+                        $('#lblEmail').text(res.Email);
+                        $('#lblBusSector').text(res.BusinessSector);
+                        $('#lblBusType').text(res.BusinessType);
+                        $('#lblBusAdress').text(res.BusinessAddress);
+                        $('#lblCity').text(res.City);
+                        $('#lblState').text(res.State);
+                        $('#lblNationality').text(res.Country);
+                        $('#lblBusiPhone').text(res.BusinesPhoneNo);
+                        $('#lblBusiEmail').text(res.BusinesEmail);
+                        $('#lblBusnRegNum').text(res.BusnRegNum);
+                        $('#lblBusASetdnld').text(res.EstimValOfBusTurnoverXLB);
+
+                        $('#lblWebsitAdress').text(res.WebsitAdress);
+                        $('#lblTaxRegNO').text(res.BusinesTaxRegNo);
+                        //$('#lblBussComDate').text(Formatdate(res.LastTaxPayDate));
+                        $('#lblNumYr').text(res.NoOfYrInOperation);
+                        $('#lblNOofEmp').text(res.NOofEmployee);
+                        $('#lblNOofFemale').text(res.NOofFemale);
+                        $('#lblNOofMale').text(res.NOofMale);
+                        //$('#lblAgeGrade').text(res.AgeGrade);
+                        $('#lblBankName').text(res.BankName);
+                        $('#lblAcctNo').text(res.AcctNo);
+                        $('#lblBVN').text(res.BVN);
+                        $('#lblRuninloan').text(res.TotalOutstandVolumeOfLoan);
+                        $('#lblpaymSchedule').text(res.HowOftenWereYouPaying);
+                        $('#lblAmountPaid').text(res.HowMuchWereyouPaying);
+                        $('#lblpaymentChange').text(res.RepaymntChangeToHowMuch);
+                        $('#lblrepaymenobligation').text(res.findItDiffToMeetPaymentOblig);
+                        $('#lblbussImpact').text(res.BusinImpactByCovid);
+                        $('#lblbussNegImpact').text(res.BusiNegImpactByCovid);
+                        $('#lblplantolayoff').text(res.PlanningToLayOffEmployeeDueToNeg);
+                        $('#lblNoOfEmployeeLayOff').text(res.DidYouLayOffEmployee);
+                        $('#lblDidBusContDuringCovidCrisis').text(res.DidBusContDuringCovidCrisis);
+                        $('#lblCudHaveMadeItPoss').text(res.WhtToolCudVeMadeItPosib);
+                        $('#lblCudHaveMadeItEff').text(res.WhtToolCudVeMadeBusMoreEffnt);
+                        $('#lblEmployeeAbleToWrkFrmHom').text(res.EmployeeAbleToWrkFrmHom);
+                        $('#lblWhtToolCudVeReqToMakeItPosib').text(res.WhtToolCudVeReqToMakeItPosib);
+                        $('#lblfullname').text(res.fullname);
+                        $('#lblAllSectnOfFormFilled').text(res.AllSectnOfFormFilled);
+                        $('#lblIsBusinessCertAttach').text(res.IsBusinessCertAttach);
+                        $('#lblIsEvidOfTaxPaymentAttach').text(res.IsEvidOfTaxPaymentAttach);
+                        $('#lblIsEvOf1YrTOverAttachOrVerifid').text(res.IsEvOf1YrTOverAttachOrVerifid);
+                        $('#lblVeBnkDetailProvided').text(res.VeBnkDetailProvided);
+                        $('#lbl IsImpactOfCovidOnBusnVrfd').text(res.IsImpactOfCovidOnBusnVrfd);
+                        $('#lblAmountReguest').text(res.Amount);
+                        $('#AmountApprove1').val(res.amountApprove).attr("readonly", true);
+                        $('#txtDisbursed').val(res.amntDisbursed).attr("readonly", true);
+                        $('#txtBalance').val(res.disbursedBalance).attr("readonly", true);
+                        $('#PrevComment').val(res.approveComment);
+                        $('#txtAmntDue').val(res.AmntDue).attr("readonly", true);
+                        $('#lblTotalNoofTranche').text(res.TotalNoOfTranDisb);
+                        $('#lblNoofTrancheDisbursed').text(res.NoOftranchDisb);
+
+                        var disbuseTrail = $('#txtDisbursed').val();
+                        if (disbuseTrail == 0 || disbuseTrail == null) {
+                            $('#DisburseTrail').show();
+                        } else {
+                            $('#DisburseTrail').hide();
+                        }
+
+                    } else {
+                          $("#formData").hide();
+                        alert("Account Number does not exist");
+
+                    }
+                },
+                error: function (result) {
+                    alert("Error" + result.responseText);
+                }
+            });
+
+        }
+
+
+    function Approve() {
+        var grantType = $('#grantType').val();
+       
+        var regId = $('#lblRegistrationId').text();
+        var comment = $('#Comment').val();
+        //var bvn = $('#Comment').val();
+        if (comment != '' && grantType != '' && grantType != 0) {
+            //var approveAmount = parseFloat($('#lblAmountReguest').text()).toFixed(2);
+            var actionType = 0;
+            $('input[name="actionType"]:checked').each(function () {
+                actionType = $(this).val();
+            });
+            var model = {
+                applicant_Id: regId,
+                ApproveComment: comment,
+                approveType: actionType,
+                NtimeDisburse: NDisburse,
+                Frequency: Freq,
+                App_bvn: app_bvn,
+                grantType: grantType
+            };
+            var url = '@Url.Action("DisburseGrant")';
+            $.ajax({
+                type: "GET",
+                url: url,
+                data: model,
+                contentType: "application/json;charset=UTF-8",
+                dataType: "json",
+                success: function (res) {
+                    if (res.retVal != null) {
+                        //sweetAlert(res.retmsg);
+                        swal.fire({
+                            title: "Disbursement!",
+                            text: res.retmsg,
+                            icon: "success",
+                            buttons: ["", "OK"],
+                            dangerMode: true,
+                        })
+                            .then((willDelete) => {
+                                if (willDelete) {
+
+
+                                    //swal("Poof! This application has been rejected permanently", {
+                                    //    icon: "success",
+                                    //    className: "reloadBtn",
+                                    //});
+
+                                    location.reload();
+                                } else {
+                                    //swal("This application has been forwarded to Enumerator for correction", {
+                                    //    className: "reloadBtn",
+                                    //});
+                                    location.reload();
+                                }
+                            });
+
+                    } else {
+                        //sweetAlert("Account Number does not exist");
+                        swal.fire("Good job!", "Account Number does not exist!", "success");
+                    }
+                },
+                error: function (result) {
+                    swal.fire("Error", result.responseText,'danger');
+                }
+            });
+        } else {
+            alert("Please Enter comment and select Grant Type")
+        }
+
+
+    }
+  function Reject() {
+
+        var regId = $('#lblRegistrationId').text();
+      var comment = $('#Comment').val();
+      if (comment != '') {
+                  var rejectAmount = parseFloat($('#lblAmountReguest').text()).toFixed(2);
+        var actionType = 0;
+        $('input[name="actionType"]:checked').each(function () {
+            actionType = $(this).val();
+        });
+
+
+          swal.fire({
+            title: "Are you sure?",
+            text: "Do you want to reject it permanently?",
+            icon: "warning",
+            buttons: ["NO", "YES"],
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    actionType = 1;
+                               var model = {
+            applicant_Id: regId,
+            rejectAmount: rejectAmount,
+            rejectComment: comment,
+            rejectType: actionType
+        };
+        var url = '@Url.Action("Reject")';
+                $.ajax({
+                    type: "GET",
+                    url: url,
+                    data: model,
+                    contentType: "application/json;charset=UTF-8",
+                    dataType: "json",
+                    success: function (res) {
+                        //if (res.retVal != null) {
+                        //    swal({
+                        //        title: "Approved!",
+                        //        text: res.retmsg,
+                        //        icon: "success",
+                        //        button: "Ok",
+                        //    });
+
+                        //} else {
+                        //    sweetAlert("Account Number does not exist");
+                        //}
+                    },
+                    error: function (result) {
+                        sweetAlert("Error" + result.responseText);
+                    }
+                });
+
+                    //swal("Poof! This application has been rejected permanently", {
+                    //    icon: "success",
+
+                    //});
+                    swal.fire({
+                        title: "Rejected!",
+                        text: res.retmsg,
+                        icon: "warning",
+                        buttons: ["", "OK"],
+                        dangerMode: true,
+                    })
+                        .then((willDelete) => {
+                            if (willDelete) {
+
+
+                                //swal("Poof! This application has been rejected permanently", {
+                                //    icon: "success",
+                                //    className: "reloadBtn",
+                                //});
+
+                                location.reload();
+                            } else {
+                                //swal("This application has been forwarded to Enumerator for correction", {
+                                //    className: "reloadBtn",
+                                //});
+                                location.reload();
+                            }
+                        });
+
+
+                } else {
+                               actionType = 0;
+                               var model = {
+            applicant_Id: regId,
+            rejectAmount: rejectAmount,
+            rejectComment: comment,
+            rejectType: actionType
+        };
+        var url = '@Url.Action("Reject")';
+                $.ajax({
+                    type: "GET",
+                    url: url,
+                    data: model,
+                    contentType: "application/json;charset=UTF-8",
+                    dataType: "json",
+                    success: function (res) {
+                        //if (res.retVal != null) {
+                        //    swal({
+                        //        title: "Approved!",
+                        //        text: res.retmsg,
+                        //        icon: "success",
+                        //        button: "Ok",
+                        //    });
+
+                        //} else {
+                        //    sweetAlert("Account Number does not exist");
+                        //}
+                    },
+                    error: function (result) {
+                        sweetAlert("Error" + result.responseText);
+                    }
+                });
+
+                    //swal("This application has been forwarded to Enumerator for correction", {
+
+                    //});
+                    swal.fire({
+                        title: "Rejected!",
+                        text: res.retmsg,
+                        icon: "warning",
+                        buttons: ["", "OK"],
+                        dangerMode: true,
+                    })
+                        .then((willDelete) => {
+                            if (willDelete) {
+
+
+                                //swal("Poof! This application has been rejected permanently", {
+                                //    icon: "success",
+                                //    className: "reloadBtn",
+                                //});
+
+                                location.reload();
+                            } else {
+                                //swal("This application has been forwarded to Enumerator for correction", {
+                                //    className: "reloadBtn",
+                                //});
+                                location.reload();
+                            }
+                        });
+
+                }
+            });
+        //actionType = 0;
+
+      //location.reload(true);
+      } else {
+          alert("Please Enter comment");
+      }
+
+        }
+
+    //    function GetGLExtractRecords() {
+    //        var accountNoGL = $("#accountNoGL").val();
+    //    //var startDate = $("#StartDate").val();
+    //    //var EndDate = $("#EndDate").val();
+
+    //    var data = {
+    //        Acctno: accountNoGL
+    //        //StartDate: startDate,
+    //        //EndDate: EndDate
+    //    };
+    //    $.ajax({
+    //        url: RootUrl + "/Reconcile/GetAllExtractAccount2",
+    //        type: "GET",
+    //        data:data,
+    //        contentType: "application/json; charset=utf-8",
+    //        datatype: JSON,
+    //    success: function (Data) {
+    //                    var tr;
+    //                    $('#ExtractTable1 tbody').empty();
+    //                    //Append each row to html table
+    //                    //for (var i = 0; i < result.course.length; i++) {
+    //        var j = 0;
+    //                    $.each(Data, function (index, item) {
+    //                        tr = $('<tr/>');
+    //                        tr.append('<td></td>');
+    //                        tr.append('<td id="sev' + j + '">' + item.id + '</td>');
+    //                        tr.append('<td id="sev'+j+'">' + item.Accountnumber+'</td>');
+    //                        tr.append('<td id="eig'+j+'">' + Formatdate(item.trandate)+'</td>');
+    //                        tr.append('<td id="nine'+j+'">' + item.narration+ '</td>');
+    //                        tr.append('<td id="ten' + j + '">' + item.tellerNo + '</td>');
+    //                        tr.append('<td id="ten'+j+'">' + item.userid+'</td>');
+    //                        tr.append('<td id="elev'+j+'">' + item.TranAmount+ '</td>');
+    //                        tr.append('<td id="twel' + j + '">' + item.matchNo + '</td>');
+    //                        tr.append('<td id="twel'+j+'">' + Formatdate(item.createdate)+'</td>');
+    //                        $('table').append(tr);
+    //                        j++;
+    //                    });
+    //                    $('#ExtractTable1').DataTable({
+    //                    dom: 'Bfrtip',
+    //                    buttons: [
+    //                        'copy', 'csv', 'excel', 'pdf', 'print'
+    //                    ],
+    //                    retrieve: true,
+    //                    });
+    //        $("#ExtractTable1").show();
+    //        },
+    //        error: function (data) { }
+    //    });
+
+    //}
+
+
+    function Formatdate(Jsondate) {
+        if (Jsondate == null || Jsondate == '') {
+            return Jsondate;
+        }
+        else {
+            var mydate = new Date(eval('new' + Jsondate.replace(/\//g, ' ')));
+            var month = mydate.getMonth() + 1;
+            var day = mydate.getDate();
+            var year = mydate.getFullYear();
+            var date = day + "/" + month + "/" + year;
+            return date;
+        }
+
+    }
+    function addCommas(nStr) {
+        nStr += '';
+        x = nStr.split('.');
+        x1 = x[0];
+        x2 = x.length > 1 ? '.' + x[1] : '';
+        var rgx = /(\d+)(\d{3})/;
+        while (rgx.test(x1)) {
+            x1 = x1.replace(rgx, '$1' + ',' + '$2');
+        }
+        return x1 + x2;
+    }
+    </script>
+
+}
+<style>
+
+
+    table.dataTable.select tbody tr,
+    table.dataTable thead th:first-child {
+        cursor: pointer;
+    }
+
+    #header {
+        padding: 0px 0 !important;
+        background-color: rgba(0,0,0,0.8) !important;
+    }
+
+        #header.fixedwrap {
+            background-color: rgba(0,0,0,0.8) !important;
+        }
+
+    /*#TableDiv {
+                overflow-x: scroll;
+
+
+        /*background-color:#475;*/
+    /*overflow:scroll;*/
+
+
+    #importTableCSS, #ExtractTableCSS {
+        overflow-x: scroll;
+        margin-bottom: 3em;
+        height: 900px;
+        display: block;
+    }
+
+    div.dataTables_wrapper {
+        margin-bottom: 3em;
+    }
+
+
+    .popup-overlay {
+        visibility: hidden;
+    }
+
+    .popup-content {
+        visibility: hidden;
+    }
+
+    .bs-example {
+        margin: 20px;
+    }
+
+    #TableDiv, #IndivApp {
+        overflow-x: scroll;
+        margin-bottom: 3em;
+        height: auto;
+        display: block;
+    }
+
+    #FirstColumn, #fisrtTd {
+        display: none;
+    }
+
+    .container {
+        margin: auto;
+        width: 80%;
+        border: 5px solid #FFFF00;
+        padding: 10px;
+    }
+
+    .bs-example {
+        max-width: 100%;
+    }
+</style>
+
+
+

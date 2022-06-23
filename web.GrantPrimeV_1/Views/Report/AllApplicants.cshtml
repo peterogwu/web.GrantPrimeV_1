@@ -1,0 +1,70 @@
+﻿@model IEnumerable<web.GrantPrimeV_1.Models.UserData.ApplicantData.ApplicantViewModel>
+
+
+@{ ViewBag.Title = "Applicants Report";
+    Layout = "/Views/Shared/_ReportLayout.cshtml";
+}
+
+
+
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pad-top">
+    <div class="card">
+
+        <div class="card-header">
+            <h2 class="mb-0">All Appicants Report</h2>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered basic-main-table">
+                    <thead>
+                        <tr>
+                            <th>Applicant's Name</th>
+                            <th>Application Type</th>
+                            <th>Business Name</th>
+                            <th>Email</th>
+                            <th>BVN</th>
+                            <th>Gender</th>
+                            <th>Mobile</th>
+                            <th>Business Address</th>
+                            <th>Town</th>
+                            <th>LGA</th>
+                            <th>Date of Birth</th>
+                            <th>Amount Requested</th>
+                            <th>Outstanding Loan</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.FullName</td>
+                                    <td>@item.ApplicationType</td>
+                                    <td>@item.BusinessName</td>
+                                    <td>@item.Email</td>
+                                    <td>@item.BVN</td>
+                                    <td>@item.gender</td>
+                                    <td>@item.Mobile</td>
+                                    <td>@item.BusinessAddress</td>
+                                    <td>@item.City</td>
+                                    <td>@item.LGA</td>
+                                    <td>@item.date_of_birth</td>
+                                    <td>@item.Amount</td>
+                                    <td>@item.TotalOutstandVolumeOfLoan</td>
+                                    <td>@item.Status</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+
+@section Scripts{
+
+}

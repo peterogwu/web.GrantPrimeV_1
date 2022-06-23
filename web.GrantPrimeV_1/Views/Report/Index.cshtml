@@ -1,0 +1,83 @@
+﻿@model IEnumerable<web.GrantPrimeV_1.Models.UserData.ApplicantData.RatioModel>
+
+@{
+    ViewBag.Title = "Applicants Report";
+    Layout = "/Views/Shared/_ReportLayout.cshtml";
+}
+<section id="intro" class="intro">
+
+    <div class="row">
+
+        <div class="wow fadeInDown" data-wow-offset="0" data-wow-delay="0.1s">
+            <div style="height:130px">
+
+            </div>
+        </div>
+    </div>
+
+</section>
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pad-top">
+    <div class="card">
+
+        <div class="card-header">
+            <h2 class="mb-0">Ratio of Approved to Disbursed Grant</h2>
+        </div>
+        <div class="card-body">
+            <div id="pieChart"></div>
+        </div>
+    </div>
+</div>
+<br />
+
+@section Scripts{
+
+    <script src="~/Scripts/c3.min.js"></script>
+    <script src="~/Scripts/d3.min.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+
+        var url = '@Url.Action("Chart", "Report", new { area = "" })';
+        $.ajax({
+            type: "get",
+            url: url,
+            data: {},
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(response) {
+                successFunc(response);
+            },
+        });
+
+        function successFunc(jsondata) {
+            var data = {};
+            var statusName = [];
+            jsondata.forEach(function(e) {
+                statusName.push(e.Status);
+                data[e.Status] = e.Count;
+            })
+            var chart = c3.generate({
+                bindto: '#pieChart',
+                data: {
+                    json: [data],
+                    keys: {
+                        value: statusName,
+                    },
+                    type: 'pie'
+                },
+                color: {
+                    pattern: ['#1f77b4', '#aec7e8', '#ff7f0e', '#ffbb78', '#2ca02c', '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5', '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5']
+                },
+                pie: {
+                    label: {
+                        format: function (value, ratio, id) {
+                            return value;
+                        }
+                    }
+                }
+            });
+        }
+    });
+    </script>
+}

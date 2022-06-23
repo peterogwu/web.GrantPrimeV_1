@@ -1,0 +1,258 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Prime &mdash; Website by Infosight</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewBag.Title - Ekiti State's grant Programme</title>
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+
+    <link href="~/Content/consula/consula/fonts/icomoon/style.css" rel="stylesheet" />
+    <link href="~/Content/consula/consula/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/consula/consula/css/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/consula/consula/css/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/Content/consula/consula/css/owl.theme.default.min.css" rel="stylesheet" />
+    <link href="~/Content/consula/consula/css/jquery.fancybox.min.css" rel="stylesheet" />
+    <link href="~/Content/consula/consula/css/bootstrap-datepicker.css" rel="stylesheet" />
+    <link href="~/Content/consula/consula/fonts/flaticon/font/flaticon.css" rel="stylesheet" />
+    <link href="~/Content/consula/consula/css/aos.css" rel="stylesheet" />
+    <link href="~/Content/consula/consula/css/style.css" rel="stylesheet" />
+
+    <link href="~/Content/c3.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+
+    <link href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />
+</head>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+    <div class="site-wrap">
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+
+        <div class="top-bar py-3 bg-light" id="home-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6 text-left">
+                        <ul class="social-media">
+                            <li><a href="#" class="p-2"><span class="icon-facebook"></span></a></li>
+                            <li><a href="#" class="p-2"><span class="icon-twitter"></span></a></li>
+                            <li><a href="#" class="p-2"><span class="icon-instagram"></span></a></li>
+                            <li><a href="#" class="p-2"><span class="icon-linkedin"></span></a></li>
+                        </ul>
+                    </div>
+                    <div class="col-6">
+                        <p class="mb-0 float-right">
+                            <span><a href="#"><span class="icon-envelope mr-2"></span><span class="d-none d-lg-inline-block">@User.Identity.Name</span></a></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <header class="site-navbar py-4 bg-white js-sticky-header site-navbar-target" role="banner">
+
+            <div class="container">
+                <div class="row align-items-center">
+
+                    <div class="col-6 col-xl-2">
+                        <h3 class="mb-0 site-logo"><a href="@Url.Action("Index","Home")" class="text-black h2 mb-0">MEDA<span class="text-primary">.</span> </a></h3>
+                    </div>
+                    <div class="col-12 col-md-10 d-none d-xl-block">
+                        <nav class="site-navigation position-relative text-right" role="navigation">
+
+                            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                                @if (Request.IsAuthenticated)
+                                {
+                                    HttpCookie myCookie = Request.Cookies["roleid"];
+
+                                    if (myCookie != null)
+                                    {
+                                        if (myCookie.Value == "1")
+                                        {
+                                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                                            <li>@Html.ActionLink("Review", "Index", "Applicant")</li>
+
+                                            <li class="nav-item"><a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">Logout</a></li>
+
+                                        }
+
+                                        else if (myCookie.Value == "2" || myCookie.Value == "3" || myCookie.Value == "4" || myCookie.Value == "5" || myCookie.Value == "6")
+                                        {
+                                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                                            <li>@Html.ActionLink("Authorize", "Approval2", "Applicant")</li>
+                                            <li class="nav-item"><a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">Logout</a></li>
+
+                                        }
+                                        else if (myCookie.Value == "7")
+                                        {
+                                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                                            <li>@Html.ActionLink("Disburse", "Disburse", "Applicant")</li>
+                                            <li class="nav-item"><a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">Logout</a></li>
+
+                                        }
+                                        else if (myCookie.Value == "8")
+                                        {
+                                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                                            <li>@Html.ActionLink("Review", "Index", "Applicant")</li>
+                                            <li>@Html.ActionLink("Authorize", "Approval2", "Applicant")</li>
+                                            <li>@Html.ActionLink("Manage User", "Index", "User")</li>
+                                            <li>@Html.ActionLink("Manage Role", "AddRole", "Role")</li>
+                                            <li>@Html.ActionLink("Reports", "Index", "Report")</li>
+                                            <li class="nav-item"><a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">Logout</a></li>
+                                        }
+                                        else if (myCookie.Value == "9")
+                                        {
+                                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                                            <li>@Html.ActionLink("Reports", "Index", "Report")</li>
+                                            <li class="nav-item"><a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">Logout</a></li>
+
+                                        }
+                                    }
+                                    using (Html.BeginForm("LogOut", "User", FormMethod.Post, new { id = "logoutForm" }))
+                                    {
+
+                                        <li class="nav-item" style="display:none;"><a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">Logout</a></li>
+                                    }
+                                }
+                                else
+                                {
+
+                                    @Html.ActionLink("Forgot password", "ForgotPassword", "User", new { area = "" }, new { @class = "navbar-brand" })
+                                }
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a></div>
+                </div>
+            </div>
+        </header>
+
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pad-top">
+            <div class="card">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="navbar-brand active">
+                                <a class="navbar-brand" href="#">@Html.ActionLink("Report Dashboard", "Index", "Report")<span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="navbar-brand">
+                                <a class="navbar-brand">@Html.ActionLink("All Applicants", "AllApplicants", "Report")</a>
+                            </li>
+                            <li class="navbar-brand">
+                                <a class="navbar-brand">@Html.ActionLink("Approved Applicants", "ApprovedApplicants", "Report")</a>
+                            </li>
+                            <li class="navbar-brand">
+                                <a class="navbar-brand">@Html.ActionLink("Disbursed Applicants", "DisbursedApplicants", "Report")</a>
+                            </li>
+                            <li class="navbar-brand">
+                                <a class="navbar-brand">@Html.ActionLink("Rejected Applicants", "RejectedApplicants", "Report")</a>
+                            </li>
+                            <li class="navbar-brand">
+                                <a class="navbar-brand">@Html.ActionLink("Applicants By Type", "ApplicantsByGrantType", "Report")</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+                @RenderBody()
+
+            </div>
+        </div>
+        <br />
+        <br />
+        <br />
+
+
+        <footer class="site-footer">
+            <div class="container">
+                <div class="row pt-5 mt-5 text-center">
+                    <div class="col-md-12">
+                        <div class="border-top pt-5">
+                            <p>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;
+                                <script>document.write(new Date().getFullYear());</script> powered by <a href="https://infosightonline.com" target="_blank">Infosight Limited</a>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+    </div> <!-- .site-wrap -->
+
+    <script src="~/Content/consula/consula/js/jquery-3.3.1.min.js"></script>
+    <script src="~/Content/consula/consula/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="~/Content/consula/consula/js/jquery-ui.js"></script>
+    <script src="~/Content/consula/consula/js/popper.min.js"></script>
+    <script src="~/Content/consula/consula/js/bootstrap.min.js"></script>
+    <script src="~/Content/consula/consula/js/owl.carousel.min.js"></script>
+    <script src="~/Content/consula/consula/js/jquery.stellar.min.js"></script>
+    <script src="~/Content/consula/consula/js/jquery.countdown.min.js"></script>
+    <script src="~/Content/consula/consula/js/bootstrap-datepicker.min.js"></script>
+    <script src="~/Content/consula/consula/js/jquery.easing.1.3.js"></script>
+    <script src="~/Content/consula/consula/js/aos.js"></script>
+    <script src="~/Content/consula/consula/js/jquery.fancybox.min.js"></script>
+    <script src="~/Content/consula/consula/js/jquery.sticky.js"></script>
+
+    <script src="~/Scripts/c3.min.js"></script>
+    <script src="~/Scripts/d3.min.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+
+    <script src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.print.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
+
+    @RenderSection("scripts", required: false)
+
+    <script>
+        $('.basic-main-table').DataTable({
+            "dom": 'Bfrtip',
+            "buttons": [
+                {
+                    extend: 'excel',
+                    title: 'Ekiti State MEDA Grant Programme',
+                    className: 'btn btn-primary rounded-0',
+                    text: '<i class="far fa-file-excel"></i> Excel'
+                },
+                {
+                    extend: 'pdf',
+                    title: 'Ekiti State MEDA Grant Programme',
+                    className: 'btn btn-primary rounded-0',
+                    text: '<i class="far fa-file-pdf"></i> Pdf'
+                },
+                {
+                    extend: 'print',
+                    title: 'Ekiti State MEDA Grant Programme',
+                    className: 'btn btn-primary rounded-0',
+                    text: '<i class="fas fa-print"></i> Print'
+                }
+            ]
+        });
+    </script>
+</body>
+</html>

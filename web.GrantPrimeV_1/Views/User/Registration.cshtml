@@ -1,0 +1,327 @@
+﻿@model web.GrantPrimeV_1.Models.tbl_userprofile
+@{
+    ViewBag.Title = "Registration";
+    Layout = "~/Views/Shared/_Ekiti_Layout.cshtml";
+}
+
+
+<section id="intro" class="intro">
+
+    <div class="row">
+
+        <div class="wow fadeInDown" data-wow-offset="0" data-wow-delay="0.1s">
+            <div style="height:130px">
+
+            </div>
+        </div>
+
+
+    </div>
+
+</section>
+<div class="container">
+    <div class="row">
+
+
+        <div class="col-md-10 col-md-offset-1">
+
+            <div style="display:none;" class="alert alert-success alert-dismissible" id="succesdiv">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <p>
+                    <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><span id="sucessspan"></span>
+
+                </p>
+            </div>
+            <div class="panel panel-default panel-table" id="maindiv">
+
+                <div class="panel-body" id="FormDiv">
+
+                    <div class="alert alert-danger alert-dismissible" style="display:none;" id="errordiv">
+                        <a href="#" class="close" data-dismiss="alert">&times;</a>
+                        <strong>Error!&nbsp;&nbsp;</strong><span id="errorspan"></span>
+                    </div>
+                    @if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
+                    {
+
+                        if (ViewBag.Message != null)
+                        {
+
+                            <div class="alert alert-success">
+                                <strong>@ViewBag.Message</strong>
+                            </div>
+                            <div class="action">
+
+                                <a href="@Url.Action("Registration","User")" class="btn btn-primary btn-lg">Return</a>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form">
+
+
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="row">
+                                    <div class="col-md-6">
+
+                                        <div class="form-group">
+                                            <label for="userId"> Username:</label>
+                                            @*@Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                            @Html.EditorFor(model => model.Userid, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Userid, "", new { @class = "text-danger" })
+                                            @Html.ValidationMessage("useExist", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <div class="form-group">
+                                            <label for="userId"> Email Address:</label>
+                                            @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                                            @Html.ValidationMessage("EmailExist", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+
+                                        <div class="form-group">
+                                            <label for="userId"> Full Name:</label>
+                                            @Html.EditorFor(model => model.fullname, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.fullname, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <div class="form-group">
+                                            <label for="userId">Phone Number:</label>
+                                            @Html.EditorFor(model => model.phoneno, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.phoneno, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div name="frmCheckPassword" id="frmCheckPassword">
+                                            <div class="form-group">
+                                                <label for="userId"> Password:</label>
+                                                @Html.EditorFor(model => model.userpassword, new { htmlAttributes = new { @class = "form-control", @type = "password", @name = "password", @id = "password", @onKeyUp = "checkPasswordStrength();" } })
+                                                @Html.ValidationMessageFor(model => model.userpassword, "", new { @class = "text-danger" })
+                                                <div id="password-strength-status"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <div class="form-group">
+                                            <label for="userId">Confirm Password:</label>
+                                            @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", @type = "password" } })
+                                            @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="modal-footer">
+                                    <span id="spnMessage" class="text-danger">@TempData["Message"]</span>
+                                    <br />
+                                    <div class="action">
+                                        <button type="submit" id="addbutton" class="btn btn-primary">
+                                            Submit
+                                        </button>
+                                        <a href="@Url.Action("Index","User")" class="btn btn-primary btn-lg">Return</a>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                            if (ViewBag.Message != null)
+                            {
+                                <div class="alert alert-danger">
+                                    <strong>Error!</strong>@ViewBag.Message
+                                </div>
+                            }
+                        }
+
+
+
+                    }
+
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+<section id="intro" class="intro">
+
+    <div class="row">
+
+        <div class="wow fadeInDown" data-wow-offset="0" data-wow-delay="0.1s">
+            <div style="height:130px">
+
+            </div>
+        </div>
+
+
+    </div>
+
+</section>
+
+<script src="~/Content/accounting/js/jquery-3.2.1.min.js"></script>
+<script>
+
+    function checkPasswordStrength() {
+        var number = /([0-9])/;
+        var alphabets = /([a-zA-Z])/;
+        var special_characters = /([~,!,#,$,%,^,&,*,-,_,+,=,?,>,<])/;
+        if ($('#password').val().length < 6) {
+            $('#password-strength-status').removeClass();
+            $('#password-strength-status').addClass('weak-password');
+            $('#password-strength-status').html("Weak (should be atleast 6 characters.)");
+        } else {
+            if ($('#password').val().match(number) && $('#password').val().match(alphabets) && $('#password').val().match(special_characters)) {
+                $('#password-strength-status').removeClass();
+                $('#password-strength-status').addClass('strong-password');
+                $('#password-strength-status').html("Strong");
+            } else {
+                $('#password-strength-status').removeClass();
+                $('#password-strength-status').addClass('medium-password');
+                $('#password-strength-status').html("Medium (should include alphabets, numbers and special characters.)");
+            }
+        }
+    }
+</script>
+
+<style>
+    /*#frmCheckPassword {
+        border-top: #F0F0F0 2px solid;
+        background: #808080;
+        padding: 10px;
+    }*/
+
+    /*    #password {
+        padding: 7px;
+        border: #F0F0F0 1px solid;
+        border-radius: 4px;
+    }*/
+
+    #password-strength-status {
+        padding: 5px 10px;
+        color: #FFFFFF;
+        border-radius: 4px;
+        margin-top: 5px;
+    }
+
+    .medium-password {
+        background-color: #b7d60a;
+        border: #BBB418 1px solid;
+    }
+
+    .weak-password {
+        background-color: #ce1d14;
+        border: #AA4502 1px solid;
+    }
+
+    .strong-password {
+        background-color: #12CC1A;
+        border: #0FA015 1px solid;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    table.dataTable.select tbody tr,
+    table.dataTable thead th:first-child {
+        cursor: pointer;
+    }
+
+    #header {
+        padding: 0px 0 !important;
+        background-color: rgba(0,0,0,0.8) !important;
+    }
+
+        #header.fixedwrap {
+            background-color: rgba(0,0,0,0.8) !important;
+        }
+
+    /*#TableDiv {
+                overflow-x: scroll;
+
+
+        /*background-color:#475;*/
+    /*overflow:scroll;*/
+
+
+    #importTableCSS, #ExtractTableCSS {
+        overflow-x: scroll;
+        margin-bottom: 3em;
+        height: 900px;
+        display: block;
+    }
+
+    div.dataTables_wrapper {
+        margin-bottom: 3em;
+    }
+
+
+    .popup-overlay {
+        visibility: hidden;
+    }
+
+    .popup-content {
+        visibility: hidden;
+    }
+
+    .bs-example {
+        margin: 20px;
+    }
+
+    #TableDiv, #IndivApp {
+        overflow-x: scroll;
+        margin-bottom: 3em;
+        height: auto;
+        display: block;
+    }
+
+    #FirstColumn, #fisrtTd {
+        display: none;
+    }
+
+    .container {
+        margin: auto;
+        width: 80%;
+        border: 5px solid #FFFF00;
+        padding: 10px;
+    }
+
+    .bs-example {
+        max-width: 100%;
+    }
+</style>

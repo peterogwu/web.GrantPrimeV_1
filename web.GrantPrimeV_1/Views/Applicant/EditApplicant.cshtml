@@ -1,0 +1,1902 @@
+﻿@model web.GrantPrimeV_1.Models.UserData.ApplicantData.ApplicantModel
+@{
+    ViewBag.Title = "EditApplicant";
+    Layout = "~/Views/Shared/_Ekiti_Layout.cshtml";
+}
+<section id="intro" class="intro">
+
+    <div class="row">
+
+        <div class="wow fadeInDown" data-wow-offset="0" data-wow-delay="0.1s">
+            <div style="height:130px">
+
+            </div>
+        </div>
+
+
+    </div>
+
+</section>
+<div class="container">
+    <div class="row">
+
+
+        <div class="col-md-10 col-md-offset-1">
+
+            <div style="display:none;" class="alert alert-success alert-dismissible" id="succesdiv">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <p>
+                    <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><span id="sucessspan"></span>
+
+                </p>
+            </div>
+            <div class="panel panel-default panel-table" id="maindiv">
+
+                @*<ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item waves-effect waves-light">
+                            <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Personal Info.</a>
+                        </li>
+                        <li class="nav-item waves-effect waves-light">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Business Info.</a>
+                        </li>
+                        <li class="nav-item waves-effect waves-light">
+                            <a class="nav-link active" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Impact of C-19 on the Business</a>
+                        </li>
+                        <li class="nav-item waves-effect waves-light">
+                            <a class="nav-link active" id="GrantRequest-tab" data-toggle="tab" href="#GrantRequest" role="tab" aria-controls="GrantRequest" aria-selected="false">Grant Request</a>
+                        </li>
+                        <li class="nav-item waves-effect waves-light">
+                            <a class="nav-link active" id="Declaration-tab" data-toggle="tab" href="#Declaration" role="tab" aria-controls="Declaration" aria-selected="false">Declaration</a>
+                        </li>
+
+                    </ul>*@
+                @*<div class="container">*@
+
+                @*</div>*@
+
+
+
+                <div class="panel-body" id="FormDiv">
+
+                    <div class="alert alert-danger alert-dismissible" style="display:none;" id="errordiv">
+                        <a href="#" class="close" data-dismiss="alert">&times;</a>
+                        <strong>Error!&nbsp;&nbsp;</strong><span id="errorspan"></span>
+                    </div>
+                    @if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
+                    {
+
+                        if (ViewBag.Message != null)
+                        {
+
+                            <div class="alert alert-success">
+                                <strong>@ViewBag.Message</strong>
+                            </div>
+                            <div class="action">
+
+                                <a href="@Url.Action("Index","Applicant")" class="btn btn-primary btn-lg">Return</a>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        using (Html.BeginForm("EditApplicant", "Applicant", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form">
+
+
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                @Html.HiddenFor(m => m.applicant_Id)
+                                @Html.HiddenFor(m => m.gender)
+                                @Html.HiddenFor(m => m.GrantyTpe)
+                                @Html.HiddenFor(m => m.AnyRunningLoanPriorToCovid)
+                                @Html.HiddenFor(m => m.DidYourRepaymentChange)
+                                @Html.HiddenFor(m => m.findItDiffToMeetPaymentOblig)
+                                @Html.HiddenFor(m => m.BusiNegImpactByCovid)
+                                @Html.HiddenFor(m => m.PlanningToLayOffEmployeeDueToNeg)
+                                @Html.HiddenFor(m => m.DidBusContDuringCovidCrisis)
+                                @Html.HiddenFor(m => m.DidYouLayOffEmployee)
+                                @Html.HiddenFor(m => m.EmployeeAbleToWrkFrmHom)
+                                @Html.HiddenFor(m => m.AllSectnOfFormFilled)
+                                @Html.HiddenFor(m => m.IsBusinessCertAttach)
+                                @Html.HiddenFor(m => m.IsEvOf1YrTOverAttachOrVerifid)
+                                @Html.HiddenFor(m => m.IsEvidOfTaxPaymentAttach)
+                                @Html.HiddenFor(m => m.VeBnkDetailProvided)
+                                @Html.HiddenFor(m => m.IsImpactOfCovidOnBusnVrfd)
+                                @Html.HiddenFor(m => m.Score)
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <!-- Nav tabs -->
+                                        @*<div class="card">*@
+                                        <ul class="nav nav-tabs" role="tablist">
+                                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-home"></i>  <span>Personal Info.</span></a></li>
+                                            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-user"></i>  <span>Business Info.</span></a></li>
+                                            <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-envelope-o"></i>  <span>Impact on Bus. by Covid-19</span></a></li>
+                                            <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab"><i class="fa fa-cog"></i>  <span>Grant Request</span></a></li>
+                                            <li role="presentation"><a href="#extra" aria-controls="settings" role="tab" data-toggle="tab"><i class="fa fa-plus-square-o"></i>  <span>Declaration</span></a></li>
+                                        </ul>
+
+                                        <!-- Tab panes -->
+                                        <div class="tab-content">
+                                            <div role="tabpanel" class="tab-pane active" id="home">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="userId"> Surname:</label>
+                                                            @*@Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                                            @Html.EditorFor(model => model.SurName, new { htmlAttributes = new { @class = "form-control fulName" } })
+                                                            @Html.ValidationMessageFor(model => model.SurName, "", new { @class = "text-danger" })
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="userId"> First Name:</label>
+                                                            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control fulName" } })
+                                                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="userId"> Middle Name:</label>
+                                                            @Html.EditorFor(model => model.Middlename, new { htmlAttributes = new { @class = "form-control fulName" } })
+                                                            @Html.ValidationMessageFor(model => model.Middlename, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <p>Please select your gender:</p>
+
+                                                            <fieldset>
+                                                                <div class="some-class">
+                                                                    <input type="radio" class="gender" name="x" value="Male" id="y" />
+                                                                    <label for="y">Male</label>
+                                                                    <input type="radio" class="gender" name="x" value="Female" id="z" />
+                                                                    <label for="z">Female</label>
+                                                                </div>
+                                                            </fieldset>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+
+                                                            <label for="CompanyId ">State of origin: </label>
+                                                            @Html.EditorFor(m => m.StateOfOrigin, new { htmlAttributes = new { @class = "form-control", @Value = "Ekiti State", @Text = "Ekiti State", @readonly = "readonly" } })
+                                                            @Html.ValidationMessageFor(model => model.StateOfOrigin, "", new { @class = "text-danger" })
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="userId">LGA:</label>
+                                                            @*@Html.DropDownListFor(m => m.LGA, new SelectList(Enumerable.Empty<SelectListItem>()), "-------select--", new { @id = "LGA", @class = "form-control", @name = "LGA" })*@
+                                                            @Html.DropDownListFor(m => m.LGA, new SelectList(ViewBag.LGA, "TownName", "TownName"), "-----select LGA-----", new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.LGA, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="userId"> Resident Address:</label>
+                                                            @*@Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                                            @Html.EditorFor(model => model.ResidAddress, new { htmlAttributes = new { @class = "form-control" } })
+                                                            @Html.ValidationMessageFor(model => model.ResidAddress, "", new { @class = "text-danger" })
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="userId"> Position:</label>
+                                                            @Html.EditorFor(model => model.Position, new { htmlAttributes = new { @class = "form-control" } })
+                                                            @Html.ValidationMessageFor(model => model.Position, "", new { @class = "text-danger" })
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="userId"> Mobile Number:</label>
+                                                            @*@Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                                            @Html.EditorFor(model => model.Mobile, new { htmlAttributes = new { @class = "form-control" } })
+                                                            @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger" })
+                                                            @Html.ValidationMessage("MobileExist", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="userId"> Personal Tax Reg. Number:</label>
+                                                            @Html.EditorFor(model => model.PersonalTaxRegNo, new { htmlAttributes = new { @class = "form-control" } })
+                                                            @Html.ValidationMessageFor(model => model.PersonalTaxRegNo, "", new { @class = "text-danger" })
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                @*<div class="row">
+            <div class="col-md-6">
+
+                <div class="form-group">
+                    <label for="userId">Email:</label>
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+            <div class="col-md-6">
+
+                <div class="form-group">
+                    <label for="Address">Upload Passport:</label>
+                    <input type="file" name="passport" id="passport" class="form-control" required />
+
+                </div>
+            </div>
+        </div>*@
+                                                <div class="row">
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="userId">Email:</label>
+                                                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="userId">Date of Birth:</label>
+                                                            @Html.EditorFor(model => model.date_of_birth, new { htmlAttributes = new { @class = "form-control" } })
+                                                            @Html.ValidationMessageFor(model => model.date_of_birth, "", new { @class = "text-danger" })
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+
+                                                    <div class="col-md-12">
+
+                                                        <div class="form-group">
+                                                            <label for="Address">Upload Passport:</label>
+                                                            <input type="file" name="passport" id="passport" class="form-control" required />
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane" id="profile">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="userId"> Business Name:</label>
+                                                            @Html.EditorFor(model => model.BusinessName, new { htmlAttributes = new { @class = "form-control" } })
+                                                            @Html.ValidationMessageFor(model => model.BusinessName, "", new { @class = "text-danger" })
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="userId"> Business Sector:</label>
+
+                                                            @Html.EditorFor(model => model.BusinessSector, new { htmlAttributes = new { @class = "form-control" } })
+                                                            @Html.ValidationMessageFor(model => model.BusinessSector, "", new { @class = "text-danger" })
+
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="userId"> Country:</label>
+                                                            @Html.DropDownListFor(m => m.Country, new SelectList(ViewBag.country, "CountryName", "CountryName"), "-----select-----", new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.BusinessType, "", new { @class = "text-danger" })
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="userId"> State:</label>
+                                                            @Html.DropDownListFor(m => m.State, new SelectList(ViewBag.State, "StateName", "StateName"), "-----select State-----", new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="row">
+
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="userId"> City/Town:</label>
+                                                            @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+                                                            @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="userId"> Business Address:</label>
+                                                            @*@Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                                            @Html.EditorFor(model => model.BusinessAddress, new { htmlAttributes = new { @class = "form-control" } })
+                                                            @Html.ValidationMessageFor(model => model.BusinessAddress, "", new { @class = "text-danger" })
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="userId">Business Phone Number:</label>
+                                                            @Html.EditorFor(model => model.BusinesPhoneNo, new { htmlAttributes = new { @class = "form-control" } })
+                                                            @Html.ValidationMessageFor(model => model.BusinesPhoneNo, "", new { @class = "text-danger" })
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="userId">Business Email:</label>
+                                                            @Html.EditorFor(model => model.BusinesEmail, new { htmlAttributes = new { @class = "form-control" } })
+                                                            @Html.ValidationMessageFor(model => model.BusinesEmail, "", new { @class = "text-danger" })
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="userId"> Website:</label>
+                                                            @Html.EditorFor(model => model.BusinesWebsite, new { htmlAttributes = new { @class = "form-control" } })
+                                                            @Html.ValidationMessageFor(model => model.BusinesWebsite, "", new { @class = "text-danger" })
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="userId">Business Tax Reg. Number:</label>
+                                                            @Html.EditorFor(model => model.BusinesTaxRegNo, new { htmlAttributes = new { @class = "form-control" } })
+                                                            @Html.ValidationMessageFor(model => model.BusinesTaxRegNo, "", new { @class = "text-danger" })
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="userId"> Last Tax Pay Date:</label>
+                                                            @Html.EditorFor(model => model.LastTaxPayDate, new { htmlAttributes = new { @class = "form-control datepicker1" } })
+                                                            @Html.ValidationMessageFor(model => model.LastTaxPayDate, "", new { @class = "text-danger" })
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="Address">Upload Evidence of Last Tax:</label>
+                                                            <input type="file" name="LastTaxUpload" id="LastTaxUpload" class="form-control" required />
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="userId"> Business Start Date:</label>
+                                                            @Html.EditorFor(model => model.BusinesStartDate, new { htmlAttributes = new { @class = "form-control datepicker1" } })
+                                                            @Html.ValidationMessageFor(model => model.BusinesStartDate, "", new { @class = "text-danger" })
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="Address">Number of Years in Operation:</label>
+                                                            @Html.EditorFor(model => model.NoOfYrInOperation, new { htmlAttributes = new { @class = "form-control" } })
+                                                            @Html.ValidationMessageFor(model => model.NoOfYrInOperation, "", new { @class = "text-danger" })
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="userId"> Business Reg. Number:</label>
+                                                            @Html.EditorFor(model => model.BusnRegNum, new { htmlAttributes = new { @class = "form-control" } })
+                                                            @Html.ValidationMessageFor(model => model.BusnRegNum, "", new { @class = "text-danger" })
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="Address">Upload Business Certificate(CAC):</label>
+                                                            <input type="file" name="BusRegUpload" id="BusRegUpload" class="form-control" required />
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+
+
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="userId"> Number of Male Employee:</label>
+                                                            @Html.EditorFor(model => model.NOofMale, new { htmlAttributes = new { @class = "form-control " } })
+                                                            @Html.ValidationMessageFor(model => model.NOofMale, "", new { @class = "text-danger" })
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="userId"> Number of Female Employee:</label>
+                                                            @Html.EditorFor(model => model.NOofFemale, new { htmlAttributes = new { @class = "form-control " } })
+                                                            @Html.ValidationMessageFor(model => model.NOofFemale, "", new { @class = "text-danger" })
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="userId"> Number of Employee:</label>
+                                                            @Html.EditorFor(model => model.NOofEmployee, new { htmlAttributes = new { @class = "form-control " } })
+                                                            @Html.ValidationMessageFor(model => model.NOofEmployee, "", new { @class = "text-danger" })
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <p>Indicate the Number of Employees by age band:</p>
+                                                            <span class="list-item">
+                                                                <label>
+                                                                    @*<input type="text" class="form-control" id="age18to35" style="width:60px">*@
+                                                                    @Html.EditorFor(model => model.C18_35, new { htmlAttributes = new { @class = "form-control", @style = "width:60px" } })
+                                                                    @Html.ValidationMessageFor(model => model.C18_35, "", new { @class = "text-danger" }) &nbsp;18 – 35
+                                                                </label>
+                                                                <label>
+                                                                    @*<input type="text" class="form-control" id="age36to45" style="width:60px">*@
+                                                                    @Html.EditorFor(model => model.C36_45, new { htmlAttributes = new { @class = "form-control ", @style = "width:60px" } })
+                                                                    @Html.ValidationMessageFor(model => model.C36_45, "", new { @class = "text-danger" }) &nbsp;36 – 45
+                                                                </label>
+                                                                <label>
+                                                                    @*<input type="text" class="form-control" id="age46andAbove" style="width:60px">*@
+                                                                    @Html.EditorFor(model => model.C46andabove, new { htmlAttributes = new { @class = "form-control ", @style = "width:60px" } })
+                                                                    @Html.ValidationMessageFor(model => model.C46andabove, "", new { @class = "text-danger" })&nbsp;46 and above
+                                                                </label>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="userId">Last 3 years Average Annual Business Turnover:</label>
+                                                            @Html.EditorFor(model => model.Lst3YrAvrgeAnnualBusnTOver1, new { htmlAttributes = new { @class = "form-control formatNumber" } })
+                                                            @Html.ValidationMessageFor(model => model.Lst3YrAvrgeAnnualBusnTOver1, "", new { @class = "text-danger" })
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+
+                                                            <label for="Address">Upload Evidence of Business Turnover:</label>
+                                                            <input type="file" name="TurnoverUpload" id="TurnoverUpload" class="form-control" />
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="userId">Business Asset (excluding land & buildings):</label>
+                                                            @Html.EditorFor(model => model.EstimValOfBusTurnoverXLB1, new { htmlAttributes = new { @class = "form-control formatNumber" } })
+                                                            @Html.ValidationMessageFor(model => model.EstimValOfBusTurnoverXLB1, "", new { @class = "text-danger" })
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="userId">Account Number:</label>
+                                                            @Html.EditorFor(model => model.AcctNo, new { htmlAttributes = new { @class = "form-control " } })
+                                                            @Html.ValidationMessageFor(model => model.AcctNo, "", new { @class = "text-danger" })
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="userId"> Bank Name:</label>
+                                                            @Html.EditorFor(model => model.BankName, new { htmlAttributes = new { @class = "form-control ", @type = "text" } })
+                                                            @Html.ValidationMessageFor(model => model.BankName, "", new { @class = "text-danger" })
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="userId"> BVN:</label>
+                                                            @Html.EditorFor(model => model.BVN, new { htmlAttributes = new { @class = "form-control " } })
+                                                            @Html.ValidationMessageFor(model => model.BVN, "", new { @class = "text-danger" })
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+
+                                                            <label for="Address">Upload cooperative/association membership if any:</label>
+                                                            <input type="file" name="CooperativeUpload" id="CooperativeUpload" class="form-control" />
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="userId"> Business type:</label>
+                                                            @Html.EditorFor(model => model.BusinessType, new { htmlAttributes = new { @class = "form-control" } })
+                                                            @Html.ValidationMessageFor(model => model.BusinessType, "", new { @class = "text-danger" })
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane" id="messages">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+
+                                                        <div class="form-group">
+                                                            <p>Please tick type of grant:</p>
+                                                            <span class="list-item">
+                                                                <label>
+                                                                    <input type="checkbox" class="GrantType" id="GrantType1" value="1">&nbsp;Credit
+                                                                </label>
+                                                                <label>
+                                                                    <input type="checkbox" class="GrantType" id="GrantType2" value="2">&nbsp;Operation
+                                                                </label>
+                                                                <label>
+                                                                    <input type="checkbox" class="GrantType" id="GrantType3" value="3">&nbsp;IT
+                                                                </label>
+                                                            </span>
+
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                                <div id="CreditGrant" style="display:none">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+
+                                                            <div class="form-group">
+                                                                <p>Did you have any running loan prior to COVID-19?</p>
+                                                                <span class="list-item">
+                                                                    <label>
+                                                                        <input type="checkbox" class="RunningLoan" id="RunningLoan1" value="YES">&nbsp;YES
+                                                                    </label>
+                                                                    <label>
+                                                                        <input type="checkbox" class="RunningLoan" id="RunningLoan2" value="NO">&nbsp;NO
+                                                                    </label>
+
+                                                                </span>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6" id="TotalVol" style="display:none">
+
+                                                            <div class="form-group">
+                                                                <label for="userId">Total outstanding volume of the Loan:</label>
+                                                                @Html.EditorFor(model => model.TotalOutstandVolumeOfLoan1, new { htmlAttributes = new { @class = "form-control formatNumber" } })
+                                                                @Html.ValidationMessageFor(model => model.TotalOutstandVolumeOfLoan1, "", new { @class = "text-danger" })
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+
+                                                            <div class="form-group">
+
+                                                                <label for="CompanyId ">How often were you paying?</label>
+                                                                @Html.DropDownListFor(m => m.HowOftenWereYouPaying, new List<SelectListItem>
+                                                                {new SelectListItem() {Text = "--Select--:",Value=""},
+                                                                new SelectListItem() {Text = "Daily", Value="Daily"},
+                                                                new SelectListItem() {Text = "Weekly ", Value="Weekly"},
+                                                                new SelectListItem() {Text = "Monthly", Value="Monthly"},
+                                                                new SelectListItem() {Text = "Bi-Annually", Value="Bi-Annually"},
+                                                                new SelectListItem() {Text = "Annually", Value="Annually"}
+                                                                }, new { @class = "form-control" })
+                                                                @Html.ValidationMessageFor(model => model.HowOftenWereYouPaying, "", new { @class = "text-danger" })
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="col-md-6">
+
+                                                            <div class="form-group">
+                                                                <label for="userId">How much were you paying before COVID-19?</label>
+                                                                @Html.EditorFor(model => model.HowMuchWereyouPaying1, new { htmlAttributes = new { @class = "form-control formatNumber" } })
+                                                                @Html.ValidationMessageFor(model => model.HowMuchWereyouPaying1, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+
+                                                            <div class="form-group">
+                                                                <p> Did your repayment change after COVID-19?<p />
+                                                                <span class="list-item">
+                                                                    <label>
+                                                                        <input type="checkbox" class="repaymentChange" id="repaymentChange1" value="YES">&nbsp;YES
+                                                                    </label>
+                                                                    <label>
+                                                                        <input type="checkbox" class="repaymentChange" id="repaymentChange2" value="NO">&nbsp;NO
+                                                                    </label>
+
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6" id="RepayChangeToHwmuch" style="display:none;">
+
+                                                            <div class="form-group">
+
+                                                                <label for="userId"> Repayment changed to how much?</label>
+                                                                @Html.EditorFor(model => model.RepaymntChangeToHowMuch1, new { htmlAttributes = new { @class = "form-control formatNumber" } })
+                                                                @Html.ValidationMessageFor(model => model.RepaymntChangeToHowMuch1, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+
+                                                            <div class="form-group">
+                                                                <p>Are you finding it difficult meeting repayment obligations on the loan post COVID-19?<p />
+
+                                                                <fieldset>
+                                                                    <div class="some-class">
+                                                                        <input type="radio" class="DifficultToPay" name="x" value="YES" id="y" />
+                                                                        <label for="y">YES</label>
+                                                                        <input type="radio" class="DifficultToPay" name="x" value="NO" id="z" />
+                                                                        <label for="z">NO</label>
+                                                                    </div>
+                                                                </fieldset>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+
+                                                            <div class="form-group">
+
+                                                                <label for="userId">How was your business impacted by COVID-19?</label>
+                                                                @*@Html.TextAreaFor(model => model.BusinImpactByCovid, new { htmlAttributes = new { @class = "form-control" } })*@
+                                                                @Html.TextAreaFor(model => model.BusinImpactByCovid, new { @class = "form-control" })
+                                                                @Html.ValidationMessageFor(model => model.BusinImpactByCovid, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+
+                                                    <div class="row">
+
+                                                        <div class="col-md-6">
+
+                                                            <div class="form-group">
+
+                                                                <label for="Address">Upload Evidence of running loan:</label>
+                                                                <input type="file" name="EvOfRunningLoanUpload" id="EvOfRunningLoanUpload" class="form-control" />
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div id="OperationGrant" style="display:none">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+
+                                                            <div class="form-group">
+
+
+                                                                <p>In which of the following ways has your business been negatively impacted by COVID-19:Please Tick</p>
+
+                                                                <div class="col-md-6">
+                                                                    <span class="list-item">
+                                                                        <label>
+                                                                            <input name="selector[]" type="checkbox" id="CovidNegImpact1" class="CovidNegImpact" value="Production Volume or Business Output has reduced">&nbsp;Production Volume or Business Output has reduced
+                                                                        </label>
+                                                                        <label>
+                                                                            <input name="selector[]" type="checkbox" id="CovidNegImpact2" class="CovidNegImpact" value="Difficulty paying employee salary and wages">&nbsp;Difficulty paying employee salary and wages
+                                                                        </label>
+                                                                        <label>
+                                                                            <input name="selector[]" type="checkbox" id="CovidNegImpact3" class="CovidNegImpact" value="Lower level of Stock">&nbsp;Lower level of Stock
+                                                                        </label>
+                                                                        <label>
+                                                                            <input name="selector[]" type="checkbox" id="CovidNegImpact4" class="CovidNegImpact" value="Difficulty paying operational expenditure such as rent, electricity/power, security etc">&nbsp;Difficulty paying operational expenditure such as rent, electricity/power, security etc
+                                                                        </label>
+                                                                        <label>
+                                                                            <input name="selector[]" type="checkbox" id="CovidNegImpact5" class="CovidNegImpact" value="Business cashflow has dropped">&nbsp;Business cashflow has dropped
+                                                                        </label>
+                                                                        <label>
+                                                                            <input name="selector[]" type="checkbox" id="CovidNegImpact6" class="CovidNegImpact" value="Others">&nbsp;Others (please specify:)
+                                                                        </label>
+
+
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                    <div class="row" id="SpecifyOther" style="display:none;">
+                                                        <div class="col-md-12">
+
+                                                            <div class="form-group">
+
+                                                                <label for="CompanyId ">Others (please specify: )</label>
+                                                                @Html.EditorFor(m => m.specifyOther, new { htmlAttributes = new { @class = "form-control" } })
+                                                                @Html.ValidationMessageFor(model => model.specifyOther, "", new { @class = "text-danger" })
+
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+
+                                                            <div class="form-group">
+                                                                <p>Are you planning to lay-off some employees due to any of the above impact?</p>
+
+                                                                <fieldset>
+                                                                    <div class="some-class">
+                                                                        <input type="radio" class="planningToLayOffEmp" name="x" value="YES" id="planningToLayOffEmp1" />
+                                                                        <label for="y">YES</label>
+                                                                        <input type="radio" class="planningToLayOffEmp" name="x" value="NO" id="planningToLayOffEmp2" />
+                                                                        <label for="z">NO</label>
+                                                                    </div>
+                                                                </fieldset>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+
+                                                            <div class="form-group">
+                                                                <p>Did you lay-off any employee because of the impact of COVID-19?</p>
+                                                                <span class="list-item">
+                                                                    <label>
+                                                                        <input type="checkbox" class="DidYouLayOffEmp" id="DidYouLayOffEmp1" value="YES">&nbsp;YES
+                                                                    </label>
+                                                                    <label>
+                                                                        <input type="checkbox" class="DidYouLayOffEmp" id="DidYouLayOffEmp2" value="NO">&nbsp;NO
+                                                                    </label>
+
+                                                                </span>
+
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                    <div class="row" id="HowManyEmpLayOff" style="display:none;">
+                                                        <div class="col-md-12">
+
+                                                            <div class="form-group">
+
+                                                                <label for="CompanyId ">how many employees were laid off? </label>
+                                                                @Html.EditorFor(m => m.NoOffEmployeeLayOff, new { htmlAttributes = new { @class = "form-control" } })
+                                                                @Html.ValidationMessageFor(model => model.NoOffEmployeeLayOff, "", new { @class = "text-danger" })
+
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+
+                                                    <div class="row">
+
+                                                        <div class="col-md-6">
+
+                                                            <div class="form-group">
+
+                                                                <label for="Address">Upload Evidence of operating expenses for past three months:</label>
+                                                                <input type="file" name="Lst3mnthExpUpload" id="Lst3mnthExpUpload" class="form-control" />
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div id="ITEnhanceGrant" style="display:none">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+
+                                                            <div class="form-group">
+                                                                <p>Were you able to continue business operations during the COVID-19 crisis?</p>
+                                                                <span class="list-item">
+                                                                    <label>
+                                                                        <input type="checkbox" class="ContinOpertnDurinCovid" id="ContinOpertnDurinCovid1" value="YES">&nbsp;YES
+                                                                    </label>
+                                                                    <label>
+                                                                        <input type="checkbox" class="ContinOpertnDurinCovid" id="ContinOpertnDurinCovid2" value="NO">&nbsp;NO
+                                                                    </label>
+
+                                                                </span>
+
+                                                            </div>
+                                                        </div>
+
+
+
+                                                    </div>
+                                                    <div class="row" id="WhtToolCudVeMadeItPosib2" style="display:none;">
+                                                        <div class="col-md-12">
+
+                                                            <div class="form-group">
+                                                                <label for="CompanyId ">what tools could have made this possible (List)? </label>
+                                                                @Html.EditorFor(m => m.WhtToolCudVeMadeItPosib, new { htmlAttributes = new { @class = "form-control" } })
+                                                                @Html.ValidationMessageFor(model => model.WhtToolCudVeMadeItPosib, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+
+
+
+                                                    </div>
+                                                    <div class="row" id="WhtToolCudVeMadeBusMoreEffnt1" style="display:none;">
+                                                        <div class="col-md-12">
+
+                                                            <div class="form-group">
+                                                                <label for="CompanyId ">what tools could have made business operations more efficient during the crisis (List)? </label>
+                                                                @Html.EditorFor(m => m.WhtToolCudVeMadeBusMoreEffnt, new { htmlAttributes = new { @class = "form-control" } })
+                                                                @Html.ValidationMessageFor(model => model.WhtToolCudVeMadeBusMoreEffnt, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+
+
+
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+
+                                                            <div class="form-group">
+                                                                <p>Were your employees able to work from home during the crisis?</p>
+                                                                <span class="list-item">
+                                                                    <label>
+                                                                        <input type="checkbox" class="whereYouAbleToWkFrmHm" id="whereYouAbleToWkFrmHm1" value="YES">&nbsp;YES
+                                                                    </label>
+                                                                    <label>
+                                                                        <input type="checkbox" class="whereYouAbleToWkFrmHm" id="whereYouAbleToWkFrmHm2" value="NO">&nbsp;NO
+                                                                    </label>
+
+                                                                </span>
+
+                                                            </div>
+                                                        </div>
+
+
+
+                                                    </div>
+
+                                                    <div class="row" id="WhtToolCudVeReqToMakeItPosib1" style="display:none;">
+                                                        <div class="col-md-12">
+
+                                                            <div class="form-group">
+                                                                <label for="CompanyId ">what tools would be required to make this possible (List)?? </label>
+                                                                @Html.EditorFor(m => m.WhtToolCudVeReqToMakeItPosib, new { htmlAttributes = new { @class = "form-control" } })
+                                                                @Html.ValidationMessageFor(model => model.WhtToolCudVeReqToMakeItPosib, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+
+
+
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane" id="settings">
+
+
+
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        @*<p>Grant Request (Tick the type of grant you are applying for and state amount required) </p>*@
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <button type="button" class="btn btn-primary" id="DoRating">Check Rating</button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12" id="CreditGrantAmount1" style="display:none;">
+                                                                <div class="form-group">
+                                                                    <label for="userId">Enter Amount for Credit Grant:</label>
+                                                                    @Html.EditorFor(model => model.CreditGrantAmount1, new { htmlAttributes = new { @class = "form-control formatNumber" } })
+                                                                    @Html.ValidationMessageFor(model => model.CreditGrantAmount1, "", new { @class = "text-danger" })
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            @*<div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <span class="list-item">
+                                                                            <label>
+                                                                                <input type="checkbox" class="GrantRequest" id="OperationGrant1" value="2">&nbsp;Operations Grant
+                                                                            </label>
+
+                                                                        </span>
+                                                                    </div>
+                                                                </div>*@
+                                                            <div class="col-md-12" id="OperatnGrantAmount1" style="display:none;">
+                                                                <div class="form-group">
+                                                                    <label for="userId">Enter Amount for Operation Grant:</label>
+                                                                    @Html.EditorFor(model => model.OperatnGrantAmount1, new { htmlAttributes = new { @class = "form-control formatNumber" } })
+                                                                    @Html.ValidationMessageFor(model => model.OperatnGrantAmount1, "", new { @class = "text-danger" })
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            @*<div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <span class="list-item">
+                                                                            <label>
+                                                                                <input type="checkbox" class="GrantRequest" id="ITGrant1" value="3">&nbsp;Information Technology Enhancement Grant
+                                                                            </label>
+
+                                                                        </span>
+                                                                    </div>
+                                                                </div>*@
+                                                            <div class="col-md-12" id="ITEnhanceGrantAmount1" style="display:none;">
+                                                                <div class="form-group">
+                                                                    <label for="userId">Enter Amount for IT Grant:</label>
+                                                                    @Html.EditorFor(model => model.ITEnhanceGrantAmount1, new { htmlAttributes = new { @class = "form-control formatNumber" } })
+                                                                    @Html.ValidationMessageFor(model => model.ITEnhanceGrantAmount1, "", new { @class = "text-danger" })
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane" id="extra">
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+
+
+                                                        <p>
+                                                            I,
+                                                            @Html.EditorFor(model => model.fullname, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter full name" } })
+                                                            @Html.ValidationMessageFor(model => model.SurName, "", new { @class = "text-danger" })
+                                                            declare that the information contained in this application are correct and complete and that the grant will be applied for the purpose it was approved. I understand that I may not be allowed to participate in another grant program if it is established that I provided false information to enable me participate in this grant program.
+                                                        </p>
+
+                                                    </div>
+
+
+                                                </div>
+
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label for="Address">Upload Signature with date:</label>
+                                                            <input type="file" name="ApplicantSignWdateUpload" id="ApplicantSignWdateUpload" class="form-control" required />
+
+                                                        </div>
+                                                    </div>
+
+
+
+                                                </div>
+                                                <hr />
+
+                                                <h3>FOR MEDA OFFICIALS ONLY</h3><br />
+                                                <p><b>Enumerators’ Checklist</b></p>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+
+                                                        <div class="form-group">
+
+                                                            <div class="col-md-6">
+                                                                <span class="list-item">
+                                                                    <label>
+                                                                        <input type="checkbox" id="EnumeratorCheckList1" class="EnumeratorCheckList" value="1">&nbsp;All sections of the application form have been filled in, where appropriate.
+                                                                    </label>
+                                                                    <label>
+                                                                        <input type="checkbox" id="EnumeratorCheckList2" class="EnumeratorCheckList" value="2">&nbsp;The business registration certificate is attached (registered business only).
+                                                                    </label>
+                                                                    <label>
+                                                                        <input type="checkbox" id="EnumeratorCheckList3" class="EnumeratorCheckList" value="3">&nbsp;Evidence of Tax payment is attached.
+                                                                    </label>
+                                                                    <label>
+                                                                        <input type="checkbox" id="EnumeratorCheckList4" class="EnumeratorCheckList" value="4">&nbsp;Evidence of annual business turnover is attached for a formal business or verified for an informal business.
+                                                                    </label>
+                                                                    <label>
+                                                                        <input type="checkbox" id="EnumeratorCheckList5" class="EnumeratorCheckList" value="5">&nbsp;Bank details have been provided
+                                                                    </label>
+                                                                    <label>
+                                                                        <input type="checkbox" id="EnumeratorCheckList6" class="EnumeratorCheckList" value="6">&nbsp;Impact of COVID-19 on the business has been reasonably verified.
+                                                                    </label>
+
+
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <span id="spnMessage" class="text-danger">@TempData["Message"]</span>
+                                                    <br />
+                                                    <div class="action">
+                                                        <button type="submit" id="addbutton" class="btn btn-primary">
+                                                            Submit
+                                                        </button>
+                                                        <a href="@Url.Action("Index","Applicant")" class="btn btn-primary btn-lg">Return</a>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        @*</div>*@
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+                            if (ViewBag.Message != null)
+                            {
+                                <div class="alert alert-danger">
+                                    <strong>Error!</strong>@ViewBag.Message
+                                </div>
+                            }
+                        }
+
+
+
+                    }
+
+
+                </div>
+
+
+
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document" style="width:80% !important">
+            <div class="modal-content">
+                <div class="modal-header">
+                    @*<h5 class="modal-title" id="exampleModalLabel">New message</h5>*@
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="row">
+
+                        <div class="col-md-12" id="IndivApp">
+                            <div class="card" id="assetDetails">
+                                <h5 class="card-header" style="background-color:blue;color:white">Applicant's Score Card</h5>
+                                <div class="card-body">
+
+                                    <div class="row">
+                                        <div class="col-md-6">Customer Name:</div>
+                                        <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="CustomerName" style="color:blue;"></label></div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">Business Name:</div>
+                                        <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="lblBusName" style="color:blue;"></label></div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">Year of Incorporation:</div>
+                                        <div class="col-md-6" style="background-color:antiquewhite"><label class="" id="YearOfInc" style="color:blue;"></label></div>
+
+                                    </div>
+                                    <hr />
+                                    <div class="col-md-offset-8" id="DL1and2Rating">
+                                        <div class="row" style="background-color:forestgreen;color:yellow;">
+                                            <div class="col-md-4" style="font-weight:bold">Parameters</div>
+                                            <div class="col-md-4" style="font-weight:bold">Detail</div>
+                                            <div class="col-md-4" style="font-weight:bold">Score</div>
+
+                                        </div>
+                                        <hr />
+                                        <div class="row" style="background-color:red; color:white;">
+                                            <div class="col-md-4">Tax Reg. Number</div>
+                                            <div class="col-md-4">
+                                                @Html.DropDownList("TaxRegNumR", new List<SelectListItem>
+                       {new SelectListItem() {Text = "--Select--:",Value=""},
+                       new SelectListItem() {Text = "Available", Value="Proceed to Next Level"},
+                       new SelectListItem() {Text = "Not Available ", Value="Do Not proceed"}
+                       }, new { @class = "form-control" })
+                                            </div>
+                                            <div class="col-md-4"><label class="" id="lblTaxRegNumR" style="color:blue;"></label></div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-offset-8" id="DL1and2Rating2" style="display:none;">
+
+                                        <div class="row">
+                                            <div class="col-md-4">Gender</div>
+                                            <div class="col-md-4">
+                                                @Html.DropDownList("GenderR", new List<SelectListItem>
+                       {new SelectListItem() {Text = "--Select--:",Value=""},
+                       new SelectListItem() {Text = "Male", Value="10"},
+                       new SelectListItem() {Text = "Female ", Value="15"}
+                       }, new { @class = "form-control ScoreSum" })
+                                            </div>
+                                            <div class="col-md-4"><label class="" id="lblgenderR" style="color:blue;"></label></div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">Age</div>
+                                            <div class="col-md-4">
+                                                @Html.DropDownList("AgeR", new List<SelectListItem>
+                       {new SelectListItem() {Text = "--Select--:",Value=""},
+                       new SelectListItem() {Text = "21-35 years", Value="15"},
+                       new SelectListItem() {Text = "36-45 years ", Value="10"},
+                       new SelectListItem() {Text = "46 years and above", Value="5"}
+                       }, new { @class = "form-control ScoreSum" })
+                                            </div>
+                                            <div class="col-md-4"><label class="" id="lblageR" style="color:blue;"></label></div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">Business Record</div>
+                                            <div class="col-md-4">
+                                                @Html.DropDownList("BusinessRecordR", new List<SelectListItem>
+                       {new SelectListItem() {Text = "--Select--:",Value=""},
+                       new SelectListItem() {Text = "Available", Value="15"},
+                       new SelectListItem() {Text = "Not available ", Value="0"}
+                       }, new { @class = "form-control ScoreSum" })
+                                            </div>
+                                            <div class="col-md-4"><label class="" id="lblBusinessRecordR" style="color:blue;"></label></div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">Business Age</div>
+                                            <div class="col-md-4">
+                                                @Html.DropDownList("BusinessAgeR", new List<SelectListItem>
+                       {new SelectListItem() {Text = "--Select--:",Value=""},
+                       new SelectListItem() {Text = "2 years or more", Value="15"},
+                       new SelectListItem() {Text = "1-2 years ", Value="10"},
+                       new SelectListItem() {Text = "Less than 1 year", Value="5"}
+                       }, new { @class = "form-control ScoreSum" })
+                                            </div>
+                                            <div class="col-md-4"><label class="" id="lblBusinessAgeR" style="color:blue;"></label></div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">Business Size(Employees)</div>
+                                            <div class="col-md-4">
+                                                @Html.DropDownList("BusinessSizeR", new List<SelectListItem>
+                       {new SelectListItem() {Text = "--Select--:",Value=""},
+                       new SelectListItem() {Text = "3 or more employees", Value="10"},
+                       new SelectListItem() {Text = "Less than 3 employees ", Value="5"},
+                       new SelectListItem() {Text = "No employee", Value="0"}
+                       }, new { @class = "form-control ScoreSum" })
+                                            </div>
+                                            <div class="col-md-4"><label class="" id="lblBusinessSizeR" style="color:blue;"></label></div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">Business Activity</div>
+                                            <div class="col-md-4">
+                                                @Html.DropDownList("BusinessActivityR", new List<SelectListItem>
+                       {new SelectListItem() {Text = "--Select--:",Value=""},
+                       new SelectListItem() {Text = "Agricultural", Value="15"},
+                       new SelectListItem() {Text = "Consumables ", Value="15"},
+                       new SelectListItem() {Text = "Trade and Commerce", Value="15"},
+                       new SelectListItem() {Text = "Services", Value="10"},
+                       new SelectListItem() {Text = "Non-consumables", Value="10"}
+                       }, new { @class = "form-control ScoreSum" })
+                                            </div>
+                                            <div class="col-md-4"><label class="" id="lblBusinessActivityR" style="color:blue;"></label></div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">Tax Returns</div>
+                                            <div class="col-md-4">
+                                                @Html.DropDownList("TaxReturnsR", new List<SelectListItem>
+                       {new SelectListItem() {Text = "--Select--:",Value=""},
+                       new SelectListItem() {Text = "Evidence of Tax Returns Available", Value="20"},
+                       new SelectListItem() {Text = "No Tax Returns but Have Evidence of Tax Registration ", Value="10"},
+                       new SelectListItem() {Text = "No Tax Returns and No Tax Registration Number", Value="0"}
+                       }, new { @class = "form-control ScoreSum" })
+                                            </div>
+                                            <div class="col-md-4"><label class="" id="lblTaxReturnsR" style="color:blue;"></label></div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4"></div>
+                                            <div class="col-md-4">
+
+                                            </div>
+                                            <div class="col-md-4"><label style="color:blue;"></label></div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">Tax Identification Number</div>
+                                            <div class="col-md-4">
+                                                <input type="text" class="form-control" id="TaxIdR" readonly />
+                                            </div>
+                                            <div class="col-md-4"><label class="" id="lblTaxIdR" style="color:blue;"></label></div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4"></div>
+                                            <div class="col-md-4">
+
+                                            </div>
+                                            <div class="col-md-4"><label class="" id="" style="color:blue;"></label></div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4"><p3>Calculated Credit Score</p3></div>
+                                            <div class="col-md-4"><label class="" id="lblCreditScore" style="color:blue;"></label></div>
+                                            <div class="col-md-4"><label class="" id="lblScoreRemark" style="color:blue;"></label></div>
+
+                                        </div>
+                                    </div>
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section id="intro" class="intro">
+
+    <div class="row">
+
+        <div class="wow fadeInDown" data-wow-offset="0" data-wow-delay="0.1s">
+            <div style="height:130px">
+
+            </div>
+        </div>
+    </div>
+
+</section>
+
+@section scripts{
+    <link href="~/Content/Tabs.css" rel="stylesheet" />
+    @*<script src="~/Content/accounting/js/jquery-3.2.1.min.js"></script>*@
+    @*<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>*@
+    <!------ Include the above in your HEAD tag ---------->
+    @*<link href="~/Content/assets/vendor/datepicker/datepickercss.css" rel="stylesheet" />
+        <script src="~/Content/assets/vendor/datepicker/datepicker.js"></script>*@
+    @*<script src="~/Content/accounting/js/jquery.min.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>*@
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    @*<link rel="stylesheet" href="/resources/demos/style.css">*@
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function () {
+
+            $('.ScoreSum').on('change', function (e) {
+                var i = $('.ScoreSum'),
+                    total = 0;
+                i.each(function () {
+                    total += +this.value;
+                });
+                if (total > 100) {
+                    this.value -= (total - 100);
+                }
+                total = 0;
+                i.each(function () {
+                    total += +this.value;
+                });
+                $('#lblCreditScore').text(total);
+                if (total >= 85) {
+                    $('#lblScoreRemark').text("Highly Qualified");
+                } else if (total >= 65 && total < 85) {
+                    $('#lblScoreRemark').text("Qualified");
+                } else if (total >= 50 && total < 65) {
+                    $('#lblScoreRemark').text("Averagely Qualified");
+                } else if (total < 50) {
+                    $('#lblScoreRemark').text("Not Qualified");
+                }
+                $('#Score').val(total);
+            });
+
+            $('.fulName').on('change', function (e) {
+                var i = $('.fulName'),
+                    combinedValue = null;
+                i.each(function () {
+                    combinedValue += +this.value;
+                });
+                if (combinedValue > 100) {
+                    this.value -= (combinedValue - 100);
+                }
+                combinedValue = '';
+
+                i.each(function () {
+                    combinedValue = combinedValue + ' ' + $(this).val();
+                });
+                $('#CustomerName').text(combinedValue);
+
+            });
+
+            $('#BusinessName').on('change', function (e) {
+
+                $('#lblBusName').text(this.value);
+
+            });
+            //var images = $('.imgstr').map(function () {
+            //    return this.value;
+            //}).get();
+            $('#DoRating').click(function () {
+                $(this).attr("data-toggle", "modal").attr("data-target", "#exampleModal");
+            });
+            $('#TaxRegNumR').change(function () {
+                var genderScore = $(this).val();
+                $('#lblTaxRegNumR').text(genderScore);
+                if (genderScore == 'Do Not proceed') {
+                    $('#DL1and2Rating2').hide();
+                } else if (genderScore == 'Proceed to Next Level') {
+                    $('#DL1and2Rating2').show();
+                }
+
+            });
+            $('#GenderR').change(function () {
+                var genderScore = parseInt($(this).val());
+                $('#lblgenderR').text(genderScore);
+
+            });
+            $('#AgeR').change(function () {
+                var genderScore = parseInt($(this).val());
+                $('#lblageR').text(genderScore);
+
+            });
+            $('#BusinessRecordR').change(function () {
+                var genderScore = parseInt($(this).val());
+                $('#lblBusinessRecordR').text(genderScore);
+
+            });
+            $('#BusinessAgeR').change(function () {
+                var genderScore = parseInt($(this).val());
+                $('#lblBusinessAgeR').text(genderScore);
+
+            });
+            $('#BusinessSizeR').change(function () {
+                var genderScore = parseInt($(this).val());
+                $('#lblBusinessSizeR').text(genderScore);
+
+            });
+            $('#BusinessActivityR').change(function () {
+                var genderScore = parseInt($(this).val());
+                $('#lblBusinessActivityR').text(genderScore);
+
+            });
+            $('#TaxReturnsR').change(function () {
+                var genderScore = parseInt($(this).val());
+                $('#lblTaxReturnsR').text(genderScore);
+
+            });
+            $('#BusinesTaxRegNo').change(function () {
+                var genderScore = parseInt($(this).val());
+                $('#TaxIdR').val(genderScore);
+
+            });
+
+
+
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $(".datepicker1").datepicker();
+        });
+        $(function () {
+            //$("#addbutton").bind("click", function (e) {
+            //    if (typeof ($("#LastTaxUpload")[0].files) != "undefined" && typeof ($("#LastTaxUpload")[0].files) != "undefined") {
+            //        var size1 = parseFloat($("#LastTaxUpload")[0].files[0].size / 1024).toFixed(2);
+            //        var size2 = parseFloat($("#LastTaxUpload")[0].files[0].size / 1024).toFixed(2);
+            //        if (size1 > 50) {
+            //            DispText
+            //            alert("Image size " + size1 + "KB. is too large max is 50KB");
+            //            e.preventDefault();
+            //        }
+            //        if (size2 > 20) {
+            //            alert("Image size " + size2 + "KB. is too large. Max is 20KB");
+            //            e.preventDefault();
+            //        }
+            //        //alert(size + " KB.");
+            //    } else {
+            //        alert("This browser does not support HTML5.");
+            //    }
+            //});
+            //$('#addbutton').click(function () {
+            //    var lst3 = parseFloat($('#Lst3YrAvrgeAnnualBusnTOver').val().replace(',', '')).toFixed(2);
+            //    $('#Lst3YrAvrgeAnnualBusnTOver').val(lst3);
+
+            //    var lst31 = parseFloat($('#EstimValOfBusTurnoverXLB').val().replace(',', '')).toFixed(2);
+            //    $('#EstimValOfBusTurnoverXLB').val(lst31);
+
+            //    var lst32 = parseFloat($('#HowMuchWereyouPaying').val().replace(',', '')).toFixed(2);
+            //    $('#HowMuchWereyouPaying').val(lst32);
+
+            //    var lst33 = parseFloat($('#RepaymntChangeToHowMuch').val().replace(',', '')).toFixed(2);
+            //    $('#RepaymntChangeToHowMuch').val(lst33);
+
+            //    var lst34 = parseFloat($('#TotalOutstandVolumeOfLoan').val().replace(',', '')).toFixed(2);
+            //    $('#TotalOutstandVolumeOfLoan').val(lst34);
+
+            //    var lst35 = parseFloat($('#ITEnhanceGrantAmount').val().replace(',', '')).toFixed(2);
+            //    $('#ITEnhanceGrantAmount').val(lst35);
+
+            //    var lst36 = parseFloat($('#OperatnGrantAmount').val().replace(',', '')).toFixed(2);
+            //    $('#OperatnGrantAmount').val(lst36);
+
+            //    var lst37 = parseFloat($('#CreditGrantAmount').val().replace(',', '')).toFixed(2);
+            //    $('#CreditGrantAmount').val(lst37);
+
+            //    //$('#EstimValOfBusTurnoverXLB').val().replace(',', '');
+            //    //$('#HowMuchWereyouPaying').val().replace(',', '');
+            //    //$('#RepaymntChangeToHowMuch').val().replace(',', '');
+            //    //$('#TotalOutstandVolumeOfLoan').val().replace(',', '');
+            //    //$('#ITEnhanceGrantAmount').val().replace(',', '');
+            //    //$('#OperatnGrantAmount').val().replace(',', '');
+            //    //$('#CreditGrantAmount').val().replace(',', '');
+            //});
+            $('#NOofFemale').change(function () {
+                var noof = parseInt($('#NOofMale').val());
+                var noofm = parseInt($(this).val());
+                $('#NOofEmployee').val(noof + noofm).prop('readonly', true);
+            });
+
+            //(endDate.getFullYear() * 12 + endDate.getMonth()) - (startDate.getFullYear() * 12 + startDate.getMonth())
+
+            $('#BusinesStartDate').change(function () {
+                var startDate = $.datepicker.formatDate('yy/mm/dd', $(this).datepicker("getDate"));
+
+                var today = $.datepicker.formatDate('yy/mm/dd', new Date());
+
+                //alert(startDate + "\n" + today);
+
+                $('#NoOfYrInOperation').val(calculateYears(startDate, today)).prop('readonly', true);
+                $('#YearOfInc').text(startDate);
+            });
+            $(".GrantType").click(function () {
+                $('#GrantyTpe').val($(this).val());
+                if ($(this).prop("checked", "checked").val() == '1') {
+                    $('#GrantType2').prop("checked", false);
+                    $('#GrantType3').prop("checked", false);
+                    $('#CreditGrant').show();
+                    $('#OperationGrant').hide();
+                    $('#ITEnhanceGrant').hide();
+
+
+                    $('#CreditGrantAmount1').show();
+                    $('#OperatnGrantAmount1').hide();
+                    $('#ITEnhanceGrantAmount1').hide();
+                } else if ($(this).prop("checked", "checked").val() == '2') {
+                    $('#GrantType1').prop("checked", false);
+                    $('#GrantType3').prop("checked", false);
+                    $('#CreditGrant').hide();
+                    $('#OperationGrant').show();
+                    $('#ITEnhanceGrant').hide();
+
+
+                    $('#CreditGrantAmount1').hide();
+                    $('#OperatnGrantAmount1').show();
+                    $('#ITEnhanceGrantAmount1').hide();
+                } else if ($(this).prop("checked", "checked").val() == '3') {
+                    $('#GrantType1').prop("checked", false);
+                    $('#GrantType2').prop("checked", false);
+                    $('#CreditGrant').hide();
+                    $('#OperationGrant').hide();
+                    $('#ITEnhanceGrant').show();
+
+                    $('#CreditGrantAmount1').hide();
+                    $('#OperatnGrantAmount1').hide();
+                    $('#ITEnhanceGrantAmount1').show();
+                } else {
+                    $('#CreditGrant').hide();
+                    $('#OperationGrant').hide();
+                    $('#ITEnhanceGrant').hide();
+                    $('#GrantType1').prop("checked", false);
+                    $('#GrantType2').prop("checked", false);
+                    $('#GrantType3').prop("checked", false);
+                }
+            });
+            //$(".GrantRequest").click(function () {
+            //    if ($(this).prop("checked", "checked").val() == '1') {
+            //        $('#ITGrant1').prop("checked", false);
+            //        $('#OperationGrant1').prop("checked", false);
+            //        $('#CreditGrantAmount1').show();
+            //        $('#OperatnGrantAmount1').hide();
+            //        $('#ITEnhanceGrantAmount1').hide();
+            //    } else if ($(this).prop("checked", "checked").val() == '2') {
+            //        $('#CreditGrant1').prop("checked", false);
+            //        $('#ITGrant1').prop("checked", false);
+            //        $('#CreditGrantAmount1').hide();
+            //        $('#OperatnGrantAmount1').show();
+            //        $('#ITEnhanceGrantAmount1').hide();
+            //    } else if ($(this).prop("checked", "checked").val() == '3') {
+            //        $('#CreditGrant1').prop("checked", false);
+            //        $('#OperationGrant1').prop("checked", false);
+            //        $('#CreditGrantAmount1').hide();
+            //        $('#OperatnGrantAmount1').hide();
+            //        $('#ITEnhanceGrantAmount1').show();
+            //    }
+
+            //});
+            $(".formatNumber").focusout(function () {
+                $(this).val(FormatNumber($(this).val().replace(/,/g, "")));
+            });
+
+            function FormatNumber(str) {
+                return str.lastIndexOf('.') == -1 ? (str.length > 3 ? FormatNumber(str.substr(0, str.length - 3)) + ',' + str.substr(str.length - 3) : str) : (str.lastIndexOf('.') > 3 ? FormatNumber(str.substr(0, str.lastIndexOf('.') - 3)) + ',' + str.substr(str.lastIndexOf('.') - 3) : str);
+            }
+
+
+            $(".EnumeratorCheckList").click(function () {
+                if ($('#EnumeratorCheckList1').is(":checked")) {
+                    $('#AllSectnOfFormFilled').val('YES');
+                } else {
+                    $('#AllSectnOfFormFilled').val('NO');
+                }
+                if ($('#EnumeratorCheckList2').is(":checked")) {
+                    $('#IsBusinessCertAttach').val('YES');
+                } else {
+                    $('#IsBusinessCertAttach').val('NO');
+                }
+                if ($('#EnumeratorCheckList3').is(":checked")) {
+                    $('#IsEvidOfTaxPaymentAttach').val('YES');
+                } else {
+                    $('#IsEvidOfTaxPaymentAttach').val('NO');
+                }
+                if ($('#EnumeratorCheckList4').is(":checked")) {
+                    $('#IsEvOf1YrTOverAttachOrVerifid').val('YES');
+                } else {
+                    $('#IsEvOf1YrTOverAttachOrVerifid').val('NO');
+                }
+
+                if ($('#EnumeratorCheckList5').is(":checked")) {
+                    $('#VeBnkDetailProvided').val('YES');
+                } else {
+                    $('#VeBnkDetailProvided').val('NO');
+                }
+                if ($('#EnumeratorCheckList6').is(":checked")) {
+                    $('#IsImpactOfCovidOnBusnVrfd').val('YES');
+                } else {
+                    $('#IsImpactOfCovidOnBusnVrfd').val('NO');
+                }
+
+            });
+            $(".RunningLoan").change(function () {
+                $('#AnyRunningLoanPriorToCovid').val($(this).val());
+                if ($(this).val() == 'YES') {
+                    $('#TotalVol').show();
+                    $('#RunningLoan2').prop("checked", false);
+                } else if ($(this).val() == 'NO') {
+                    $('#TotalVol').hide();
+                    $('#RunningLoan1').prop("checked", false);
+                }
+                if (!$("#RunningLoan1").is(":checked")) {
+                    $('#TotalVol').hide();
+                }
+            });
+
+            $('.DifficultToPay').click(function () {
+                $('#findItDiffToMeetPaymentOblig').val($(this).val());
+                //alert(x.val());
+            });
+            $(".repaymentChange").click(function () {
+                $('#DidYourRepaymentChange').val($(this).val());
+                if ($(this).val() == 'YES') {
+                    $('#repaymentChange2').prop("checked", false);
+                    $('#RepayChangeToHwmuch').show();
+
+                } else if ($(this).val() == 'NO') {
+                    $('#RepayChangeToHwmuch').hide();
+                    $('#repaymentChange1').prop("checked", false);
+                }
+                if (!$("#repaymentChange1").is(":checked")) {
+                    $('#RepayChangeToHwmuch').hide();
+                }
+            });
+            $('.CovidNegImpact').change(function () {
+                var i = 0;
+                var arr = [];
+                $('.CovidNegImpact:checked').each(function () {
+                    arr[i++] = $(this).val();
+                });
+                //alert(arr);
+                $('#BusinImpactByCovid').val(arr);
+                var check = $('#CovidNegImpact6').is(":checked");
+                if ($(this).val() == 'Others') {
+                    $('#SpecifyOther').show();
+                }
+                if (!check) {
+                    $('#SpecifyOther').hide();
+                }
+            });
+
+            $('.planningToLayOffEmp').change(function () {
+                $('#PlanningToLayOffEmployeeDueToNeg').val($(this).val());
+                //alert(t.val());
+            });
+
+            $('.DidYouLayOffEmp').change(function () {
+                $('#DidYouLayOffEmployee').val($(this).val());
+                if ($(this).val() == 'YES') {
+                    $('#HowManyEmpLayOff').show();
+                    $("#DidYouLayOffEmp2").prop("checked", false);
+
+                } else if ($(this).val() == 'NO') {
+                    $('#HowManyEmpLayOff').hide();
+                    $("#DidYouLayOffEmp1").prop("checked", false);
+
+                }
+                if (!$("#DidYouLayOffEmp1").is(":checked")) {
+                    $('#HowManyEmpLayOff').hide();
+                }
+            });
+            $('.ContinOpertnDurinCovid').change(function () {
+
+                if ($(this).val() == 'YES') {
+                    $('#WhtToolCudVeMadeBusMoreEffnt1').show();
+                    $('#WhtToolCudVeMadeItPosib2').hide();
+                    $("#ContinOpertnDurinCovid2").prop("checked", false);
+                } else
+                    if ($(this).val() == 'NO') {
+                        $('#WhtToolCudVeMadeItPosib2').show();
+                        $('#WhtToolCudVeMadeBusMoreEffnt1').hide();
+                        $("#ContinOpertnDurinCovid1").prop("checked", false);
+                    }
+                if (!$("#ContinOpertnDurinCovid1").is(":checked")) {
+                    $('#WhtToolCudVeMadeBusMoreEffnt1').hide();
+                }
+                if (!$("#ContinOpertnDurinCovid2").is(":checked")) {
+                    $('#WhtToolCudVeMadeItPosib2').hide();
+                }
+            });
+            $('.whereYouAbleToWkFrmHm').change(function () {
+                $('EmployeeAbleToWrkFrmHom').val($(this).val());
+                if ($(this).val() == 'NO') {
+                    $('#WhtToolCudVeReqToMakeItPosib1').show();
+                    $("#whereYouAbleToWkFrmHm1").prop("checked", false);
+                } else if ($(this).val() == 'YES') {
+                    $('#WhtToolCudVeReqToMakeItPosib1').hide();
+                    $("#whereYouAbleToWkFrmHm2").prop("checked", false);
+                }
+                if (!$("#whereYouAbleToWkFrmHm2").is(":checked")) {
+                    $('#WhtToolCudVeReqToMakeItPosib1').hide();
+                }
+            });
+
+
+            $('.gender').click(function () {
+
+                $('#gender').val($(this).val());
+
+                //alert(x.val());
+            });
+        });
+
+
+
+        function addCommas(nStr) {
+            nStr += '';
+            x = nStr.split('.');
+            x1 = x[0];
+            x2 = x.length > 1 ? '.' + x[1] : '';
+            var rgx = /(\d+)(\d{3})/;
+            while (rgx.test(x1)) {
+                x1 = x1.replace(rgx, '$1' + ',' + '$2');
+            }
+            return x1 + x2;
+        }
+
+
+        function Formatdate(Jsondate) {
+            if (Jsondate == null || Jsondate == '') {
+                return Jsondate;
+            }
+            else {
+                var mydate = new Date(eval('new' + Jsondate.replace(/\//g, ' ')));
+                var month = mydate.getMonth() + 1;
+                var day = mydate.getDate();
+                var year = mydate.getFullYear();
+                var date = day + "/" + month + "/" + year;
+                return date;
+            }
+
+        }
+
+        function diff_months(dt2, dt1) {
+
+            var diff = (dt2.getTime() - dt1.getTime()) / 1000;
+            diff /= (60 * 60 * 24 * 7 * 4);
+            return Math.abs(Math.round(diff));
+
+        }
+        function parseDate(input) {
+            var parts = input.match(/(\d+)/g);
+            // new Date(year, month [, date [, hours[, minutes[, seconds[, ms]]]]])
+            return new Date(parts[0], parts[1] - 1, parts[2]); // months are 0-based
+        }
+        function calculateYears(date1, date2) {
+            date1 = new Date(date1);
+            date2 = new Date(date2);
+            var period = date2.getFullYear() - date1.getFullYear();
+            if (date2.getMonth() < date1.getMonth() - 1) {
+                period--;
+            }
+            if (date1.getMonth() - 1 == date2.getMonth() && date2.getDate() < date1.getDate()) {
+                period--;
+            };
+            return period;
+        };
+    </script>
+
+    <style>
+        fieldset {
+            overflow: hidden
+        }
+
+        .some-class {
+            float: left;
+            clear: none;
+        }
+
+        label {
+            float: left;
+            clear: none;
+            display: block;
+            padding: 0px 1em 0px 8px;
+        }
+
+        input[type=radio],
+        input.radio {
+            float: left;
+            clear: none;
+            margin: 2px 0 0 2px;
+        }
+
+        .popup-overlay {
+            visibility: hidden;
+        }
+
+        .popup-content {
+            visibility: hidden;
+        }
+
+        .bs-example {
+            margin: 20px;
+        }
+
+        .container {
+            margin: auto;
+            width: 80%;
+            border: 5px solid #FFFF00;
+            padding: 10px;
+        }
+
+        .bs-example {
+            max-width: 100%;
+        }
+    </style>
+
+}
+
+
+

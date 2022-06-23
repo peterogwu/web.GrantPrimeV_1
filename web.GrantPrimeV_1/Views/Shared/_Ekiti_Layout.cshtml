@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Prime &mdash; Website by Infosight</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewBag.Title - Ekiti State's grant Programme</title>
+    @*@Styles.Render("~/Content/css")*@
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
+
+    <link href="~/Content/consula/consula/fonts/icomoon/style.css" rel="stylesheet" />
+    <link href="~/Content/consula/consula/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/consula/consula/css/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/consula/consula/css/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/Content/consula/consula/css/owl.theme.default.min.css" rel="stylesheet" />
+    <link href="~/Content/consula/consula/css/jquery.fancybox.min.css" rel="stylesheet" />
+    <link href="~/Content/consula/consula/css/bootstrap-datepicker.css" rel="stylesheet" />
+    <link href="~/Content/consula/consula/fonts/flaticon/font/flaticon.css" rel="stylesheet" />
+    <link href="~/Content/consula/consula/css/aos.css" rel="stylesheet" />
+    <link href="~/Content/consula/consula/css/style.css" rel="stylesheet" />
+</head>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
+    <div class="site-wrap">
+
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body">
+
+            </div>
+        </div>
+
+        <div class="top-bar py-3 bg-light" id="home-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6 text-left">
+                        <ul class="social-media">
+                            <li><a href="#" class="p-2"><span class="icon-facebook"></span></a></li>
+                            <li><a href="#" class="p-2"><span class="icon-twitter"></span></a></li>
+                            <li><a href="#" class="p-2"><span class="icon-instagram"></span></a></li>
+                            <li><a href="#" class="p-2"><span class="icon-linkedin"></span></a></li>
+                        </ul>
+                    </div>
+                    <div class="col-6">
+                        <p class="mb-0 float-right">
+                            @*<span class="mr-3"><a href="tel://#"> <span class="icon-phone mr-2"></span><span class="d-none d-lg-inline-block">+1 234 5678 9101</span></a></span>*@
+                            <span><a href="#"><span class="icon-envelope mr-2"></span><span class="d-none d-lg-inline-block">@User.Identity.Name</span></a></span>
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <header class="site-navbar py-4 bg-white js-sticky-header site-navbar-target" role="banner">
+
+            <div class="container">
+                <div class="row align-items-center">
+
+                    <div class="col-6 col-xl-2">
+                        <h3 class="mb-0 site-logo"><a href="@Url.Action("Index","Home")" class="text-black h2 mb-0">MEDA<span class="text-primary">.</span> </a></h3>
+                    </div>
+                    <div class="col-12 col-md-10 d-none d-xl-block">
+                        <nav class="site-navigation position-relative text-right" role="navigation">
+
+                            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                                @*<li><a href="#home-section" class="nav-link">Home</a></li>
+                                    <li><a href="#about-section" class="nav-link">About Us</a></li>
+                                    <li><a href="#team-section" class="nav-link">Team</a></li>
+                                    <li><a href="#services-section" class="nav-link">Services</a></li>
+                                    <li><a href="#testimonials-section" class="nav-link">Testimonials</a></li>
+                                    <li><a href="#blog-section" class="nav-link">Blog</a></li>
+                                    <li><a href="#contact-section" class="nav-link">Contact</a></li>*@
+                                @if (Request.IsAuthenticated)
+                                {
+                                    HttpCookie myCookie = Request.Cookies["roleid"];
+
+                                    if (myCookie != null)
+                                    {
+                                        if (myCookie.Value == "1")
+                                        {
+                                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                                            <li>@Html.ActionLink("Review", "Index", "Applicant")</li>
+                                            <li>@Html.ActionLink("Reports", "Index", "Report")</li>
+                                            <li class="nav-item"><a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">Logout</a></li>
+
+                                        }
+
+                                        else if (myCookie.Value == "2" || myCookie.Value == "3" || myCookie.Value == "4" || myCookie.Value == "5" || myCookie.Value == "6")
+                                        {
+                                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                                            <li>@Html.ActionLink("Authorize", "Approval2", "Applicant")</li>
+                                            <li>@Html.ActionLink("Reports", "Index", "Report")</li>
+                                            <li class="nav-item"><a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">Logout</a></li>
+
+                                        }
+                                        else if (myCookie.Value == "7")
+                                        {
+                                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                                            <li>@Html.ActionLink("Disburse", "Disburse", "Applicant")</li>
+                                            <li>@Html.ActionLink("Reports", "Index", "Report")</li>
+                                            <li class="nav-item"><a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">Logout</a></li>
+
+                                        }
+                                        else if (myCookie.Value == "8")
+                                        {
+                                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                                            <li>@Html.ActionLink("Review", "Index", "Applicant")</li>
+                                            <li>@Html.ActionLink("Authorize", "Approval2", "Applicant")</li>
+                                            <li>@Html.ActionLink("Manage User", "Index", "User")</li>
+                                            <li>@Html.ActionLink("Manage Role", "Index", "Role")</li>
+                                            <li>@Html.ActionLink("Reports", "Index", "Report")</li>
+                                            <li class="nav-item"><a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">Logout</a></li>
+
+                                        }
+                                        else if (myCookie.Value == "9")
+                                        {
+
+                                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                                            <li>@Html.ActionLink("Reports", "Index", "Report")</li>
+                                            <li class="nav-item"><a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">Logout</a></li>
+                                        }
+
+
+                                    }
+                                    @*<li class="nav-item"><a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">Logout</a></li>*@
+                                    using (Html.BeginForm("LogOut", "User", FormMethod.Post, new { id = "logoutForm" }))
+                                    {
+
+                                        @*<li>  <a href="#" class="nav-link"></a></li>*@
+
+
+                                        <li class="nav-item" style="display:none;"><a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">Logout</a></li>
+
+                                    }
+                                }
+                                else
+                                {
+
+                                    @Html.ActionLink("Forgot password", "ForgotPassword", "User", new { area = "" }, new { @class = "navbar-brand" })
+                                }
+                            </ul>
+                        </nav>
+                    </div>
+
+
+                    <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a></div>
+
+                </div>
+            </div>
+
+        </header>
+
+
+        @RenderBody()
+        <footer class="site-footer">
+            <div class="container">
+                <div class="row pt-5 mt-5 text-center">
+                    <div class="col-md-12">
+                        <div class="border-top pt-5">
+                            <p>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;
+                                <script>document.write(new Date().getFullYear());</script> powered by <a href="https://infosightonline.com" target="_blank">Infosight Limited</a>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+
+    </div> <!-- .site-wrap -->
+
+
+
+    <script src="~/Content/consula/consula/js/jquery-3.3.1.min.js"></script>
+    <script src="~/Content/consula/consula/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="~/Content/consula/consula/js/jquery-ui.js"></script>
+    <script src="~/Content/consula/consula/js/popper.min.js"></script>
+    <script src="~/Content/consula/consula/js/bootstrap.min.js"></script>
+    <script src="~/Content/consula/consula/js/owl.carousel.min.js"></script>
+    <script src="~/Content/consula/consula/js/jquery.stellar.min.js"></script>
+    <script src="~/Content/consula/consula/js/jquery.countdown.min.js"></script>
+    <script src="~/Content/consula/consula/js/bootstrap-datepicker.min.js"></script>
+    <script src="~/Content/consula/consula/js/jquery.easing.1.3.js"></script>
+    <script src="~/Content/consula/consula/js/aos.js"></script>
+    <script src="~/Content/consula/consula/js/jquery.fancybox.min.js"></script>
+    <script src="~/Content/consula/consula/js/jquery.sticky.js"></script>
+    <script src="~/Content/consula/consula/js/main.js"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

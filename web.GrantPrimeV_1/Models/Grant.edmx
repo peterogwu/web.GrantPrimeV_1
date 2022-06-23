@@ -1,0 +1,1618 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PrimeGrantModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PrimeGrant.dbo.tbl_AgeGrade' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_AgeGrade">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Mobile" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="applicant_Id" Type="bigint" />
+          <Property Name="BVN" Type="varchar" MaxLength="20" />
+          <Property Name="AuthId" Type="varchar" MaxLength="50" />
+          <Property Name="NoOfEmployee" Type="int" />
+          <Property Name="T1835" Type="int" />
+          <Property Name="T3645" Type="int" />
+          <Property Name="T46andabove" Type="int" />
+          <Property Name="createdate" Type="datetime" />
+          <Property Name="status" Type="int" />
+          <Property Name="userid" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PrimeGrant.dbo.tbl_Applicant' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_Applicant">
+          <Key>
+            <PropertyRef Name="applicant_Id" />
+          </Key>
+          <Property Name="applicant_Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Upload_Id" Type="bigint" />
+          <Property Name="SurName" Type="varchar" MaxLength="50" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="Middlename" Type="varchar" MaxLength="50" />
+          <Property Name="BusinessName" Type="varchar" MaxLength="150" />
+          <Property Name="gender" Type="varchar" MaxLength="50" />
+          <Property Name="StateOfOrigin" Type="varchar" MaxLength="50" />
+          <Property Name="LGA" Type="varchar" MaxLength="50" />
+          <Property Name="ResidAddress" Type="varchar" MaxLength="150" />
+          <Property Name="Position" Type="varchar" MaxLength="50" />
+          <Property Name="Mobile" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="PersonalTaxRegNo" Type="varchar" MaxLength="50" />
+          <Property Name="BusinessSector" Type="varchar" MaxLength="150" />
+          <Property Name="BusinessType" Type="varchar" MaxLength="150" />
+          <Property Name="BusinessAddress" Type="varchar" MaxLength="150" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="State" Type="varchar" MaxLength="50" />
+          <Property Name="Country" Type="varchar" MaxLength="100" />
+          <Property Name="BusinesPhoneNo" Type="varchar" MaxLength="20" />
+          <Property Name="BusinesEmail" Type="varchar" MaxLength="50" />
+          <Property Name="BusinesWebsite" Type="varchar" MaxLength="100" />
+          <Property Name="BusinesTaxRegNo" Type="varchar" MaxLength="50" />
+          <Property Name="LastTaxPayDate" Type="datetime" />
+          <Property Name="BusinesStartDate" Type="datetime" />
+          <Property Name="NoOfYrInOperation" Type="int" />
+          <Property Name="NOofEmployee" Type="int" />
+          <Property Name="NOofFemale" Type="int" />
+          <Property Name="NOofMale" Type="int" />
+          <Property Name="AgeGrade" Type="varchar" MaxLength="50" />
+          <Property Name="EstimValOfBusTurnoverXLB" Type="numeric" Precision="22" Scale="2" />
+          <Property Name="BankName" Type="varchar" MaxLength="100" />
+          <Property Name="AcctNo" Type="varchar" MaxLength="20" />
+          <Property Name="BVN" Type="varchar" MaxLength="20" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Amount" Type="numeric" Precision="22" Scale="2" />
+          <Property Name="AnyRunningLoanPriorToCovid" Type="varchar" MaxLength="10" />
+          <Property Name="TotalOutstandVolumeOfLoan" Type="numeric" Precision="22" Scale="2" />
+          <Property Name="HowOftenWereYouPaying" Type="varchar" MaxLength="50" />
+          <Property Name="HowMuchWereyouPaying" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="DidYourRepaymentChange" Type="varchar" MaxLength="10" />
+          <Property Name="RepaymntChangeToHowMuch" Type="numeric" Precision="22" Scale="2" />
+          <Property Name="findItDiffToMeetPaymentOblig" Type="varchar" MaxLength="10" />
+          <Property Name="BusinImpactByCovid" Type="varchar" MaxLength="150" />
+          <Property Name="BusiNegImpactByCovid" Type="varchar" MaxLength="150" />
+          <Property Name="specifyOther" Type="varchar" MaxLength="150" />
+          <Property Name="PlanningToLayOffEmployeeDueToNeg" Type="varchar" MaxLength="10" />
+          <Property Name="DidYouLayOffEmployee" Type="varchar" MaxLength="10" />
+          <Property Name="NoOffEmployeeLayOff" Type="varchar" MaxLength="10" />
+          <Property Name="DidBusContDuringCovidCrisis" Type="varchar" MaxLength="10" />
+          <Property Name="WhtToolCudVeMadeItPosib" Type="varchar" MaxLength="200" />
+          <Property Name="WhtToolCudVeMadeBusMoreEffnt" Type="varchar" MaxLength="200" />
+          <Property Name="EmployeeAbleToWrkFrmHom" Type="varchar" MaxLength="10" />
+          <Property Name="WhtToolCudVeReqToMakeItPosib" Type="varchar" MaxLength="200" />
+          <Property Name="GrantTypeReqFor" Type="int" />
+          <Property Name="fullname" Type="varchar" MaxLength="150" />
+          <Property Name="Declaration" Type="varchar" MaxLength="200" />
+          <Property Name="AllSectnOfFormFilled" Type="varchar" MaxLength="10" />
+          <Property Name="IsBusinessCertAttach" Type="varchar" MaxLength="10" />
+          <Property Name="IsEvidOfTaxPaymentAttach" Type="varchar" MaxLength="10" />
+          <Property Name="IsEvOf1YrTOverAttachOrVerifid" Type="varchar" MaxLength="10" />
+          <Property Name="VeBnkDetailProvided" Type="varchar" MaxLength="10" />
+          <Property Name="IsImpactOfCovidOnBusnVrfd" Type="varchar" MaxLength="10" />
+          <Property Name="GrantyTpe" Type="varchar" MaxLength="200" />
+          <Property Name="CreditGrantAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="OperatnGrantAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ITEnhanceGrantAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="approveComment" Type="varchar" MaxLength="100" />
+          <Property Name="rejectComment" Type="varchar" MaxLength="100" />
+          <Property Name="authId" Type="varchar" MaxLength="50" />
+          <Property Name="userId" Type="varchar" MaxLength="50" />
+          <Property Name="ApprovalLevel" Type="int" />
+          <Property Name="rejected" Type="int" />
+          <Property Name="Approved" Type="int" />
+          <Property Name="ApprovedBy" Type="varchar" MaxLength="100" />
+          <Property Name="rejectedBy" Type="varchar" MaxLength="100" />
+          <Property Name="createdate" Type="datetime" />
+          <Property Name="Score" Type="int" />
+          <Property Name="ReworkStatus" Type="int" />
+          <Property Name="amountApprove" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="DisburseType" Type="int" />
+          <Property Name="amntDisbursed" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="disbursedBalance" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="AmntDue" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="NoOftranchDisb" Type="int" />
+          <Property Name="TotalNoOfTranDisb" Type="int" />
+          <Property Name="freguency" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PrimeGrant.dbo.tbl_ApplicantUploads' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_ApplicantUploads">
+          <Key>
+            <PropertyRef Name="Upload_Id" />
+          </Key>
+          <Property Name="Upload_Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Applicant_Id" Type="bigint" />
+          <Property Name="phone" Type="varchar" MaxLength="50" />
+          <Property Name="BVN" Type="varchar" MaxLength="20" />
+          <Property Name="LastTaxPayDate" Type="datetime" />
+          <Property Name="LstTaxDatePayEvidnce" Type="varbinary(max)" />
+          <Property Name="LstTaxDateEvidnceType" Type="varchar" MaxLength="20" />
+          <Property Name="BusnRegNum" Type="varchar" MaxLength="100" />
+          <Property Name="BusnRegNumEvdnce" Type="varbinary(max)" />
+          <Property Name="BusnRegNumEvidnceType" Type="varchar" MaxLength="20" />
+          <Property Name="Lst3YrAvrgeAnnualBusnTOver" Type="numeric" Precision="22" Scale="2" />
+          <Property Name="Lst3YrAvrgeAnnualBusnTOverEvdnce" Type="varbinary(max)" />
+          <Property Name="Lst3YrAvrgeAnnualBusnTOverEvdnceType" Type="varchar" MaxLength="20" />
+          <Property Name="ApplicantPassportName" Type="varchar" MaxLength="50" />
+          <Property Name="ApplicantPassport" Type="varbinary(max)" />
+          <Property Name="ApplicantPassportType" Type="varchar" MaxLength="20" />
+          <Property Name="ApplicantSign" Type="varbinary(max)" />
+          <Property Name="ApplicantSignType" Type="varchar" MaxLength="20" />
+          <Property Name="EvidnceOfLoanOrCreditGrantName" Type="varchar" MaxLength="50" />
+          <Property Name="EvidnceOfLoanOrCreditGrant" Type="varbinary(max)" />
+          <Property Name="EvidnceOfLoanOrCreditGrantType" Type="varchar" MaxLength="20" />
+          <Property Name="EvidnceOfOpertnExp4pst3mnthName" Type="varchar" MaxLength="50" />
+          <Property Name="EvidnceOfOpertnExp4pst3mnth" Type="varbinary(max)" />
+          <Property Name="EvidnceOfOpertnExp4pst3mnthType" Type="varchar" MaxLength="20" />
+          <Property Name="EvidnceOfOCorpOrAssocMemberName" Type="varchar" MaxLength="50" />
+          <Property Name="EvidnceOfOCorpOrAssocMember" Type="varbinary(max)" />
+          <Property Name="EvidnceOfOCorpOrAssocMemberType" Type="varchar" MaxLength="20" />
+          <Property Name="EnumeratorName" Type="varchar" MaxLength="200" />
+          <Property Name="EnumeratorSign" Type="varbinary(max)" />
+          <Property Name="EnumeratorSignType" Type="varchar" MaxLength="20" />
+          <Property Name="DL1TeamLeadComment" Type="varchar" MaxLength="200" />
+          <Property Name="DL1teamLeadSignWDate" Type="varbinary(max)" />
+          <Property Name="DL1teamLeadSignType" Type="varchar" MaxLength="20" />
+          <Property Name="DL1teamLeadApprovAmnt" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="DL2TeamLeadComment" Type="varchar" MaxLength="200" />
+          <Property Name="DL2teamLeadSign" Type="varbinary(max)" />
+          <Property Name="DL2teamLeadSignType" Type="varchar" MaxLength="20" />
+          <Property Name="DL2teamLeadApprovAmnt" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="DL3TeamLeadComment" Type="varchar" MaxLength="200" />
+          <Property Name="DL3teamLeadSignWdDate" Type="varbinary(max)" />
+          <Property Name="DL3teamLeadSignType" Type="varchar" MaxLength="20" />
+          <Property Name="DL3teamLeadApprovAmnt" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="StateCareCordinatorComment" Type="varchar" MaxLength="200" />
+          <Property Name="StateCareCordinatorSign" Type="varbinary(max)" />
+          <Property Name="StateCareCordinatorSignType" Type="varchar" MaxLength="20" />
+          <Property Name="StateCareCordinatorApprovAmnt" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PrimeGrant.dbo.tbl_Approve' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_Approve">
+          <Key>
+            <PropertyRef Name="approve_Id" />
+          </Key>
+          <Property Name="approve_Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicant_Id" Type="bigint" />
+          <Property Name="AuthId" Type="varchar" MaxLength="50" />
+          <Property Name="ApproveAmount" Type="numeric" Precision="22" Scale="2" />
+          <Property Name="ApproveComment" Type="varchar" MaxLength="150" />
+          <Property Name="createdate" Type="datetime" />
+          <Property Name="approvalLevel" Type="int" />
+          <Property Name="finalOrTranche" Type="int" />
+          <Property Name="Tranche" Type="int" />
+          <Property Name="status" Type="int" />
+          <Property Name="userid" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PrimeGrant.dbo.tbl_Committee' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_Committee">
+          <Key>
+            <PropertyRef Name="Committee_Id" />
+          </Key>
+          <Property Name="Committee_Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userId" Type="varchar" MaxLength="50" />
+          <Property Name="Role_Level" Type="int" />
+          <Property Name="createDate" Type="datetime" />
+          <Property Name="status" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'PrimeGrant.dbo.tbl_ComteeApproval_Record' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tbl_ComteeApproval_Record">
+          <Property Name="applicant_Id" Type="bigint" />
+          <Property Name="userId" Type="varchar" MaxLength="50" />
+          <Property Name="ApproveStatus" Type="int" />
+          <Property Name="ApproveDate" Type="datetime" />
+          <Property Name="ApproveComment" Type="varchar" MaxLength="500" />
+          <Property Name="approveAmount" Type="numeric" Precision="22" Scale="2" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PrimeGrant.dbo.tbl_country' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_country">
+          <Key>
+            <PropertyRef Name="CountryCode" />
+            <PropertyRef Name="CountryName" />
+          </Key>
+          <Property Name="CountryCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="CountryName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CountryMne" Type="varchar" MaxLength="10" />
+          <Property Name="Status" Type="int" />
+          <Property Name="CurrencyName" Type="varchar" MaxLength="50" />
+          <Property Name="CurrencyMne" Type="varchar" MaxLength="10" />
+          <Property Name="userid" Type="varchar" MaxLength="20" />
+          <Property Name="authid" Type="varchar" MaxLength="20" />
+          <Property Name="createdate" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PrimeGrant.dbo.tbl_customer' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_customer">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="RegistrationId" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegistrationId" Type="bigint" Nullable="false" />
+          <Property Name="SurName" Type="varchar" MaxLength="50" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="Middlename" Type="varchar" MaxLength="50" />
+          <Property Name="gender" Type="varchar" MaxLength="5" />
+          <Property Name="StateOfOrigin" Type="varchar" MaxLength="50" />
+          <Property Name="LGA" Type="varchar" MaxLength="10" />
+          <Property Name="ResidAddress" Type="varchar" MaxLength="100" />
+          <Property Name="PostFunct" Type="varchar" MaxLength="50" />
+          <Property Name="TaxReg" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="BusSector" Type="varchar" MaxLength="100" />
+          <Property Name="BusAdress" Type="varchar" MaxLength="100" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="State" Type="varchar" MaxLength="50" />
+          <Property Name="Nationality" Type="varchar" MaxLength="50" />
+          <Property Name="WebsitAdress" Type="varchar" MaxLength="100" />
+          <Property Name="TaxRegNO" Type="varchar" MaxLength="100" />
+          <Property Name="LastTax" Type="varbinary(max)" />
+          <Property Name="LastTaximageType" Type="varchar" MaxLength="50" />
+          <Property Name="BussComDate" Type="datetime" />
+          <Property Name="NumYr" Type="int" />
+          <Property Name="BussRegNumb" Type="varbinary(max)" />
+          <Property Name="BussRegNumbType2" Type="varchar" MaxLength="50" />
+          <Property Name="NOofEmp" Type="int" />
+          <Property Name="NOofFemale" Type="int" />
+          <Property Name="NOofMale" Type="int" />
+          <Property Name="AgeGrade" Type="varchar" MaxLength="50" />
+          <Property Name="Turnover" Type="varbinary(max)" />
+          <Property Name="TurnoverimageType3" Type="varchar" MaxLength="50" />
+          <Property Name="BussSet" Type="varchar" MaxLength="100" />
+          <Property Name="BankName" Type="varchar" MaxLength="100" />
+          <Property Name="AcctNo" Type="varchar" MaxLength="20" />
+          <Property Name="BVN" Type="varchar" MaxLength="20" />
+          <Property Name="Status" Type="varchar" MaxLength="10" />
+          <Property Name="Rating" Type="varchar" MaxLength="20" />
+          <Property Name="Runinloan" Type="varchar" MaxLength="100" />
+          <Property Name="paymSchedule" Type="varchar" MaxLength="100" />
+          <Property Name="AmountPaid" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="paymentChange" Type="varchar" MaxLength="100" />
+          <Property Name="repaymenobligation" Type="varchar" MaxLength="100" />
+          <Property Name="bussImpact" Type="varchar" MaxLength="100" />
+          <Property Name="bussNegImpact" Type="varchar" MaxLength="100" />
+          <Property Name="plantolayoff" Type="varchar" MaxLength="100" />
+          <Property Name="dolayoff" Type="varchar" MaxLength="100" />
+          <Property Name="bussoperat" Type="varchar" MaxLength="100" />
+          <Property Name="workfromhome" Type="varchar" MaxLength="100" />
+          <Property Name="grandrequest" Type="varchar" MaxLength="100" />
+          <Property Name="declareation" Type="varchar" MaxLength="100" />
+          <Property Name="approveComment" Type="varchar" MaxLength="100" />
+          <Property Name="rejectComment" Type="varchar" MaxLength="100" />
+          <Property Name="authId" Type="varchar" MaxLength="50" />
+          <Property Name="userId" Type="varchar" MaxLength="50" />
+          <Property Name="ApprovalLevel" Type="int" />
+          <Property Name="ApprovedBy" Type="varchar" MaxLength="100" />
+          <Property Name="rejectedBy" Type="varchar" MaxLength="100" />
+          <Property Name="grantType" Type="int" />
+          <Property Name="customerid" Type="bigint" />
+          <Property Name="phone" Type="varchar" MaxLength="50" />
+          <Property Name="BussRegNumbimageType2" Type="varchar" MaxLength="50" />
+          <Property Name="TurnoverValues" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="BussSetValues" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PrimeGrant.dbo.tbl_Disburse' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_Disburse">
+          <Key>
+            <PropertyRef Name="Disburse_Id" />
+          </Key>
+          <Property Name="Disburse_Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicant_Id" Type="bigint" />
+          <Property Name="AuthId" Type="varchar" MaxLength="50" />
+          <Property Name="AmountDisbursed" Type="numeric" Precision="22" Scale="2" />
+          <Property Name="DisburseComment" Type="varchar" MaxLength="150" />
+          <Property Name="createdate" Type="datetime" />
+          <Property Name="DisburseType" Type="int" />
+          <Property Name="status" Type="int" />
+          <Property Name="userid" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'PrimeGrant.dbo.tbl_GrantSchedule' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tbl_GrantSchedule">
+          <Property Name="applicant_Id" Type="bigint" />
+          <Property Name="BVN" Type="varchar" MaxLength="20" />
+          <Property Name="grantype" Type="int" />
+          <Property Name="PrincipalDue" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Datedue" Type="datetime" />
+          <Property Name="Status" Type="char" MaxLength="1" />
+          <Property Name="installdue" Type="int" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PrimeGrant.dbo.tbl_Rejection' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_Rejection">
+          <Key>
+            <PropertyRef Name="Reject_Id" />
+          </Key>
+          <Property Name="Reject_Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicant_Id" Type="bigint" />
+          <Property Name="AuthId" Type="varchar" MaxLength="50" />
+          <Property Name="RejectAmount" Type="numeric" Precision="22" Scale="2" />
+          <Property Name="RejectComment" Type="varchar" MaxLength="150" />
+          <Property Name="createdate" Type="datetime" />
+          <Property Name="final" Type="int" />
+          <Property Name="rework" Type="int" />
+          <Property Name="status" Type="int" />
+          <Property Name="userid" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_Role">
+          <Key>
+            <PropertyRef Name="role_id" />
+            <PropertyRef Name="role_name" />
+          </Key>
+          <Property Name="role_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="role_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="roledesc" Type="varchar" MaxLength="150" />
+          <Property Name="access_days" Type="int" />
+          <Property Name="createdate" Type="datetime" />
+          <Property Name="isoperation" Type="int" />
+          <Property Name="reqLimit" Type="int" />
+          <Property Name="status" Type="int" />
+          <Property Name="authid" Type="varchar" MaxLength="50" />
+          <Property Name="userid" Type="varchar" MaxLength="50" />
+          <Property Name="canauth" Type="bit" />
+          <Property Name="role_level" Type="int" />
+          <Property Name="Commitee" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PrimeGrant.dbo.tbl_state' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_state">
+          <Key>
+            <PropertyRef Name="StateCode" />
+            <PropertyRef Name="StateName" />
+            <PropertyRef Name="Statemne" />
+            <PropertyRef Name="Status" />
+          </Key>
+          <Property Name="StateCode" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="StateName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Statemne" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="CountryCode" Type="varchar" MaxLength="10" />
+          <Property Name="Capital" Type="varchar" MaxLength="100" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="Region" Type="varchar" MaxLength="10" />
+          <Property Name="userid" Type="varchar" MaxLength="50" />
+          <Property Name="authid" Type="varchar" MaxLength="50" />
+          <Property Name="datecreated" Type="datetime" />
+          <Property Name="createdate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_town">
+          <Key>
+            <PropertyRef Name="TownCode" />
+          </Key>
+          <Property Name="TownCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TownName" Type="varchar" MaxLength="100" />
+          <Property Name="StateCode" Type="varchar" MaxLength="10" />
+          <Property Name="Status" Type="int" />
+          <Property Name="townshortname" Type="varchar" MaxLength="100" />
+          <Property Name="authid" Type="varchar" MaxLength="100" />
+          <Property Name="userid" Type="varchar" MaxLength="100" />
+          <Property Name="createdate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_userprofile">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Userid" Type="varchar" MaxLength="50" />
+          <Property Name="userpassword" Type="varchar" MaxLength="150" />
+          <Property Name="fullname" Type="varchar" MaxLength="100" />
+          <Property Name="deptcode" Type="char" MaxLength="10" />
+          <Property Name="Role_id" Type="int" />
+          <Property Name="ipaddress" Type="varchar" MaxLength="20" />
+          <Property Name="loginstatus" Type="char" MaxLength="1" />
+          <Property Name="Authoriser" Type="int" />
+          <Property Name="branchcode" Type="char" MaxLength="10" />
+          <Property Name="Staff_status" Type="char" MaxLength="10" />
+          <Property Name="PostGL_Acctno" Type="varchar" MaxLength="18" />
+          <Property Name="passchange_date" Type="datetime" />
+          <Property Name="Next_Passchange_date" Type="datetime" />
+          <Property Name="Create_date" Type="datetime" />
+          <Property Name="SScode" Type="bigint" />
+          <Property Name="sessionid" Type="int" />
+          <Property Name="Computername" Type="varchar" MaxLength="100" />
+          <Property Name="machaddress" Type="varchar" MaxLength="100" />
+          <Property Name="lockcount" Type="int" />
+          <Property Name="ReportLevel" Type="varchar" MaxLength="22" />
+          <Property Name="AuthUserid" Type="varchar" MaxLength="12" />
+          <Property Name="PostUserId" Type="varchar" MaxLength="12" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="phoneno" Type="varchar" MaxLength="20" />
+          <Property Name="Status" Type="int" />
+          <Property Name="authid" Type="varchar" MaxLength="100" />
+          <Property Name="smsalert" Type="int" />
+          <Property Name="emailalert" Type="int" />
+          <Property Name="offlinealert" Type="int" />
+          <Property Name="authorisedby" Type="varchar" MaxLength="100" />
+          <Property Name="enforce_pwd" Type="int" />
+          <Property Name="excemptlock" Type="int" />
+          <Property Name="statement" Type="int" />
+          <Property Name="remotelogin" Type="int" />
+          <Property Name="targetamt" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="logincount" Type="int" />
+          <Property Name="multilogin" Type="int" />
+          <Property Name="SBU" Type="int" />
+          <Property Name="reportflag" Type="int" />
+          <Property Name="ConfirmPassword" Type="varchar" MaxLength="150" />
+          <Property Name="PasswordResetCode" Type="varchar" MaxLength="100" />
+          <Property Name="IsEmailVerified" Type="bit" />
+          <Property Name="ActivationCode" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityContainer Name="PrimeGrantModelStoreContainer">
+          <EntitySet Name="tbl_Role" EntityType="Self.tbl_Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_town" EntityType="Self.tbl_town" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_userprofile" EntityType="Self.tbl_userprofile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_AgeGrade" EntityType="Self.tbl_AgeGrade" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tbl_AgeGrade].[id] AS [id], 
+    [tbl_AgeGrade].[Mobile] AS [Mobile], 
+    [tbl_AgeGrade].[Email] AS [Email], 
+    [tbl_AgeGrade].[applicant_Id] AS [applicant_Id], 
+    [tbl_AgeGrade].[BVN] AS [BVN], 
+    [tbl_AgeGrade].[AuthId] AS [AuthId], 
+    [tbl_AgeGrade].[NoOfEmployee] AS [NoOfEmployee], 
+    [tbl_AgeGrade].[T1835] AS [T1835], 
+    [tbl_AgeGrade].[T3645] AS [T3645], 
+    [tbl_AgeGrade].[T46andabove] AS [T46andabove], 
+    [tbl_AgeGrade].[createdate] AS [createdate], 
+    [tbl_AgeGrade].[status] AS [status], 
+    [tbl_AgeGrade].[userid] AS [userid]
+    FROM [dbo].[tbl_AgeGrade] AS [tbl_AgeGrade]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_Applicant" EntityType="Self.tbl_Applicant" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tbl_Applicant].[applicant_Id] AS [applicant_Id], 
+    [tbl_Applicant].[Upload_Id] AS [Upload_Id], 
+    [tbl_Applicant].[SurName] AS [SurName], 
+    [tbl_Applicant].[FirstName] AS [FirstName], 
+    [tbl_Applicant].[Middlename] AS [Middlename], 
+    [tbl_Applicant].[BusinessName] AS [BusinessName], 
+    [tbl_Applicant].[gender] AS [gender], 
+    [tbl_Applicant].[StateOfOrigin] AS [StateOfOrigin], 
+    [tbl_Applicant].[LGA] AS [LGA], 
+    [tbl_Applicant].[ResidAddress] AS [ResidAddress], 
+    [tbl_Applicant].[Position] AS [Position], 
+    [tbl_Applicant].[Mobile] AS [Mobile], 
+    [tbl_Applicant].[Email] AS [Email], 
+    [tbl_Applicant].[PersonalTaxRegNo] AS [PersonalTaxRegNo], 
+    [tbl_Applicant].[BusinessSector] AS [BusinessSector], 
+    [tbl_Applicant].[BusinessType] AS [BusinessType], 
+    [tbl_Applicant].[BusinessAddress] AS [BusinessAddress], 
+    [tbl_Applicant].[City] AS [City], 
+    [tbl_Applicant].[State] AS [State], 
+    [tbl_Applicant].[Country] AS [Country], 
+    [tbl_Applicant].[BusinesPhoneNo] AS [BusinesPhoneNo], 
+    [tbl_Applicant].[BusinesEmail] AS [BusinesEmail], 
+    [tbl_Applicant].[BusinesWebsite] AS [BusinesWebsite], 
+    [tbl_Applicant].[BusinesTaxRegNo] AS [BusinesTaxRegNo], 
+    [tbl_Applicant].[LastTaxPayDate] AS [LastTaxPayDate], 
+    [tbl_Applicant].[BusinesStartDate] AS [BusinesStartDate], 
+    [tbl_Applicant].[NoOfYrInOperation] AS [NoOfYrInOperation], 
+    [tbl_Applicant].[NOofEmployee] AS [NOofEmployee], 
+    [tbl_Applicant].[NOofFemale] AS [NOofFemale], 
+    [tbl_Applicant].[NOofMale] AS [NOofMale], 
+    [tbl_Applicant].[AgeGrade] AS [AgeGrade], 
+    [tbl_Applicant].[EstimValOfBusTurnoverXLB] AS [EstimValOfBusTurnoverXLB], 
+    [tbl_Applicant].[BankName] AS [BankName], 
+    [tbl_Applicant].[AcctNo] AS [AcctNo], 
+    [tbl_Applicant].[BVN] AS [BVN], 
+    [tbl_Applicant].[Status] AS [Status], 
+    [tbl_Applicant].[Amount] AS [Amount], 
+    [tbl_Applicant].[AnyRunningLoanPriorToCovid] AS [AnyRunningLoanPriorToCovid], 
+    [tbl_Applicant].[TotalOutstandVolumeOfLoan] AS [TotalOutstandVolumeOfLoan], 
+    [tbl_Applicant].[HowOftenWereYouPaying] AS [HowOftenWereYouPaying], 
+    [tbl_Applicant].[HowMuchWereyouPaying] AS [HowMuchWereyouPaying], 
+    [tbl_Applicant].[DidYourRepaymentChange] AS [DidYourRepaymentChange], 
+    [tbl_Applicant].[RepaymntChangeToHowMuch] AS [RepaymntChangeToHowMuch], 
+    [tbl_Applicant].[findItDiffToMeetPaymentOblig] AS [findItDiffToMeetPaymentOblig], 
+    [tbl_Applicant].[BusinImpactByCovid] AS [BusinImpactByCovid], 
+    [tbl_Applicant].[BusiNegImpactByCovid] AS [BusiNegImpactByCovid], 
+    [tbl_Applicant].[specifyOther] AS [specifyOther], 
+    [tbl_Applicant].[PlanningToLayOffEmployeeDueToNeg] AS [PlanningToLayOffEmployeeDueToNeg], 
+    [tbl_Applicant].[DidYouLayOffEmployee] AS [DidYouLayOffEmployee], 
+    [tbl_Applicant].[NoOffEmployeeLayOff] AS [NoOffEmployeeLayOff], 
+    [tbl_Applicant].[DidBusContDuringCovidCrisis] AS [DidBusContDuringCovidCrisis], 
+    [tbl_Applicant].[WhtToolCudVeMadeItPosib] AS [WhtToolCudVeMadeItPosib], 
+    [tbl_Applicant].[WhtToolCudVeMadeBusMoreEffnt] AS [WhtToolCudVeMadeBusMoreEffnt], 
+    [tbl_Applicant].[EmployeeAbleToWrkFrmHom] AS [EmployeeAbleToWrkFrmHom], 
+    [tbl_Applicant].[WhtToolCudVeReqToMakeItPosib] AS [WhtToolCudVeReqToMakeItPosib], 
+    [tbl_Applicant].[GrantTypeReqFor] AS [GrantTypeReqFor], 
+    [tbl_Applicant].[fullname] AS [fullname], 
+    [tbl_Applicant].[Declaration] AS [Declaration], 
+    [tbl_Applicant].[AllSectnOfFormFilled] AS [AllSectnOfFormFilled], 
+    [tbl_Applicant].[IsBusinessCertAttach] AS [IsBusinessCertAttach], 
+    [tbl_Applicant].[IsEvidOfTaxPaymentAttach] AS [IsEvidOfTaxPaymentAttach], 
+    [tbl_Applicant].[IsEvOf1YrTOverAttachOrVerifid] AS [IsEvOf1YrTOverAttachOrVerifid], 
+    [tbl_Applicant].[VeBnkDetailProvided] AS [VeBnkDetailProvided], 
+    [tbl_Applicant].[IsImpactOfCovidOnBusnVrfd] AS [IsImpactOfCovidOnBusnVrfd], 
+    [tbl_Applicant].[GrantyTpe] AS [GrantyTpe], 
+    [tbl_Applicant].[CreditGrantAmount] AS [CreditGrantAmount], 
+    [tbl_Applicant].[OperatnGrantAmount] AS [OperatnGrantAmount], 
+    [tbl_Applicant].[ITEnhanceGrantAmount] AS [ITEnhanceGrantAmount], 
+    [tbl_Applicant].[approveComment] AS [approveComment], 
+    [tbl_Applicant].[rejectComment] AS [rejectComment], 
+    [tbl_Applicant].[authId] AS [authId], 
+    [tbl_Applicant].[userId] AS [userId], 
+    [tbl_Applicant].[ApprovalLevel] AS [ApprovalLevel], 
+    [tbl_Applicant].[rejected] AS [rejected], 
+    [tbl_Applicant].[Approved] AS [Approved], 
+    [tbl_Applicant].[ApprovedBy] AS [ApprovedBy], 
+    [tbl_Applicant].[rejectedBy] AS [rejectedBy], 
+    [tbl_Applicant].[createdate] AS [createdate], 
+    [tbl_Applicant].[Score] AS [Score], 
+    [tbl_Applicant].[ReworkStatus] AS [ReworkStatus], 
+    [tbl_Applicant].[amountApprove] AS [amountApprove], 
+    [tbl_Applicant].[DisburseType] AS [DisburseType], 
+    [tbl_Applicant].[amntDisbursed] AS [amntDisbursed], 
+    [tbl_Applicant].[disbursedBalance] AS [disbursedBalance], 
+    [tbl_Applicant].[AmntDue] AS [AmntDue], 
+    [tbl_Applicant].[NoOftranchDisb] AS [NoOftranchDisb], 
+    [tbl_Applicant].[TotalNoOfTranDisb] AS [TotalNoOfTranDisb], 
+    [tbl_Applicant].[freguency] AS [freguency]
+    FROM [dbo].[tbl_Applicant] AS [tbl_Applicant]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_ApplicantUploads" EntityType="Self.tbl_ApplicantUploads" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tbl_ApplicantUploads].[Upload_Id] AS [Upload_Id], 
+    [tbl_ApplicantUploads].[Applicant_Id] AS [Applicant_Id], 
+    [tbl_ApplicantUploads].[phone] AS [phone], 
+    [tbl_ApplicantUploads].[BVN] AS [BVN], 
+    [tbl_ApplicantUploads].[LastTaxPayDate] AS [LastTaxPayDate], 
+    [tbl_ApplicantUploads].[LstTaxDatePayEvidnce] AS [LstTaxDatePayEvidnce], 
+    [tbl_ApplicantUploads].[LstTaxDateEvidnceType] AS [LstTaxDateEvidnceType], 
+    [tbl_ApplicantUploads].[BusnRegNum] AS [BusnRegNum], 
+    [tbl_ApplicantUploads].[BusnRegNumEvdnce] AS [BusnRegNumEvdnce], 
+    [tbl_ApplicantUploads].[BusnRegNumEvidnceType] AS [BusnRegNumEvidnceType], 
+    [tbl_ApplicantUploads].[Lst3YrAvrgeAnnualBusnTOver] AS [Lst3YrAvrgeAnnualBusnTOver], 
+    [tbl_ApplicantUploads].[Lst3YrAvrgeAnnualBusnTOverEvdnce] AS [Lst3YrAvrgeAnnualBusnTOverEvdnce], 
+    [tbl_ApplicantUploads].[Lst3YrAvrgeAnnualBusnTOverEvdnceType] AS [Lst3YrAvrgeAnnualBusnTOverEvdnceType], 
+    [tbl_ApplicantUploads].[ApplicantPassportName] AS [ApplicantPassportName], 
+    [tbl_ApplicantUploads].[ApplicantPassport] AS [ApplicantPassport], 
+    [tbl_ApplicantUploads].[ApplicantPassportType] AS [ApplicantPassportType], 
+    [tbl_ApplicantUploads].[ApplicantSign] AS [ApplicantSign], 
+    [tbl_ApplicantUploads].[ApplicantSignType] AS [ApplicantSignType], 
+    [tbl_ApplicantUploads].[EvidnceOfLoanOrCreditGrantName] AS [EvidnceOfLoanOrCreditGrantName], 
+    [tbl_ApplicantUploads].[EvidnceOfLoanOrCreditGrant] AS [EvidnceOfLoanOrCreditGrant], 
+    [tbl_ApplicantUploads].[EvidnceOfLoanOrCreditGrantType] AS [EvidnceOfLoanOrCreditGrantType], 
+    [tbl_ApplicantUploads].[EvidnceOfOpertnExp4pst3mnthName] AS [EvidnceOfOpertnExp4pst3mnthName], 
+    [tbl_ApplicantUploads].[EvidnceOfOpertnExp4pst3mnth] AS [EvidnceOfOpertnExp4pst3mnth], 
+    [tbl_ApplicantUploads].[EvidnceOfOpertnExp4pst3mnthType] AS [EvidnceOfOpertnExp4pst3mnthType], 
+    [tbl_ApplicantUploads].[EvidnceOfOCorpOrAssocMemberName] AS [EvidnceOfOCorpOrAssocMemberName], 
+    [tbl_ApplicantUploads].[EvidnceOfOCorpOrAssocMember] AS [EvidnceOfOCorpOrAssocMember], 
+    [tbl_ApplicantUploads].[EvidnceOfOCorpOrAssocMemberType] AS [EvidnceOfOCorpOrAssocMemberType], 
+    [tbl_ApplicantUploads].[EnumeratorName] AS [EnumeratorName], 
+    [tbl_ApplicantUploads].[EnumeratorSign] AS [EnumeratorSign], 
+    [tbl_ApplicantUploads].[EnumeratorSignType] AS [EnumeratorSignType], 
+    [tbl_ApplicantUploads].[DL1TeamLeadComment] AS [DL1TeamLeadComment], 
+    [tbl_ApplicantUploads].[DL1teamLeadSignWDate] AS [DL1teamLeadSignWDate], 
+    [tbl_ApplicantUploads].[DL1teamLeadSignType] AS [DL1teamLeadSignType], 
+    [tbl_ApplicantUploads].[DL1teamLeadApprovAmnt] AS [DL1teamLeadApprovAmnt], 
+    [tbl_ApplicantUploads].[DL2TeamLeadComment] AS [DL2TeamLeadComment], 
+    [tbl_ApplicantUploads].[DL2teamLeadSign] AS [DL2teamLeadSign], 
+    [tbl_ApplicantUploads].[DL2teamLeadSignType] AS [DL2teamLeadSignType], 
+    [tbl_ApplicantUploads].[DL2teamLeadApprovAmnt] AS [DL2teamLeadApprovAmnt], 
+    [tbl_ApplicantUploads].[DL3TeamLeadComment] AS [DL3TeamLeadComment], 
+    [tbl_ApplicantUploads].[DL3teamLeadSignWdDate] AS [DL3teamLeadSignWdDate], 
+    [tbl_ApplicantUploads].[DL3teamLeadSignType] AS [DL3teamLeadSignType], 
+    [tbl_ApplicantUploads].[DL3teamLeadApprovAmnt] AS [DL3teamLeadApprovAmnt], 
+    [tbl_ApplicantUploads].[StateCareCordinatorComment] AS [StateCareCordinatorComment], 
+    [tbl_ApplicantUploads].[StateCareCordinatorSign] AS [StateCareCordinatorSign], 
+    [tbl_ApplicantUploads].[StateCareCordinatorSignType] AS [StateCareCordinatorSignType], 
+    [tbl_ApplicantUploads].[StateCareCordinatorApprovAmnt] AS [StateCareCordinatorApprovAmnt]
+    FROM [dbo].[tbl_ApplicantUploads] AS [tbl_ApplicantUploads]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_Approve" EntityType="Self.tbl_Approve" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tbl_Approve].[approve_Id] AS [approve_Id], 
+    [tbl_Approve].[applicant_Id] AS [applicant_Id], 
+    [tbl_Approve].[AuthId] AS [AuthId], 
+    [tbl_Approve].[ApproveAmount] AS [ApproveAmount], 
+    [tbl_Approve].[ApproveComment] AS [ApproveComment], 
+    [tbl_Approve].[createdate] AS [createdate], 
+    [tbl_Approve].[approvalLevel] AS [approvalLevel], 
+    [tbl_Approve].[finalOrTranche] AS [finalOrTranche], 
+    [tbl_Approve].[Tranche] AS [Tranche], 
+    [tbl_Approve].[status] AS [status], 
+    [tbl_Approve].[userid] AS [userid]
+    FROM [dbo].[tbl_Approve] AS [tbl_Approve]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_Committee" EntityType="Self.tbl_Committee" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tbl_Committee].[Committee_Id] AS [Committee_Id], 
+    [tbl_Committee].[userId] AS [userId], 
+    [tbl_Committee].[Role_Level] AS [Role_Level], 
+    [tbl_Committee].[createDate] AS [createDate], 
+    [tbl_Committee].[status] AS [status]
+    FROM [dbo].[tbl_Committee] AS [tbl_Committee]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_country" EntityType="Self.tbl_country" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tbl_country].[CountryCode] AS [CountryCode], 
+    [tbl_country].[CountryName] AS [CountryName], 
+    [tbl_country].[CountryMne] AS [CountryMne], 
+    [tbl_country].[Status] AS [Status], 
+    [tbl_country].[CurrencyName] AS [CurrencyName], 
+    [tbl_country].[CurrencyMne] AS [CurrencyMne], 
+    [tbl_country].[userid] AS [userid], 
+    [tbl_country].[authid] AS [authid], 
+    [tbl_country].[createdate] AS [createdate]
+    FROM [dbo].[tbl_country] AS [tbl_country]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_customer" EntityType="Self.tbl_customer" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tbl_customer].[ID] AS [ID], 
+    [tbl_customer].[RegistrationId] AS [RegistrationId], 
+    [tbl_customer].[SurName] AS [SurName], 
+    [tbl_customer].[FirstName] AS [FirstName], 
+    [tbl_customer].[Middlename] AS [Middlename], 
+    [tbl_customer].[gender] AS [gender], 
+    [tbl_customer].[StateOfOrigin] AS [StateOfOrigin], 
+    [tbl_customer].[LGA] AS [LGA], 
+    [tbl_customer].[ResidAddress] AS [ResidAddress], 
+    [tbl_customer].[PostFunct] AS [PostFunct], 
+    [tbl_customer].[TaxReg] AS [TaxReg], 
+    [tbl_customer].[Email] AS [Email], 
+    [tbl_customer].[BusSector] AS [BusSector], 
+    [tbl_customer].[BusAdress] AS [BusAdress], 
+    [tbl_customer].[City] AS [City], 
+    [tbl_customer].[State] AS [State], 
+    [tbl_customer].[Nationality] AS [Nationality], 
+    [tbl_customer].[WebsitAdress] AS [WebsitAdress], 
+    [tbl_customer].[TaxRegNO] AS [TaxRegNO], 
+    [tbl_customer].[LastTax] AS [LastTax], 
+    [tbl_customer].[LastTaximageType] AS [LastTaximageType], 
+    [tbl_customer].[BussComDate] AS [BussComDate], 
+    [tbl_customer].[NumYr] AS [NumYr], 
+    [tbl_customer].[BussRegNumb] AS [BussRegNumb], 
+    [tbl_customer].[BussRegNumbType2] AS [BussRegNumbType2], 
+    [tbl_customer].[NOofEmp] AS [NOofEmp], 
+    [tbl_customer].[NOofFemale] AS [NOofFemale], 
+    [tbl_customer].[NOofMale] AS [NOofMale], 
+    [tbl_customer].[AgeGrade] AS [AgeGrade], 
+    [tbl_customer].[Turnover] AS [Turnover], 
+    [tbl_customer].[TurnoverimageType3] AS [TurnoverimageType3], 
+    [tbl_customer].[BussSet] AS [BussSet], 
+    [tbl_customer].[BankName] AS [BankName], 
+    [tbl_customer].[AcctNo] AS [AcctNo], 
+    [tbl_customer].[BVN] AS [BVN], 
+    [tbl_customer].[Status] AS [Status], 
+    [tbl_customer].[Rating] AS [Rating], 
+    [tbl_customer].[Runinloan] AS [Runinloan], 
+    [tbl_customer].[paymSchedule] AS [paymSchedule], 
+    [tbl_customer].[AmountPaid] AS [AmountPaid], 
+    [tbl_customer].[paymentChange] AS [paymentChange], 
+    [tbl_customer].[repaymenobligation] AS [repaymenobligation], 
+    [tbl_customer].[bussImpact] AS [bussImpact], 
+    [tbl_customer].[bussNegImpact] AS [bussNegImpact], 
+    [tbl_customer].[plantolayoff] AS [plantolayoff], 
+    [tbl_customer].[dolayoff] AS [dolayoff], 
+    [tbl_customer].[bussoperat] AS [bussoperat], 
+    [tbl_customer].[workfromhome] AS [workfromhome], 
+    [tbl_customer].[grandrequest] AS [grandrequest], 
+    [tbl_customer].[declareation] AS [declareation], 
+    [tbl_customer].[approveComment] AS [approveComment], 
+    [tbl_customer].[rejectComment] AS [rejectComment], 
+    [tbl_customer].[authId] AS [authId], 
+    [tbl_customer].[userId] AS [userId], 
+    [tbl_customer].[ApprovalLevel] AS [ApprovalLevel], 
+    [tbl_customer].[ApprovedBy] AS [ApprovedBy], 
+    [tbl_customer].[rejectedBy] AS [rejectedBy], 
+    [tbl_customer].[grantType] AS [grantType], 
+    [tbl_customer].[customerid] AS [customerid], 
+    [tbl_customer].[phone] AS [phone], 
+    [tbl_customer].[BussRegNumbimageType2] AS [BussRegNumbimageType2], 
+    [tbl_customer].[TurnoverValues] AS [TurnoverValues], 
+    [tbl_customer].[BussSetValues] AS [BussSetValues]
+    FROM [dbo].[tbl_customer] AS [tbl_customer]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_Disburse" EntityType="Self.tbl_Disburse" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tbl_Disburse].[Disburse_Id] AS [Disburse_Id], 
+    [tbl_Disburse].[applicant_Id] AS [applicant_Id], 
+    [tbl_Disburse].[AuthId] AS [AuthId], 
+    [tbl_Disburse].[AmountDisbursed] AS [AmountDisbursed], 
+    [tbl_Disburse].[DisburseComment] AS [DisburseComment], 
+    [tbl_Disburse].[createdate] AS [createdate], 
+    [tbl_Disburse].[DisburseType] AS [DisburseType], 
+    [tbl_Disburse].[status] AS [status], 
+    [tbl_Disburse].[userid] AS [userid]
+    FROM [dbo].[tbl_Disburse] AS [tbl_Disburse]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_Rejection" EntityType="Self.tbl_Rejection" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tbl_Rejection].[Reject_Id] AS [Reject_Id], 
+    [tbl_Rejection].[applicant_Id] AS [applicant_Id], 
+    [tbl_Rejection].[AuthId] AS [AuthId], 
+    [tbl_Rejection].[RejectAmount] AS [RejectAmount], 
+    [tbl_Rejection].[RejectComment] AS [RejectComment], 
+    [tbl_Rejection].[createdate] AS [createdate], 
+    [tbl_Rejection].[final] AS [final], 
+    [tbl_Rejection].[rework] AS [rework], 
+    [tbl_Rejection].[status] AS [status], 
+    [tbl_Rejection].[userid] AS [userid]
+    FROM [dbo].[tbl_Rejection] AS [tbl_Rejection]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_state" EntityType="Self.tbl_state" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tbl_state].[StateCode] AS [StateCode], 
+    [tbl_state].[StateName] AS [StateName], 
+    [tbl_state].[Statemne] AS [Statemne], 
+    [tbl_state].[CountryCode] AS [CountryCode], 
+    [tbl_state].[Capital] AS [Capital], 
+    [tbl_state].[Status] AS [Status], 
+    [tbl_state].[Region] AS [Region], 
+    [tbl_state].[userid] AS [userid], 
+    [tbl_state].[authid] AS [authid], 
+    [tbl_state].[datecreated] AS [datecreated], 
+    [tbl_state].[createdate] AS [createdate]
+    FROM [dbo].[tbl_state] AS [tbl_state]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PrimeGrantModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_Role">
+          <Key>
+            <PropertyRef Name="role_id" />
+            <PropertyRef Name="role_name" />
+          </Key>
+          <Property Name="role_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="role_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="roledesc" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="access_days" Type="Int32" />
+          <Property Name="createdate" Type="DateTime" Precision="3" />
+          <Property Name="isoperation" Type="Int32" />
+          <Property Name="reqLimit" Type="Int32" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="authid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="userid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="canauth" Type="Boolean" />
+          <Property Name="role_level" Type="Int32" />
+          <Property Name="Commitee" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_town">
+          <Key>
+            <PropertyRef Name="TownCode" />
+          </Key>
+          <Property Name="TownCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TownName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="StateCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="townshortname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="authid" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="userid" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="createdate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_userprofile">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Userid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="userpassword" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="fullname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="deptcode" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Role_id" Type="Int32" />
+          <Property Name="ipaddress" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="loginstatus" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Authoriser" Type="Int32" />
+          <Property Name="branchcode" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Staff_status" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="PostGL_Acctno" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+          <Property Name="passchange_date" Type="DateTime" Precision="3" />
+          <Property Name="Next_Passchange_date" Type="DateTime" Precision="3" />
+          <Property Name="Create_date" Type="DateTime" Precision="3" />
+          <Property Name="SScode" Type="Int64" />
+          <Property Name="sessionid" Type="Int32" />
+          <Property Name="Computername" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="machaddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="lockcount" Type="Int32" />
+          <Property Name="ReportLevel" Type="String" MaxLength="22" FixedLength="false" Unicode="false" />
+          <Property Name="AuthUserid" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="PostUserId" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="phoneno" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="authid" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="smsalert" Type="Int32" />
+          <Property Name="emailalert" Type="Int32" />
+          <Property Name="offlinealert" Type="Int32" />
+          <Property Name="authorisedby" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="enforce_pwd" Type="Int32" />
+          <Property Name="excemptlock" Type="Int32" />
+          <Property Name="statement" Type="Int32" />
+          <Property Name="remotelogin" Type="Int32" />
+          <Property Name="targetamt" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="logincount" Type="Int32" />
+          <Property Name="multilogin" Type="Int32" />
+          <Property Name="SBU" Type="Int32" />
+          <Property Name="reportflag" Type="Int32" />
+          <Property Name="ConfirmPassword" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="PasswordResetCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsEmailVerified" Type="Boolean" />
+          <Property Name="ActivationCode" Type="Guid" />
+        </EntityType>
+        <EntityType Name="tbl_AgeGrade">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="applicant_Id" Type="Int64" />
+          <Property Name="BVN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AuthId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NoOfEmployee" Type="Int32" />
+          <Property Name="T1835" Type="Int32" />
+          <Property Name="T3645" Type="Int32" />
+          <Property Name="T46andabove" Type="Int32" />
+          <Property Name="createdate" Type="DateTime" Precision="3" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="userid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_Applicant">
+          <Key>
+            <PropertyRef Name="applicant_Id" />
+          </Key>
+          <Property Name="applicant_Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Upload_Id" Type="Int64" />
+          <Property Name="SurName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Middlename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BusinessName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StateOfOrigin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LGA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ResidAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PersonalTaxRegNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BusinessSector" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="BusinessType" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="BusinessAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BusinesPhoneNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="BusinesEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BusinesWebsite" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BusinesTaxRegNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastTaxPayDate" Type="DateTime" Precision="3" />
+          <Property Name="BusinesStartDate" Type="DateTime" Precision="3" />
+          <Property Name="NoOfYrInOperation" Type="Int32" />
+          <Property Name="NOofEmployee" Type="Int32" />
+          <Property Name="NOofFemale" Type="Int32" />
+          <Property Name="NOofMale" Type="Int32" />
+          <Property Name="AgeGrade" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EstimValOfBusTurnoverXLB" Type="Decimal" Precision="22" Scale="2" />
+          <Property Name="BankName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AcctNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="BVN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="Amount" Type="Decimal" Precision="22" Scale="2" />
+          <Property Name="AnyRunningLoanPriorToCovid" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TotalOutstandVolumeOfLoan" Type="Decimal" Precision="22" Scale="2" />
+          <Property Name="HowOftenWereYouPaying" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HowMuchWereyouPaying" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DidYourRepaymentChange" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="RepaymntChangeToHowMuch" Type="Decimal" Precision="22" Scale="2" />
+          <Property Name="findItDiffToMeetPaymentOblig" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="BusinImpactByCovid" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="BusiNegImpactByCovid" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="specifyOther" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="PlanningToLayOffEmployeeDueToNeg" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DidYouLayOffEmployee" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NoOffEmployeeLayOff" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DidBusContDuringCovidCrisis" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="WhtToolCudVeMadeItPosib" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="WhtToolCudVeMadeBusMoreEffnt" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeAbleToWrkFrmHom" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="WhtToolCudVeReqToMakeItPosib" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="GrantTypeReqFor" Type="Int32" />
+          <Property Name="fullname" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Declaration" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="AllSectnOfFormFilled" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="IsBusinessCertAttach" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="IsEvidOfTaxPaymentAttach" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="IsEvOf1YrTOverAttachOrVerifid" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="VeBnkDetailProvided" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="IsImpactOfCovidOnBusnVrfd" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="GrantyTpe" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CreditGrantAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="OperatnGrantAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ITEnhanceGrantAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="approveComment" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="rejectComment" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="authId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="userId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ApprovalLevel" Type="Int32" />
+          <Property Name="rejected" Type="Int32" />
+          <Property Name="Approved" Type="Int32" />
+          <Property Name="ApprovedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="rejectedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="createdate" Type="DateTime" Precision="3" />
+          <Property Name="Score" Type="Int32" />
+          <Property Name="ReworkStatus" Type="Int32" />
+          <Property Name="amountApprove" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DisburseType" Type="Int32" />
+          <Property Name="amntDisbursed" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="disbursedBalance" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="AmntDue" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NoOftranchDisb" Type="Int32" />
+          <Property Name="TotalNoOfTranDisb" Type="Int32" />
+          <Property Name="freguency" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_ApplicantUploads">
+          <Key>
+            <PropertyRef Name="Upload_Id" />
+          </Key>
+          <Property Name="Upload_Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Applicant_Id" Type="Int64" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BVN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LastTaxPayDate" Type="DateTime" Precision="3" />
+          <Property Name="LstTaxDatePayEvidnce" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="LstTaxDateEvidnceType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="BusnRegNum" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BusnRegNumEvdnce" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="BusnRegNumEvidnceType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Lst3YrAvrgeAnnualBusnTOver" Type="Decimal" Precision="22" Scale="2" />
+          <Property Name="Lst3YrAvrgeAnnualBusnTOverEvdnce" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Lst3YrAvrgeAnnualBusnTOverEvdnceType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ApplicantPassportName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ApplicantPassport" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ApplicantPassportType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ApplicantSign" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ApplicantSignType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EvidnceOfLoanOrCreditGrantName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EvidnceOfLoanOrCreditGrant" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="EvidnceOfLoanOrCreditGrantType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EvidnceOfOpertnExp4pst3mnthName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EvidnceOfOpertnExp4pst3mnth" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="EvidnceOfOpertnExp4pst3mnthType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EvidnceOfOCorpOrAssocMemberName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EvidnceOfOCorpOrAssocMember" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="EvidnceOfOCorpOrAssocMemberType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EnumeratorName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="EnumeratorSign" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="EnumeratorSignType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DL1TeamLeadComment" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DL1teamLeadSignWDate" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DL1teamLeadSignType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DL1teamLeadApprovAmnt" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DL2TeamLeadComment" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DL2teamLeadSign" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DL2teamLeadSignType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DL2teamLeadApprovAmnt" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DL3TeamLeadComment" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DL3teamLeadSignWdDate" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DL3teamLeadSignType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DL3teamLeadApprovAmnt" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="StateCareCordinatorComment" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="StateCareCordinatorSign" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="StateCareCordinatorSignType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="StateCareCordinatorApprovAmnt" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="tbl_Approve">
+          <Key>
+            <PropertyRef Name="approve_Id" />
+          </Key>
+          <Property Name="approve_Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicant_Id" Type="Int64" />
+          <Property Name="AuthId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ApproveAmount" Type="Decimal" Precision="22" Scale="2" />
+          <Property Name="ApproveComment" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="createdate" Type="DateTime" Precision="3" />
+          <Property Name="approvalLevel" Type="Int32" />
+          <Property Name="finalOrTranche" Type="Int32" />
+          <Property Name="Tranche" Type="Int32" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="userid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_Committee">
+          <Key>
+            <PropertyRef Name="Committee_Id" />
+          </Key>
+          <Property Name="Committee_Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Role_Level" Type="Int32" />
+          <Property Name="createDate" Type="DateTime" Precision="3" />
+          <Property Name="status" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_country">
+          <Key>
+            <PropertyRef Name="CountryCode" />
+            <PropertyRef Name="CountryName" />
+          </Key>
+          <Property Name="CountryCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CountryName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CountryMne" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="CurrencyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CurrencyMne" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="userid" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="authid" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="createdate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_customer">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="RegistrationId" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegistrationId" Type="Int64" Nullable="false" />
+          <Property Name="SurName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Middlename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="gender" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="StateOfOrigin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LGA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ResidAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PostFunct" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TaxReg" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BusSector" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BusAdress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WebsitAdress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TaxRegNO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LastTax" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="LastTaximageType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BussComDate" Type="DateTime" Precision="3" />
+          <Property Name="NumYr" Type="Int32" />
+          <Property Name="BussRegNumb" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="BussRegNumbType2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOofEmp" Type="Int32" />
+          <Property Name="NOofFemale" Type="Int32" />
+          <Property Name="NOofMale" Type="Int32" />
+          <Property Name="AgeGrade" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Turnover" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="TurnoverimageType3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BussSet" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BankName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AcctNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="BVN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Rating" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Runinloan" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="paymSchedule" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AmountPaid" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="paymentChange" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="repaymenobligation" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="bussImpact" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="bussNegImpact" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="plantolayoff" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="dolayoff" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="bussoperat" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="workfromhome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="grandrequest" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="declareation" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="approveComment" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="rejectComment" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="authId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="userId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ApprovalLevel" Type="Int32" />
+          <Property Name="ApprovedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="rejectedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="grantType" Type="Int32" />
+          <Property Name="customerid" Type="Int64" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BussRegNumbimageType2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TurnoverValues" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="BussSetValues" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="tbl_Disburse">
+          <Key>
+            <PropertyRef Name="Disburse_Id" />
+          </Key>
+          <Property Name="Disburse_Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicant_Id" Type="Int64" />
+          <Property Name="AuthId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AmountDisbursed" Type="Decimal" Precision="22" Scale="2" />
+          <Property Name="DisburseComment" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="createdate" Type="DateTime" Precision="3" />
+          <Property Name="DisburseType" Type="Int32" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="userid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_Rejection">
+          <Key>
+            <PropertyRef Name="Reject_Id" />
+          </Key>
+          <Property Name="Reject_Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicant_Id" Type="Int64" />
+          <Property Name="AuthId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RejectAmount" Type="Decimal" Precision="22" Scale="2" />
+          <Property Name="RejectComment" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="createdate" Type="DateTime" Precision="3" />
+          <Property Name="final" Type="Int32" />
+          <Property Name="rework" Type="Int32" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="userid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_state">
+          <Key>
+            <PropertyRef Name="StateCode" />
+            <PropertyRef Name="StateName" />
+            <PropertyRef Name="Statemne" />
+            <PropertyRef Name="Status" />
+          </Key>
+          <Property Name="StateCode" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="StateName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Statemne" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CountryCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Capital" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="Region" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="userid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="authid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="datecreated" Type="DateTime" Precision="3" />
+          <Property Name="createdate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="PrimeGrantEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_Role" EntityType="Self.tbl_Role" />
+          <EntitySet Name="tbl_town" EntityType="Self.tbl_town" />
+          <EntitySet Name="tbl_userprofile" EntityType="Self.tbl_userprofile" />
+          <EntitySet Name="tbl_AgeGrade" EntityType="Self.tbl_AgeGrade" />
+          <EntitySet Name="tbl_Applicant" EntityType="Self.tbl_Applicant" />
+          <EntitySet Name="tbl_ApplicantUploads" EntityType="Self.tbl_ApplicantUploads" />
+          <EntitySet Name="tbl_Approve" EntityType="Self.tbl_Approve" />
+          <EntitySet Name="tbl_Committee" EntityType="Self.tbl_Committee" />
+          <EntitySet Name="tbl_country" EntityType="Self.tbl_country" />
+          <EntitySet Name="tbl_customer" EntityType="Self.tbl_customer" />
+          <EntitySet Name="tbl_Disburse" EntityType="Self.tbl_Disburse" />
+          <EntitySet Name="tbl_Rejection" EntityType="Self.tbl_Rejection" />
+          <EntitySet Name="tbl_state" EntityType="Self.tbl_state" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PrimeGrantModelStoreContainer" CdmEntityContainer="PrimeGrantEntities">
+          <EntitySetMapping Name="tbl_Role">
+            <EntityTypeMapping TypeName="PrimeGrantModel.tbl_Role">
+              <MappingFragment StoreEntitySet="tbl_Role">
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+                <ScalarProperty Name="role_name" ColumnName="role_name" />
+                <ScalarProperty Name="roledesc" ColumnName="roledesc" />
+                <ScalarProperty Name="access_days" ColumnName="access_days" />
+                <ScalarProperty Name="createdate" ColumnName="createdate" />
+                <ScalarProperty Name="isoperation" ColumnName="isoperation" />
+                <ScalarProperty Name="reqLimit" ColumnName="reqLimit" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="authid" ColumnName="authid" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="canauth" ColumnName="canauth" />
+                <ScalarProperty Name="role_level" ColumnName="role_level" />
+                <ScalarProperty Name="Commitee" ColumnName="Commitee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_town">
+            <EntityTypeMapping TypeName="PrimeGrantModel.tbl_town">
+              <MappingFragment StoreEntitySet="tbl_town">
+                <ScalarProperty Name="TownCode" ColumnName="TownCode" />
+                <ScalarProperty Name="TownName" ColumnName="TownName" />
+                <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="townshortname" ColumnName="townshortname" />
+                <ScalarProperty Name="authid" ColumnName="authid" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="createdate" ColumnName="createdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_userprofile">
+            <EntityTypeMapping TypeName="PrimeGrantModel.tbl_userprofile">
+              <MappingFragment StoreEntitySet="tbl_userprofile">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Userid" ColumnName="Userid" />
+                <ScalarProperty Name="userpassword" ColumnName="userpassword" />
+                <ScalarProperty Name="fullname" ColumnName="fullname" />
+                <ScalarProperty Name="deptcode" ColumnName="deptcode" />
+                <ScalarProperty Name="Role_id" ColumnName="Role_id" />
+                <ScalarProperty Name="ipaddress" ColumnName="ipaddress" />
+                <ScalarProperty Name="loginstatus" ColumnName="loginstatus" />
+                <ScalarProperty Name="Authoriser" ColumnName="Authoriser" />
+                <ScalarProperty Name="branchcode" ColumnName="branchcode" />
+                <ScalarProperty Name="Staff_status" ColumnName="Staff_status" />
+                <ScalarProperty Name="PostGL_Acctno" ColumnName="PostGL_Acctno" />
+                <ScalarProperty Name="passchange_date" ColumnName="passchange_date" />
+                <ScalarProperty Name="Next_Passchange_date" ColumnName="Next_Passchange_date" />
+                <ScalarProperty Name="Create_date" ColumnName="Create_date" />
+                <ScalarProperty Name="SScode" ColumnName="SScode" />
+                <ScalarProperty Name="sessionid" ColumnName="sessionid" />
+                <ScalarProperty Name="Computername" ColumnName="Computername" />
+                <ScalarProperty Name="machaddress" ColumnName="machaddress" />
+                <ScalarProperty Name="lockcount" ColumnName="lockcount" />
+                <ScalarProperty Name="ReportLevel" ColumnName="ReportLevel" />
+                <ScalarProperty Name="AuthUserid" ColumnName="AuthUserid" />
+                <ScalarProperty Name="PostUserId" ColumnName="PostUserId" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phoneno" ColumnName="phoneno" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="authid" ColumnName="authid" />
+                <ScalarProperty Name="smsalert" ColumnName="smsalert" />
+                <ScalarProperty Name="emailalert" ColumnName="emailalert" />
+                <ScalarProperty Name="offlinealert" ColumnName="offlinealert" />
+                <ScalarProperty Name="authorisedby" ColumnName="authorisedby" />
+                <ScalarProperty Name="enforce_pwd" ColumnName="enforce_pwd" />
+                <ScalarProperty Name="excemptlock" ColumnName="excemptlock" />
+                <ScalarProperty Name="statement" ColumnName="statement" />
+                <ScalarProperty Name="remotelogin" ColumnName="remotelogin" />
+                <ScalarProperty Name="targetamt" ColumnName="targetamt" />
+                <ScalarProperty Name="logincount" ColumnName="logincount" />
+                <ScalarProperty Name="multilogin" ColumnName="multilogin" />
+                <ScalarProperty Name="SBU" ColumnName="SBU" />
+                <ScalarProperty Name="reportflag" ColumnName="reportflag" />
+                <ScalarProperty Name="ConfirmPassword" ColumnName="ConfirmPassword" />
+                <ScalarProperty Name="PasswordResetCode" ColumnName="PasswordResetCode" />
+                <ScalarProperty Name="IsEmailVerified" ColumnName="IsEmailVerified" />
+                <ScalarProperty Name="ActivationCode" ColumnName="ActivationCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_AgeGrade">
+            <EntityTypeMapping TypeName="PrimeGrantModel.tbl_AgeGrade">
+              <MappingFragment StoreEntitySet="tbl_AgeGrade">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="applicant_Id" ColumnName="applicant_Id" />
+                <ScalarProperty Name="BVN" ColumnName="BVN" />
+                <ScalarProperty Name="AuthId" ColumnName="AuthId" />
+                <ScalarProperty Name="NoOfEmployee" ColumnName="NoOfEmployee" />
+                <ScalarProperty Name="T1835" ColumnName="T1835" />
+                <ScalarProperty Name="T3645" ColumnName="T3645" />
+                <ScalarProperty Name="T46andabove" ColumnName="T46andabove" />
+                <ScalarProperty Name="createdate" ColumnName="createdate" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Applicant">
+            <EntityTypeMapping TypeName="PrimeGrantModel.tbl_Applicant">
+              <MappingFragment StoreEntitySet="tbl_Applicant">
+                <ScalarProperty Name="applicant_Id" ColumnName="applicant_Id" />
+                <ScalarProperty Name="Upload_Id" ColumnName="Upload_Id" />
+                <ScalarProperty Name="SurName" ColumnName="SurName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Middlename" ColumnName="Middlename" />
+                <ScalarProperty Name="BusinessName" ColumnName="BusinessName" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="StateOfOrigin" ColumnName="StateOfOrigin" />
+                <ScalarProperty Name="LGA" ColumnName="LGA" />
+                <ScalarProperty Name="ResidAddress" ColumnName="ResidAddress" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PersonalTaxRegNo" ColumnName="PersonalTaxRegNo" />
+                <ScalarProperty Name="BusinessSector" ColumnName="BusinessSector" />
+                <ScalarProperty Name="BusinessType" ColumnName="BusinessType" />
+                <ScalarProperty Name="BusinessAddress" ColumnName="BusinessAddress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="BusinesPhoneNo" ColumnName="BusinesPhoneNo" />
+                <ScalarProperty Name="BusinesEmail" ColumnName="BusinesEmail" />
+                <ScalarProperty Name="BusinesWebsite" ColumnName="BusinesWebsite" />
+                <ScalarProperty Name="BusinesTaxRegNo" ColumnName="BusinesTaxRegNo" />
+                <ScalarProperty Name="LastTaxPayDate" ColumnName="LastTaxPayDate" />
+                <ScalarProperty Name="BusinesStartDate" ColumnName="BusinesStartDate" />
+                <ScalarProperty Name="NoOfYrInOperation" ColumnName="NoOfYrInOperation" />
+                <ScalarProperty Name="NOofEmployee" ColumnName="NOofEmployee" />
+                <ScalarProperty Name="NOofFemale" ColumnName="NOofFemale" />
+                <ScalarProperty Name="NOofMale" ColumnName="NOofMale" />
+                <ScalarProperty Name="AgeGrade" ColumnName="AgeGrade" />
+                <ScalarProperty Name="EstimValOfBusTurnoverXLB" ColumnName="EstimValOfBusTurnoverXLB" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="AcctNo" ColumnName="AcctNo" />
+                <ScalarProperty Name="BVN" ColumnName="BVN" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="AnyRunningLoanPriorToCovid" ColumnName="AnyRunningLoanPriorToCovid" />
+                <ScalarProperty Name="TotalOutstandVolumeOfLoan" ColumnName="TotalOutstandVolumeOfLoan" />
+                <ScalarProperty Name="HowOftenWereYouPaying" ColumnName="HowOftenWereYouPaying" />
+                <ScalarProperty Name="HowMuchWereyouPaying" ColumnName="HowMuchWereyouPaying" />
+                <ScalarProperty Name="DidYourRepaymentChange" ColumnName="DidYourRepaymentChange" />
+                <ScalarProperty Name="RepaymntChangeToHowMuch" ColumnName="RepaymntChangeToHowMuch" />
+                <ScalarProperty Name="findItDiffToMeetPaymentOblig" ColumnName="findItDiffToMeetPaymentOblig" />
+                <ScalarProperty Name="BusinImpactByCovid" ColumnName="BusinImpactByCovid" />
+                <ScalarProperty Name="BusiNegImpactByCovid" ColumnName="BusiNegImpactByCovid" />
+                <ScalarProperty Name="specifyOther" ColumnName="specifyOther" />
+                <ScalarProperty Name="PlanningToLayOffEmployeeDueToNeg" ColumnName="PlanningToLayOffEmployeeDueToNeg" />
+                <ScalarProperty Name="DidYouLayOffEmployee" ColumnName="DidYouLayOffEmployee" />
+                <ScalarProperty Name="NoOffEmployeeLayOff" ColumnName="NoOffEmployeeLayOff" />
+                <ScalarProperty Name="DidBusContDuringCovidCrisis" ColumnName="DidBusContDuringCovidCrisis" />
+                <ScalarProperty Name="WhtToolCudVeMadeItPosib" ColumnName="WhtToolCudVeMadeItPosib" />
+                <ScalarProperty Name="WhtToolCudVeMadeBusMoreEffnt" ColumnName="WhtToolCudVeMadeBusMoreEffnt" />
+                <ScalarProperty Name="EmployeeAbleToWrkFrmHom" ColumnName="EmployeeAbleToWrkFrmHom" />
+                <ScalarProperty Name="WhtToolCudVeReqToMakeItPosib" ColumnName="WhtToolCudVeReqToMakeItPosib" />
+                <ScalarProperty Name="GrantTypeReqFor" ColumnName="GrantTypeReqFor" />
+                <ScalarProperty Name="fullname" ColumnName="fullname" />
+                <ScalarProperty Name="Declaration" ColumnName="Declaration" />
+                <ScalarProperty Name="AllSectnOfFormFilled" ColumnName="AllSectnOfFormFilled" />
+                <ScalarProperty Name="IsBusinessCertAttach" ColumnName="IsBusinessCertAttach" />
+                <ScalarProperty Name="IsEvidOfTaxPaymentAttach" ColumnName="IsEvidOfTaxPaymentAttach" />
+                <ScalarProperty Name="IsEvOf1YrTOverAttachOrVerifid" ColumnName="IsEvOf1YrTOverAttachOrVerifid" />
+                <ScalarProperty Name="VeBnkDetailProvided" ColumnName="VeBnkDetailProvided" />
+                <ScalarProperty Name="IsImpactOfCovidOnBusnVrfd" ColumnName="IsImpactOfCovidOnBusnVrfd" />
+                <ScalarProperty Name="GrantyTpe" ColumnName="GrantyTpe" />
+                <ScalarProperty Name="CreditGrantAmount" ColumnName="CreditGrantAmount" />
+                <ScalarProperty Name="OperatnGrantAmount" ColumnName="OperatnGrantAmount" />
+                <ScalarProperty Name="ITEnhanceGrantAmount" ColumnName="ITEnhanceGrantAmount" />
+                <ScalarProperty Name="approveComment" ColumnName="approveComment" />
+                <ScalarProperty Name="rejectComment" ColumnName="rejectComment" />
+                <ScalarProperty Name="authId" ColumnName="authId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="ApprovalLevel" ColumnName="ApprovalLevel" />
+                <ScalarProperty Name="rejected" ColumnName="rejected" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+                <ScalarProperty Name="rejectedBy" ColumnName="rejectedBy" />
+                <ScalarProperty Name="createdate" ColumnName="createdate" />
+                <ScalarProperty Name="Score" ColumnName="Score" />
+                <ScalarProperty Name="ReworkStatus" ColumnName="ReworkStatus" />
+                <ScalarProperty Name="amountApprove" ColumnName="amountApprove" />
+                <ScalarProperty Name="DisburseType" ColumnName="DisburseType" />
+                <ScalarProperty Name="amntDisbursed" ColumnName="amntDisbursed" />
+                <ScalarProperty Name="disbursedBalance" ColumnName="disbursedBalance" />
+                <ScalarProperty Name="AmntDue" ColumnName="AmntDue" />
+                <ScalarProperty Name="NoOftranchDisb" ColumnName="NoOftranchDisb" />
+                <ScalarProperty Name="TotalNoOfTranDisb" ColumnName="TotalNoOfTranDisb" />
+                <ScalarProperty Name="freguency" ColumnName="freguency" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ApplicantUploads">
+            <EntityTypeMapping TypeName="PrimeGrantModel.tbl_ApplicantUploads">
+              <MappingFragment StoreEntitySet="tbl_ApplicantUploads">
+                <ScalarProperty Name="Upload_Id" ColumnName="Upload_Id" />
+                <ScalarProperty Name="Applicant_Id" ColumnName="Applicant_Id" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="BVN" ColumnName="BVN" />
+                <ScalarProperty Name="LastTaxPayDate" ColumnName="LastTaxPayDate" />
+                <ScalarProperty Name="LstTaxDatePayEvidnce" ColumnName="LstTaxDatePayEvidnce" />
+                <ScalarProperty Name="LstTaxDateEvidnceType" ColumnName="LstTaxDateEvidnceType" />
+                <ScalarProperty Name="BusnRegNum" ColumnName="BusnRegNum" />
+                <ScalarProperty Name="BusnRegNumEvdnce" ColumnName="BusnRegNumEvdnce" />
+                <ScalarProperty Name="BusnRegNumEvidnceType" ColumnName="BusnRegNumEvidnceType" />
+                <ScalarProperty Name="Lst3YrAvrgeAnnualBusnTOver" ColumnName="Lst3YrAvrgeAnnualBusnTOver" />
+                <ScalarProperty Name="Lst3YrAvrgeAnnualBusnTOverEvdnce" ColumnName="Lst3YrAvrgeAnnualBusnTOverEvdnce" />
+                <ScalarProperty Name="Lst3YrAvrgeAnnualBusnTOverEvdnceType" ColumnName="Lst3YrAvrgeAnnualBusnTOverEvdnceType" />
+                <ScalarProperty Name="ApplicantPassportName" ColumnName="ApplicantPassportName" />
+                <ScalarProperty Name="ApplicantPassport" ColumnName="ApplicantPassport" />
+                <ScalarProperty Name="ApplicantPassportType" ColumnName="ApplicantPassportType" />
+                <ScalarProperty Name="ApplicantSign" ColumnName="ApplicantSign" />
+                <ScalarProperty Name="ApplicantSignType" ColumnName="ApplicantSignType" />
+                <ScalarProperty Name="EvidnceOfLoanOrCreditGrantName" ColumnName="EvidnceOfLoanOrCreditGrantName" />
+                <ScalarProperty Name="EvidnceOfLoanOrCreditGrant" ColumnName="EvidnceOfLoanOrCreditGrant" />
+                <ScalarProperty Name="EvidnceOfLoanOrCreditGrantType" ColumnName="EvidnceOfLoanOrCreditGrantType" />
+                <ScalarProperty Name="EvidnceOfOpertnExp4pst3mnthName" ColumnName="EvidnceOfOpertnExp4pst3mnthName" />
+                <ScalarProperty Name="EvidnceOfOpertnExp4pst3mnth" ColumnName="EvidnceOfOpertnExp4pst3mnth" />
+                <ScalarProperty Name="EvidnceOfOpertnExp4pst3mnthType" ColumnName="EvidnceOfOpertnExp4pst3mnthType" />
+                <ScalarProperty Name="EvidnceOfOCorpOrAssocMemberName" ColumnName="EvidnceOfOCorpOrAssocMemberName" />
+                <ScalarProperty Name="EvidnceOfOCorpOrAssocMember" ColumnName="EvidnceOfOCorpOrAssocMember" />
+                <ScalarProperty Name="EvidnceOfOCorpOrAssocMemberType" ColumnName="EvidnceOfOCorpOrAssocMemberType" />
+                <ScalarProperty Name="EnumeratorName" ColumnName="EnumeratorName" />
+                <ScalarProperty Name="EnumeratorSign" ColumnName="EnumeratorSign" />
+                <ScalarProperty Name="EnumeratorSignType" ColumnName="EnumeratorSignType" />
+                <ScalarProperty Name="DL1TeamLeadComment" ColumnName="DL1TeamLeadComment" />
+                <ScalarProperty Name="DL1teamLeadSignWDate" ColumnName="DL1teamLeadSignWDate" />
+                <ScalarProperty Name="DL1teamLeadSignType" ColumnName="DL1teamLeadSignType" />
+                <ScalarProperty Name="DL1teamLeadApprovAmnt" ColumnName="DL1teamLeadApprovAmnt" />
+                <ScalarProperty Name="DL2TeamLeadComment" ColumnName="DL2TeamLeadComment" />
+                <ScalarProperty Name="DL2teamLeadSign" ColumnName="DL2teamLeadSign" />
+                <ScalarProperty Name="DL2teamLeadSignType" ColumnName="DL2teamLeadSignType" />
+                <ScalarProperty Name="DL2teamLeadApprovAmnt" ColumnName="DL2teamLeadApprovAmnt" />
+                <ScalarProperty Name="DL3TeamLeadComment" ColumnName="DL3TeamLeadComment" />
+                <ScalarProperty Name="DL3teamLeadSignWdDate" ColumnName="DL3teamLeadSignWdDate" />
+                <ScalarProperty Name="DL3teamLeadSignType" ColumnName="DL3teamLeadSignType" />
+                <ScalarProperty Name="DL3teamLeadApprovAmnt" ColumnName="DL3teamLeadApprovAmnt" />
+                <ScalarProperty Name="StateCareCordinatorComment" ColumnName="StateCareCordinatorComment" />
+                <ScalarProperty Name="StateCareCordinatorSign" ColumnName="StateCareCordinatorSign" />
+                <ScalarProperty Name="StateCareCordinatorSignType" ColumnName="StateCareCordinatorSignType" />
+                <ScalarProperty Name="StateCareCordinatorApprovAmnt" ColumnName="StateCareCordinatorApprovAmnt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Approve">
+            <EntityTypeMapping TypeName="PrimeGrantModel.tbl_Approve">
+              <MappingFragment StoreEntitySet="tbl_Approve">
+                <ScalarProperty Name="approve_Id" ColumnName="approve_Id" />
+                <ScalarProperty Name="applicant_Id" ColumnName="applicant_Id" />
+                <ScalarProperty Name="AuthId" ColumnName="AuthId" />
+                <ScalarProperty Name="ApproveAmount" ColumnName="ApproveAmount" />
+                <ScalarProperty Name="ApproveComment" ColumnName="ApproveComment" />
+                <ScalarProperty Name="createdate" ColumnName="createdate" />
+                <ScalarProperty Name="approvalLevel" ColumnName="approvalLevel" />
+                <ScalarProperty Name="finalOrTranche" ColumnName="finalOrTranche" />
+                <ScalarProperty Name="Tranche" ColumnName="Tranche" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Committee">
+            <EntityTypeMapping TypeName="PrimeGrantModel.tbl_Committee">
+              <MappingFragment StoreEntitySet="tbl_Committee">
+                <ScalarProperty Name="Committee_Id" ColumnName="Committee_Id" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="Role_Level" ColumnName="Role_Level" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_country">
+            <EntityTypeMapping TypeName="PrimeGrantModel.tbl_country">
+              <MappingFragment StoreEntitySet="tbl_country">
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CountryMne" ColumnName="CountryMne" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CurrencyName" ColumnName="CurrencyName" />
+                <ScalarProperty Name="CurrencyMne" ColumnName="CurrencyMne" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="authid" ColumnName="authid" />
+                <ScalarProperty Name="createdate" ColumnName="createdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_customer">
+            <EntityTypeMapping TypeName="PrimeGrantModel.tbl_customer">
+              <MappingFragment StoreEntitySet="tbl_customer">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="RegistrationId" ColumnName="RegistrationId" />
+                <ScalarProperty Name="SurName" ColumnName="SurName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Middlename" ColumnName="Middlename" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="StateOfOrigin" ColumnName="StateOfOrigin" />
+                <ScalarProperty Name="LGA" ColumnName="LGA" />
+                <ScalarProperty Name="ResidAddress" ColumnName="ResidAddress" />
+                <ScalarProperty Name="PostFunct" ColumnName="PostFunct" />
+                <ScalarProperty Name="TaxReg" ColumnName="TaxReg" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="BusSector" ColumnName="BusSector" />
+                <ScalarProperty Name="BusAdress" ColumnName="BusAdress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="WebsitAdress" ColumnName="WebsitAdress" />
+                <ScalarProperty Name="TaxRegNO" ColumnName="TaxRegNO" />
+                <ScalarProperty Name="LastTax" ColumnName="LastTax" />
+                <ScalarProperty Name="LastTaximageType" ColumnName="LastTaximageType" />
+                <ScalarProperty Name="BussComDate" ColumnName="BussComDate" />
+                <ScalarProperty Name="NumYr" ColumnName="NumYr" />
+                <ScalarProperty Name="BussRegNumb" ColumnName="BussRegNumb" />
+                <ScalarProperty Name="BussRegNumbType2" ColumnName="BussRegNumbType2" />
+                <ScalarProperty Name="NOofEmp" ColumnName="NOofEmp" />
+                <ScalarProperty Name="NOofFemale" ColumnName="NOofFemale" />
+                <ScalarProperty Name="NOofMale" ColumnName="NOofMale" />
+                <ScalarProperty Name="AgeGrade" ColumnName="AgeGrade" />
+                <ScalarProperty Name="Turnover" ColumnName="Turnover" />
+                <ScalarProperty Name="TurnoverimageType3" ColumnName="TurnoverimageType3" />
+                <ScalarProperty Name="BussSet" ColumnName="BussSet" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="AcctNo" ColumnName="AcctNo" />
+                <ScalarProperty Name="BVN" ColumnName="BVN" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Runinloan" ColumnName="Runinloan" />
+                <ScalarProperty Name="paymSchedule" ColumnName="paymSchedule" />
+                <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
+                <ScalarProperty Name="paymentChange" ColumnName="paymentChange" />
+                <ScalarProperty Name="repaymenobligation" ColumnName="repaymenobligation" />
+                <ScalarProperty Name="bussImpact" ColumnName="bussImpact" />
+                <ScalarProperty Name="bussNegImpact" ColumnName="bussNegImpact" />
+                <ScalarProperty Name="plantolayoff" ColumnName="plantolayoff" />
+                <ScalarProperty Name="dolayoff" ColumnName="dolayoff" />
+                <ScalarProperty Name="bussoperat" ColumnName="bussoperat" />
+                <ScalarProperty Name="workfromhome" ColumnName="workfromhome" />
+                <ScalarProperty Name="grandrequest" ColumnName="grandrequest" />
+                <ScalarProperty Name="declareation" ColumnName="declareation" />
+                <ScalarProperty Name="approveComment" ColumnName="approveComment" />
+                <ScalarProperty Name="rejectComment" ColumnName="rejectComment" />
+                <ScalarProperty Name="authId" ColumnName="authId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="ApprovalLevel" ColumnName="ApprovalLevel" />
+                <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+                <ScalarProperty Name="rejectedBy" ColumnName="rejectedBy" />
+                <ScalarProperty Name="grantType" ColumnName="grantType" />
+                <ScalarProperty Name="customerid" ColumnName="customerid" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="BussRegNumbimageType2" ColumnName="BussRegNumbimageType2" />
+                <ScalarProperty Name="TurnoverValues" ColumnName="TurnoverValues" />
+                <ScalarProperty Name="BussSetValues" ColumnName="BussSetValues" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Disburse">
+            <EntityTypeMapping TypeName="PrimeGrantModel.tbl_Disburse">
+              <MappingFragment StoreEntitySet="tbl_Disburse">
+                <ScalarProperty Name="Disburse_Id" ColumnName="Disburse_Id" />
+                <ScalarProperty Name="applicant_Id" ColumnName="applicant_Id" />
+                <ScalarProperty Name="AuthId" ColumnName="AuthId" />
+                <ScalarProperty Name="AmountDisbursed" ColumnName="AmountDisbursed" />
+                <ScalarProperty Name="DisburseComment" ColumnName="DisburseComment" />
+                <ScalarProperty Name="createdate" ColumnName="createdate" />
+                <ScalarProperty Name="DisburseType" ColumnName="DisburseType" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Rejection">
+            <EntityTypeMapping TypeName="PrimeGrantModel.tbl_Rejection">
+              <MappingFragment StoreEntitySet="tbl_Rejection">
+                <ScalarProperty Name="Reject_Id" ColumnName="Reject_Id" />
+                <ScalarProperty Name="applicant_Id" ColumnName="applicant_Id" />
+                <ScalarProperty Name="AuthId" ColumnName="AuthId" />
+                <ScalarProperty Name="RejectAmount" ColumnName="RejectAmount" />
+                <ScalarProperty Name="RejectComment" ColumnName="RejectComment" />
+                <ScalarProperty Name="createdate" ColumnName="createdate" />
+                <ScalarProperty Name="final" ColumnName="final" />
+                <ScalarProperty Name="rework" ColumnName="rework" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_state">
+            <EntityTypeMapping TypeName="PrimeGrantModel.tbl_state">
+              <MappingFragment StoreEntitySet="tbl_state">
+                <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="Statemne" ColumnName="Statemne" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="Capital" ColumnName="Capital" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="authid" ColumnName="authid" />
+                <ScalarProperty Name="datecreated" ColumnName="datecreated" />
+                <ScalarProperty Name="createdate" ColumnName="createdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
